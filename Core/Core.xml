@@ -8,4 +8,5 @@
     <Include file = 'Utils.lua' />
     <Include file = 'Maps.lua' />
     <Include file = 'Events.lua' />
+    <Include file = 'Options.lua' />
 </UI>

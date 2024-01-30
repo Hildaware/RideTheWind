@@ -294,7 +294,11 @@
         "GameFontDisableSmall",
         "GameFontNormalSmall",
         "UiMapPoint",
-        "BACKGROUND"
+        "BACKGROUND",
+        "SELECTED_CHAT_FRAME",
+        "GameFontHighlight",
+        "InterfaceOptions_AddCategory",
+        "GameFontHighlightLarge"
     ],
     "Lua.diagnostics.disable": [
         "inject-field",
