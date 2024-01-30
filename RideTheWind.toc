@@ -1,0 +1,12 @@
+## Interface: 100200
+## Title: Ride The Wind
+## Notes: Dragonriding Companion
+## Authors: Sel
+## Version: 1
+## IconTexture: Interface\AddOns\ConsoleBags\Media\Logo
+## SavedVariables: RideTheWindDB
+
+Libs/Libs.xml
+Core/Core.xml
+GUI/GUI.xml
+RideTheWind.lua
