@@ -293,7 +293,8 @@
         "ACCEPT",
         "GameFontDisableSmall",
         "GameFontNormalSmall",
-        "UiMapPoint"
+        "UiMapPoint",
+        "BACKGROUND"
     ],
     "Lua.diagnostics.disable": [
         "inject-field",

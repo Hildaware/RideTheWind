@@ -142,7 +142,7 @@ function events:PLAYER_LOGIN()
         frame.scroll:AddChild(f)
     end
 
-    frame:Show()
+    -- frame:Show()
 end
 
 view:Enable()
