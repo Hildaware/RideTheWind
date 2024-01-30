@@ -48,11 +48,13 @@ end
 
 function zoneView:Create()
     local position = database:GetZoneViewPosition()
+    local font = database:GetZoneViewFont()
 
     ---@class AceGUIFrame
     ---@field frame Frame
     ---@field closebutton Button
     ---@field title Frame
+    ---@field titletext FontString
     ---@field localstatus table
     local view = gui:Create('Window')
     view:SetWidth(240)
@@ -61,13 +63,17 @@ function zoneView:Create()
     view.closebutton:Hide()
     view.frame:DisableDrawLayer('BACKGROUND')
     view.frame:DisableDrawLayer('BORDER')
+    view.titletext:SetFont(font.path, 16, 'OUTLINE')
     view.title:HookScript('OnMouseUp', function()
         database:SaveZoneViewPosition(view.localstatus.left, view.localstatus.top)
     end)
 
+    local bgColor = database:GetZoneViewColor()
+
     local viewTex = view.frame:CreateTexture(nil, 'ARTWORK')
     viewTex:SetAllPoints(view.frame)
-    viewTex:SetColorTexture(0, 0, 0, 0.25) -- TODO: Setting
+    viewTex:SetColorTexture(bgColor.r, bgColor.g, bgColor.b, bgColor.a)
+    view.BackgroundColor = viewTex
 
     ---@class AceGUISimpleGroup
     local header = gui:Create('SimpleGroup')
@@ -95,8 +101,9 @@ function zoneView:Create()
     name:SetText('Normal')
     name:SetJustifyH('CENTER')
     name:SetJustifyV('TOP')
-    name:SetFont('Interface\\Addons\\RideTheWind\\Fonts\\AccidentalPresidency.ttf', 14, 'OUTLINE')
+    name:SetFont(font.path, 14, 'OUTLINE')
     name:SetRelativeWidth(0.3)
+    listHeader.Name = name
     listHeader:AddChild(name)
 
     ---@class AceGUILabel
@@ -104,8 +111,9 @@ function zoneView:Create()
     advanced:SetText('Advanced')
     advanced:SetJustifyH('CENTER')
     advanced:SetJustifyV('TOP')
-    advanced:SetFont('Interface\\Addons\\RideTheWind\\Fonts\\AccidentalPresidency.ttf', 14, 'OUTLINE')
+    advanced:SetFont(font.path, 14, 'OUTLINE')
     advanced:SetRelativeWidth(0.35)
+    listHeader.Advanced = advanced
     listHeader:AddChild(advanced)
 
     ---@class AceGUILabel
@@ -113,9 +121,12 @@ function zoneView:Create()
     reverse:SetText('Reverse')
     reverse:SetJustifyH('RIGHT')
     reverse:SetJustifyV('TOP')
-    reverse:SetFont('Interface\\Addons\\RideTheWind\\Fonts\\AccidentalPresidency.ttf', 14, 'OUTLINE')
+    reverse:SetFont(font.path, 14, 'OUTLINE')
     reverse:SetRelativeWidth(0.3)
+    listHeader.Reverse = reverse
     listHeader:AddChild(reverse)
+
+    view.ListHeader = listHeader
 
     --#endregion
 
@@ -162,8 +173,24 @@ function zoneView:Update()
     self.data.view.frame:Show()
 end
 
+---@param color { R:integer, G:integer, B:integer, A:integer }
+function zoneView:UpdateColor(color)
+    self.data.view.BackgroundColor:SetColorTexture(color.R, color.G, color.B, color.A)
+end
+
+function zoneView:UpdateFont(fontPath)
+    self.data.view.titletext:SetFont(fontPath, 16, 'OUTLINE')
+
+    self.data.view.ListHeader.Name:SetFont(fontPath, 14, 'OUTLINE')
+    self.data.view.ListHeader.Advanced:SetFont(fontPath, 14, 'OUTLINE')
+    self.data.view.ListHeader.Reverse:SetFont(fontPath, 14, 'OUTLINE')
+
+    for _, frame in pairs(self.data.pool.Active) do
+        frame.Name:SetFont(fontPath, 16, 'OUTLINE')
+    end
+end
+
 function events:ZONE_CHANGED()
-    -- TODO: Auto-Show toggle
     local zoneInfo = utils.GetDragonRacingZone()
     if zoneInfo == nil then return end
 
@@ -174,7 +201,10 @@ function events:ZONE_CHANGED()
     if raceData == nil then return end
 
     zoneView.data.races = raceData
-    zoneView:Update()
+
+    if database:GetZoneViewEnabled() == true then
+        zoneView:Update()
+    end
 end
 
 function events:VARIABLES_LOADED()
@@ -188,7 +218,10 @@ function events:VARIABLES_LOADED()
     if raceData == nil then return end
 
     zoneView.data.races = raceData
-    zoneView:Update()
+
+    if database:GetZoneViewEnabled() == true then
+        zoneView:Update()
+    end
 end
 
 zoneView:Enable()

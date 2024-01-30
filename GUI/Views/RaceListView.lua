@@ -95,7 +95,6 @@ frame:Hide()
 
 -- On Event > Check Race Stats
 function events:ZONE_CHANGED()
-    -- TODO: Auto-Show toggle, UPDATE
     local zoneInfo = utils.GetDragonRacingZone()
     if zoneInfo == nil then return end
 

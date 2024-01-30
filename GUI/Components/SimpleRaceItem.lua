@@ -10,6 +10,9 @@ local simpleRaceItem = addon:NewModule('SimpleRaceItem')
 ---@class Utils: AceModule
 local utils = addon:GetModule('Utils')
 
+---@class Database: AceModule
+local database = addon:GetModule('Database')
+
 ---@class AceGUISimpleGroup
 ---@field Name AceGUIInteractiveLabel
 ---@field Normal AceGUIInteractiveLabel
@@ -73,6 +76,8 @@ end
 --- Creates a Race Item Widget
 ---@return AceGUISimpleGroup
 function simpleRaceItem:Create()
+    local font = database:GetZoneViewFont()
+
     ---@class AceGUISimpleGroup
     local frame = gui:Create('SimpleGroup')
     frame:SetFullWidth(true)
@@ -89,16 +94,25 @@ function simpleRaceItem:Create()
     frame:AddChild(heading)
 
     ---@class AceGUIInteractiveLabel
-    local icon = gui:Create('InteractiveLabel')
-    icon:SetImage('Interface\\Addons\\RideTheWind\\Media\\pin')
-    icon:SetRelativeWidth(0.2)
-    heading:AddChild(icon)
-    frame.Pin = icon
+    local pin = gui:Create('InteractiveLabel')
+    pin:SetImage('Interface\\Addons\\RideTheWind\\Media\\pin')
+    pin:SetRelativeWidth(0.2)
+    pin:SetCallback('OnEnter', function(self)
+        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+        GameTooltip:SetText('Create Map Pin')
+        GameTooltip:Show()
+    end)
+    pin:SetCallback('OnLeave', function()
+        GameTooltip:Hide()
+    end)
+
+    heading:AddChild(pin)
+    frame.Pin = pin
 
     ---@class AceGUILabel
     local name = gui:Create('Label')
     name:SetRelativeWidth(0.75)
-    name:SetFont('Interface\\Addons\\RideTheWind\\Fonts\\AccidentalPresidency.ttf', 16, 'OUTLINE')
+    name:SetFont(font.path, 16, 'OUTLINE')
     heading:AddChild(name)
     frame.Name = name
 
