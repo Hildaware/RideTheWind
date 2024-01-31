@@ -1,10 +1,11 @@
-## Interface: 100200
+## Interface: 100250
 ## Title: Ride The Wind
 ## Notes: Dragonriding Companion
 ## Authors: Sel
-## Version: 1
-## IconTexture: Interface\AddOns\ConsoleBags\Media\Logo
+## Version: 0.1a
+## IconTexture: Interface\AddOns\RideTheWind\Media\Logo
 ## SavedVariables: RideTheWindDB
+## X-Curse-Project-ID: 969233
 
 Libs/Libs.xml
 Core/Core.xml
