@@ -63,10 +63,20 @@ function utils.ParseRaceTimeTooltip(tooltipText)
     local reverseBest = utils:ParseNumbersFromString(reverse.best)
     local reverseGold = utils:ParseNumbersFromString(reverse.gold)
 
+    local challenge = utils:ParseRaceTooltipChunk(tooltipText, reverse.endIndex)
+    local challengeBest = utils:ParseNumbersFromString(challenge.best)
+    local challengeGold = utils:ParseNumbersFromString(challenge.gold)
+
+    local challengeRev = utils:ParseRaceTooltipChunk(tooltipText, challenge.endIndex)
+    local challengeRevBest = utils:ParseNumbersFromString(challengeRev.best)
+    local challengeRevGold = utils:ParseNumbersFromString(challengeRev.gold)
+
     return {
         normal = { best = normalBest, gold = normalGold },
         advanced = { best = advancedBest, gold = advancedGold },
-        reverse = { best = reverseBest, gold = reverseGold }
+        reverse = { best = reverseBest, gold = reverseGold },
+        challenge = { best = challengeBest, gold = challengeGold },
+        challengeReverse = { best = challengeRevBest, gold = challengeRevGold }
     }
 end
 
@@ -76,6 +86,10 @@ end
 function utils:ParseRaceTooltipChunk(str, start)
     local _, o = string.find(str, '|CFFffd100', start or 0)
     local x, w = string.find(str, '|CFFffd100', o)
+    if w == nil then
+        return { best = '', gold = '', endIndex = nil }
+    end
+
     local chunk = string.sub(str, o + 1, w)
 
     local _, b = string.find(chunk, '|R\r\n')         -- Beginning of time

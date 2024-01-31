@@ -19,10 +19,14 @@ local raceDetailsProto = {
 ---@field normal RaceDetails?
 ---@field advanced RaceDetails?
 ---@field reverse RaceDetails?
+---@field challenge RaceDetails?
+---@field challengeReverse RaceDetails?
 local raceStatsProto = {
     normal = nil,
     advanced = nil,
-    reverse = nil
+    reverse = nil,
+    challenge = nil,
+    challengeReverse = nil
 }
 
 ---@class databaseOptions
@@ -44,9 +48,9 @@ local defaults = {
                     X = 500,
                     Y = 500
                 },
-                Font = { -- TODO: Add default font
-                    Name = '',
-                    Path = ''
+                Font = {
+                    Name = 'Friz Quadrata TT',
+                    Path = 'Fonts\\FRIZQT__.TTF'
                 }
             }
         }

@@ -46,8 +46,10 @@ end
 function statsView:Create()
     ---@type AceGUIFrame
     local frame = gui:Create('Window')
-    frame:SetTitle("Ride the Wind")
+    frame:SetTitle("Ride the Wind - Races")
     frame:SetLayout('Fill')
+    frame:SetWidth(800)
+    frame.frame:SetResizeBounds(800, 400)
 
     ---@type AceGUISimpleGroup
     local header = gui:Create('SimpleGroup')
@@ -58,7 +60,7 @@ function statsView:Create()
     ---@type AceGUILabel
     header.name = gui:Create('Label')
     header.name:SetText('Pin               Race - Zone')
-    header.name:SetRelativeWidth(0.6)
+    header.name:SetRelativeWidth(0.43)
     header.name:SetFontObject('GameFontHighlight')
     header.name:SetColor(1, 1, 0)
     header:AddChild(header.name)
@@ -66,7 +68,7 @@ function statsView:Create()
     ---@type AceGUILabel
     header.normal = gui:Create('Label')
     header.normal:SetText('Normal')
-    header.normal:SetRelativeWidth(0.12)
+    header.normal:SetRelativeWidth(0.1)
     header.normal:SetJustifyH('CENTER')
     header.normal:SetFontObject('GameFontHighlight')
     header.normal:SetColor(1, 1, 0)
@@ -75,7 +77,7 @@ function statsView:Create()
     ---@type AceGUILabel
     header.advanced = gui:Create('Label')
     header.advanced:SetText('Advanced')
-    header.advanced:SetRelativeWidth(0.12)
+    header.advanced:SetRelativeWidth(0.1)
     header.advanced:SetJustifyH('CENTER')
     header.advanced:SetFontObject('GameFontHighlight')
     header.advanced:SetColor(1, 1, 0)
@@ -84,11 +86,29 @@ function statsView:Create()
     ---@type AceGUILabel
     header.reversed = gui:Create('Label')
     header.reversed:SetText('Reverse')
-    header.reversed:SetRelativeWidth(0.12)
+    header.reversed:SetRelativeWidth(0.1)
     header.reversed:SetJustifyH('CENTER')
     header.reversed:SetFontObject('GameFontHighlight')
     header.reversed:SetColor(1, 1, 0)
     header:AddChild(header.reversed)
+
+    ---@type AceGUILabel
+    header.challenge = gui:Create('Label')
+    header.challenge:SetText('Challenge')
+    header.challenge:SetRelativeWidth(0.1)
+    header.challenge:SetJustifyH('CENTER')
+    header.challenge:SetFontObject('GameFontHighlight')
+    header.challenge:SetColor(1, 1, 0)
+    header:AddChild(header.challenge)
+
+    ---@type AceGUILabel
+    header.challengeReverse = gui:Create('Label')
+    header.challengeReverse:SetText('Challenge Reverse')
+    header.challengeReverse:SetRelativeWidth(0.15)
+    header.challengeReverse:SetJustifyH('CENTER')
+    header.challengeReverse:SetFontObject('GameFontHighlight')
+    header.challengeReverse:SetColor(1, 1, 0)
+    header:AddChild(header.challengeReverse)
 
     ---@type AceGUISimpleGroup
     frame.scrollContainer = gui:Create('SimpleGroup')
@@ -141,25 +161,5 @@ function statsView:Toggle()
         statsView:Show()
     end
 end
-
--- Events
-
--- TODO: Remove? We should just populate on show
--- function events:ZONE_CHANGED_NEW_AREA()
---     local zoneInfo = utils.GetDragonRacingZone()
---     if zoneInfo == nil then return end
-
---     local raceData = maps.Races[zoneInfo.id]
---     if raceData == nil then return end
-
---     for _, race in pairs(raceData) do
---         ---@type Race
---         local raceInfo = race
---         local f = listItem.Create(raceInfo, nil)
---         frame.scroll:AddChild(f)
---     end
-
---     frame:Show()
--- end
 
 statsView:Enable()

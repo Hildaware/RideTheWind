@@ -47,7 +47,6 @@ function zoneView:Create()
 
     ---@class AceGUIFrame
     ---@field frame Frame
-    ---@field closebutton Button
     ---@field title Frame
     ---@field titletext FontString
     ---@field localstatus table
@@ -55,7 +54,6 @@ function zoneView:Create()
     view:SetWidth(240)
     view:SetLayout('Flow')
     view:EnableResize(false)
-    -- view.closebutton:Hide()
     view.frame:DisableDrawLayer('BACKGROUND')
     view.frame:DisableDrawLayer('BORDER')
     view.titletext:SetFont(font.path, 16, 'OUTLINE')
@@ -91,35 +89,11 @@ function zoneView:Create()
 
     header:AddChild(listHeader)
 
-    ---@class AceGUILabel
-    local name = gui:Create('Label')
-    name:SetText('Normal')
-    name:SetJustifyH('CENTER')
-    name:SetJustifyV('TOP')
-    name:SetFont(font.path, 14, 'OUTLINE')
-    name:SetRelativeWidth(0.3)
-    listHeader.Name = name
-    listHeader:AddChild(name)
-
-    ---@class AceGUILabel
-    local advanced = gui:Create('Label')
-    advanced:SetText('Advanced')
-    advanced:SetJustifyH('CENTER')
-    advanced:SetJustifyV('TOP')
-    advanced:SetFont(font.path, 14, 'OUTLINE')
-    advanced:SetRelativeWidth(0.35)
-    listHeader.Advanced = advanced
-    listHeader:AddChild(advanced)
-
-    ---@class AceGUILabel
-    local reverse = gui:Create('Label')
-    reverse:SetText('Reverse')
-    reverse:SetJustifyH('RIGHT')
-    reverse:SetJustifyV('TOP')
-    reverse:SetFont(font.path, 14, 'OUTLINE')
-    reverse:SetRelativeWidth(0.3)
-    listHeader.Reverse = reverse
-    listHeader:AddChild(reverse)
+    zoneView:CreateHeader('N', 'Normal Course', font.path, listHeader)
+    zoneView:CreateHeader('A', 'Advanced Course', font.path, listHeader)
+    zoneView:CreateHeader('R', 'Reverse Course', font.path, listHeader)
+    zoneView:CreateHeader('C', 'Challenge Course', font.path, listHeader)
+    zoneView:CreateHeader('CR', 'Challenge Reverse Course', font.path, listHeader)
 
     view.ListHeader = listHeader
 
@@ -184,6 +158,31 @@ function zoneView:Update()
     end
 
     self.data.view.frame:Show()
+end
+
+---@param label string
+---@param tooltipText string
+---@param fontPath string
+---@param parent AceGUIFrame
+function zoneView:CreateHeader(label, tooltipText, fontPath, parent)
+    ---@class AceGUIInteractiveLabel
+    local widget = gui:Create('InteractiveLabel')
+    widget:SetText(label)
+    widget:SetJustifyH('CENTER')
+    widget:SetJustifyV('TOP')
+    widget:SetFont(fontPath, 14, 'OUTLINE')
+    widget:SetRelativeWidth(0.2)
+    widget:SetCallback('OnEnter', function(self)
+        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+
+        GameTooltip:SetText(tooltipText)
+        GameTooltip:Show()
+    end)
+    widget:SetCallback('OnLeave', function(self)
+        GameTooltip:Hide()
+    end)
+    parent.Name = widget
+    parent:AddChild(widget)
 end
 
 ---@param color { R:integer, G:integer, B:integer, A:integer }

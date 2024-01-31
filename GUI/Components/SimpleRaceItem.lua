@@ -38,6 +38,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Normal:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.normal == nil then return end
+        if raceDetails.normal.gold == nil or raceDetails.normal.gold == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.normal)
@@ -53,6 +54,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Advanced:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.advanced == nil then return end
+        if raceDetails.advanced.gold == nil or raceDetails.advanced.gold == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.advanced)
@@ -68,6 +70,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Reverse:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.reverse == nil then return end
+        if raceDetails.reverse.gold == nil or raceDetails.reverse.gold == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.reverse)
@@ -75,6 +78,38 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
         GameTooltip:Show()
     end)
     frame.Reverse:SetCallback('OnLeave', function()
+        GameTooltip:Hide()
+    end)
+
+    local challengePlace = utils.GetRacePlace(raceInfo.challenge)
+    frame.Challenge:SetText(utils.GetPositionIcon(challengePlace))
+    frame.Challenge:SetCallback('OnEnter', function(self)
+        if raceDetails == nil then return end
+        if raceDetails.challenge == nil then return end
+        if raceDetails.challenge.gold == nil or raceDetails.challenge.gold == 0 then return end
+        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.challenge)
+        GameTooltip:SetText(tooltip)
+        GameTooltip:Show()
+    end)
+    frame.Challenge:SetCallback('OnLeave', function()
+        GameTooltip:Hide()
+    end)
+
+    local challengeRevPlace = utils.GetRacePlace(raceInfo.challengeReverse)
+    frame.ChallengeReverse:SetText(utils.GetPositionIcon(challengeRevPlace))
+    frame.ChallengeReverse:SetCallback('OnEnter', function(self)
+        if raceDetails == nil then return end
+        if raceDetails.challengeReverse == nil then return end
+        if raceDetails.challengeReverse.gold == nil or raceDetails.challengeReverse.gold == 0 then return end
+        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.challengeReverse)
+        GameTooltip:SetText(tooltip)
+        GameTooltip:Show()
+    end)
+    frame.ChallengeReverse:SetCallback('OnLeave', function()
         GameTooltip:Hide()
     end)
 end
@@ -129,7 +164,7 @@ function simpleRaceItem:Create()
     ---@class AceGUIInteractiveLabel
     local normalImage = gui:Create('InteractiveLabel')
     normalImage:SetFontObject('GameFontHighlightHuge2')
-    normalImage:SetRelativeWidth(0.3)
+    normalImage:SetRelativeWidth(0.2)
     normalImage:SetJustifyH('CENTER')
     stats:AddChild(normalImage)
     frame.Normal = normalImage
@@ -137,7 +172,7 @@ function simpleRaceItem:Create()
     ---@class AceGUIInteractiveLabel
     local advancedImage = gui:Create('InteractiveLabel')
     advancedImage:SetFontObject('GameFontHighlightHuge2')
-    advancedImage:SetRelativeWidth(0.35)
+    advancedImage:SetRelativeWidth(0.2)
     advancedImage:SetJustifyH('CENTER')
     stats:AddChild(advancedImage)
     frame.Advanced = advancedImage
@@ -145,10 +180,26 @@ function simpleRaceItem:Create()
     ---@class AceGUIInteractiveLabel
     local reverseImage = gui:Create('InteractiveLabel')
     reverseImage:SetFontObject('GameFontHighlightHuge2')
-    reverseImage:SetRelativeWidth(0.3)
+    reverseImage:SetRelativeWidth(0.2)
     reverseImage:SetJustifyH('CENTER')
     stats:AddChild(reverseImage)
     frame.Reverse = reverseImage
+
+    ---@class AceGUIInteractiveLabel
+    local challengeImage = gui:Create('InteractiveLabel')
+    challengeImage:SetFontObject('GameFontHighlightHuge2')
+    challengeImage:SetRelativeWidth(0.2)
+    challengeImage:SetJustifyH('CENTER')
+    stats:AddChild(challengeImage)
+    frame.Challenge = challengeImage
+
+    ---@class AceGUIInteractiveLabel
+    local challengeRevImage = gui:Create('InteractiveLabel')
+    challengeRevImage:SetFontObject('GameFontHighlightHuge2')
+    challengeRevImage:SetRelativeWidth(0.2)
+    challengeRevImage:SetJustifyH('CENTER')
+    stats:AddChild(challengeRevImage)
+    frame.ChallengeReverse = challengeRevImage
 
     --#endregion
 

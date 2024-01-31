@@ -24,15 +24,15 @@ function item.Create(raceInfo, raceDetails)
     local undermark = frame.frame:CreateTexture()
     undermark:SetDrawLayer('BACKGROUND')
     undermark:SetBlendMode('ADD')
-    undermark:SetPoint('TOPLEFT', frame.frame, 'BOTTOMLEFT', 0, 1)
+    undermark:SetPoint('TOPLEFT', frame.frame, 'BOTTOMLEFT', 0, -1)
     undermark:SetPoint('BOTTOMRIGHT', frame.frame, 'BOTTOMRIGHT')
     undermark:SetColorTexture(1, 1, 1, 0.2)
 
     ---@type AceGUIInteractiveLabel
     local name = gui:Create('InteractiveLabel')
-    name:SetText(raceInfo.name .. ' - ' .. resolver.GetMapName(raceInfo.zone))
+    name:SetText(raceInfo.name .. ' - |cffeda55f' .. resolver.GetMapName(raceInfo.zone) .. '|r')
     name:SetImage('Interface\\Addons\\RideTheWind\\Media\\pin')
-    name:SetRelativeWidth(0.6)
+    name:SetRelativeWidth(0.445)
     name:SetCallback('OnClick', function(self)
         local mapPoint = UiMapPoint.CreateFromCoordinates(raceInfo.zone,
             raceInfo.coords.x / 100, raceInfo.coords.y / 100, 0)
@@ -41,74 +41,62 @@ function item.Create(raceInfo, raceDetails)
     end)
     frame:AddChild(name)
 
-    ---@type AceGUIInteractiveLabel
-    local normalImage = gui:Create('InteractiveLabel')
-    normalImage:SetRelativeWidth(0.12)
-    normalImage:SetJustifyH('CENTER')
-    normalImage:SetFontObject('GameFontNormalLarge')
-
     local normalPlace = utils.GetRacePlace(raceInfo.normal)
-    normalImage:SetText(utils.GetPositionIcon(normalPlace))
-    normalImage:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.normal == nil then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-
-        local tooltip = utils:BuildRaceTooltip(raceDetails.normal)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    normalImage:SetCallback('OnLeave', function(self)
-        GameTooltip:Hide()
-    end)
-
-    frame:AddChild(normalImage)
-
-    ---@type AceGUILabel
-    local advancedImage = gui:Create('Label')
-    advancedImage:SetRelativeWidth(0.12)
-    advancedImage:SetJustifyH('CENTER')
-    advancedImage:SetFontObject('GameFontNormalLarge')
+    local normal = item:CreateScore(normalPlace, raceDetails and raceDetails.normal)
+    frame:AddChild(normal)
 
     local advancedPlace = utils.GetRacePlace(raceInfo.advanced)
-    advancedImage:SetText(utils.GetPositionIcon(advancedPlace))
-    advancedImage:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.advanced == nil then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+    local advanced = item:CreateScore(advancedPlace, raceDetails and raceDetails.advanced)
+    frame:AddChild(advanced)
 
-        local tooltip = utils:BuildRaceTooltip(raceDetails.advanced)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    advancedImage:SetCallback('OnLeave', function(self)
-        GameTooltip:Hide()
-    end)
+    local reversePlace = utils.GetRacePlace(raceInfo.reverse)
+    local reverse = item:CreateScore(reversePlace, raceDetails and raceDetails.reverse)
+    frame:AddChild(reverse)
 
-    frame:AddChild(advancedImage)
+    local challengePlace = utils.GetRacePlace(raceInfo.challenge)
+    local challenge = item:CreateScore(challengePlace, raceDetails and raceDetails.challenge)
+    frame:AddChild(challenge)
 
-    ---@type AceGUILabel
-    local reverseImage = gui:Create('Label')
-    reverseImage:SetRelativeWidth(0.12)
-    reverseImage:SetJustifyH('CENTER')
-    reverseImage:SetFontObject('GameFontNormalLarge')
-
-    local reversedPlace = utils.GetRacePlace(raceInfo.reverse)
-    reverseImage:SetText(utils.GetPositionIcon(reversedPlace))
-    reverseImage:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.reverse == nil then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-
-        local tooltip = utils:BuildRaceTooltip(raceDetails.reverse)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    reverseImage:SetCallback('OnLeave', function(self)
-        GameTooltip:Hide()
-    end)
-
-    frame:AddChild(reverseImage)
+    local challengeReversePlace = utils.GetRacePlace(raceInfo.challengeReverse)
+    local challengeReverse = item:CreateScore(challengeReversePlace, raceDetails and raceDetails.challengeReverse, 0.15)
+    frame:AddChild(challengeReverse)
 
     return frame
 end
+
+---@param racePlace integer
+---@param raceDetails RaceDetails?
+---@param overrideWidth integer?
+---@return AceGUISimpleGroup
+function item:CreateScore(racePlace, raceDetails, overrideWidth)
+    ---@class AceGUISimpleGroup
+    local group = gui:Create('SimpleGroup')
+    group:SetLayout('List')
+    group:SetRelativeWidth(overrideWidth or 0.10)
+
+    ---@type AceGUILabel
+    local widget = gui:Create('Label')
+    widget:SetFullWidth(true)
+    widget:SetJustifyH('CENTER')
+    widget:SetFontObject('GameFontNormalLarge')
+    widget:SetText(utils.GetPositionIcon(racePlace))
+    group:AddChild(widget)
+
+    ---@type AceGUILabel
+    local place = gui:Create('Label')
+    place:SetFullWidth(true)
+    place:SetJustifyH('CENTER')
+    place:SetFontObject('GameFontNormal')
+    if raceDetails and raceDetails.best ~= nil and raceDetails.best > 0 then
+        local best = (raceDetails.best and tostring(raceDetails.best)) or 'No Attempts'
+        local bestStr = '|CFFffd100' .. best .. '|R'
+        place:SetText(bestStr)
+    else
+        place:SetText(' ')
+    end
+    group:AddChild(place)
+
+    return group
+end
+
+item:Enable()
