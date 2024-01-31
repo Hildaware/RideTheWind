@@ -369,184 +369,735 @@ maps.Races = {
             zone = 2023
         }
     },
-    [2024] = { -- TODO: Azure Span
+    [2024] = { -- Azure Span
         [1] = {
-            advanced = "15840",
-            normal = "15837",
-            reversed = "17170",
+            id = 415662,
+            normal = {
+                bronze = 15835,
+                silver = 15836,
+                gold = 15837
+            },
+            advanced = {
+                bronze = 15838,
+                silver = 15839,
+                gold = 15840
+            },
+            reversed = {
+                bronze = 17168,
+                silver = 17169,
+                gold = 17170
+            },
+            coords = {
+                x = 16.5,
+                y = 49.3
+            },
             name = "Iskaara Tour",
             zone = 2024
         },
         [2] = {
-            advanced = "15804",
-            normal = "15801",
-            reversed = "17164",
+            id = 415660,
+            normal = {
+                bronze = 15799,
+                silver = 15800,
+                gold = 15801
+            },
+            advanced = {
+                bronze = 15802,
+                silver = 15803,
+                gold = 15804
+            },
+            reversed = {
+                bronze = 17162,
+                silver = 17163,
+                gold = 17164
+            },
+            coords = {
+                x = 20.9,
+                y = 22.6
+            },
             name = "The Azure Span Slalom",
             zone = 2024
         },
         [3] = {
-            advanced = "15846",
-            normal = "15843",
-            reversed = "17173",
+            id = 415663,
+            normal = {
+                bronze = 15841,
+                silver = 15842,
+                gold = 15843
+            },
+            advanced = {
+                bronze = 15844,
+                silver = 15845,
+                gold = 15846
+            },
+            reversed = {
+                bronze = 17171,
+                silver = 17172,
+                gold = 17173
+            },
+            coords = {
+                x = 48.4,
+                y = 35.8
+            },
             name = "Frostland Flyover",
             zone = 2024
         },
         [4] = {
-            advanced = "15793",
-            normal = "15790",
-            reversed = "17161",
+            id = 415659,
+            normal = {
+                bronze = 15788,
+                silver = 15789,
+                gold = 15790
+            },
+            advanced = {
+                bronze = 15791,
+                silver = 15792,
+                gold = 15793
+            },
+            reversed = {
+                bronze = 17159,
+                silver = 17160,
+                gold = 17161
+            },
+            coords = {
+                x = 47.9,
+                y = 40.7
+            },
             name = "The Azure Span Sprint",
             zone = 2024
         },
         [5] = {
-            advanced = "15852",
-            normal = "15849",
-            reversed = "17176",
+            id = 415664,
+            normal = {
+                bronze = 15847,
+                silver = 15848,
+                gold = 15849
+            },
+            advanced = {
+                bronze = 15850,
+                silver = 15851,
+                gold = 15852
+            },
+            reversed = {
+                bronze = 17174,
+                silver = 17175,
+                gold = 17176
+            },
+            coords = {
+                x = 42.2,
+                y = 56.7
+            },
             name = "Archive Ambit",
             zone = 2024
         },
         [6] = {
-            advanced = "15823",
-            normal = "15820",
-            reversed = "17167",
+            id = 415661,
+            normal = {
+                bronze = 15818,
+                silver = 15819,
+                gold = 15820
+            },
+            advanced = {
+                bronze = 15821,
+                silver = 15822,
+                gold = 15823
+            },
+            reversed = {
+                bronze = 17165,
+                silver = 17166,
+                gold = 17167
+            },
+            coords = {
+                x = 71.3,
+                y = 24.6
+            },
             name = "The Vakthros Ascent",
             zone = 2024
         }
     },
-    [2025] = { -- TODO: Thaldraszus
+    [2025] = { -- Thaldraszus
         [1] = {
-            advanced = "15832",
-            normal = "15829",
-            reversed = "17179",
+            id = 415665,
+            normal = {
+                bronze = 15827,
+                silver = 15828,
+                gold = 15829
+            },
+            advanced = {
+                bronze = 15830,
+                silver = 15831,
+                gold = 15832
+            },
+            reversed = {
+                bronze = 17177,
+                silver = 17178,
+                gold = 17179
+            },
+            coords = {
+                x = 57.7,
+                y = 75.0
+            },
             name = "The Flowing Forest Flight",
             zone = 2025
         },
         [2] = {
-            advanced = "15896",
-            normal = "15893",
-            reversed = "17185",
+            id = 415668,
+            normal = {
+                bronze = 15891,
+                silver = 15892,
+                gold = 15893
+            },
+            advanced = {
+                bronze = 15894,
+                silver = 15895,
+                gold = 15896
+            },
+            reversed = {
+                bronze = 17183,
+                silver = 17184,
+                gold = 17185
+            },
+            coords = {
+                x = 37.6,
+                y = 48.9
+            },
             name = "Cliffside Circuit",
             zone = 2025
         },
         [3] = {
-            advanced = "15908",
-            normal = "15905",
-            reversed = "17191",
+            id = 415670,
+            normal = {
+                bronze = 15903,
+                silver = 15904,
+                gold = 15905
+            },
+            advanced = {
+                bronze = 15906,
+                silver = 15907,
+                gold = 15908
+            },
+            reversed = {
+                bronze = 17189,
+                silver = 17190,
+                gold = 17191
+            },
+            coords = {
+                x = 39.5,
+                y = 76.1
+            },
             name = "Garden Gallivant",
             zone = 2025
         },
         [4] = {
-            advanced = "15860",
-            normal = "15857",
-            reversed = "17182",
+            id = 415666,
+            normal = {
+                bronze = 15855,
+                silver = 15856,
+                gold = 15857
+            },
+            advanced = {
+                bronze = 15858,
+                silver = 15859,
+                gold = 15860
+            },
+            reversed = {
+                bronze = 17180,
+                silver = 17181,
+                gold = 17182
+            },
+            coords = {
+                x = 57.2,
+                y = 66.8
+            },
             name = "Tyrhold Trial",
             zone = 2025
         },
         [5] = {
-            advanced = "15902",
-            normal = "15899",
-            reversed = "17188",
+            id = 415669,
+            normal = {
+                bronze = 15897,
+                silver = 15898,
+                gold = 15899
+            },
+            advanced = {
+                bronze = 15900,
+                silver = 15901,
+                gold = 15902
+            },
+            reversed = {
+                bronze = 17186,
+                silver = 17187,
+                gold = 17188
+            },
+            coords = {
+                x = 60.3,
+                y = 41.6
+            },
             name = "Academy Ascent",
             zone = 2025
         },
         [6] = {
-            advanced = "15914",
-            normal = "15911",
-            reversed = "17194",
+            id = 415671,
+            normal = {
+                bronze = 15909,
+                silver = 15910,
+                gold = 15911
+            },
+            advanced = {
+                bronze = 15912,
+                silver = 15913,
+                gold = 15914
+            },
+            reversed = {
+                bronze = 17192,
+                silver = 17193,
+                gold = 17194
+            },
+            coords = {
+                x = 58.0,
+                y = 33.6
+            },
             name = "Caverns Criss-Cross",
             zone = 2025
         }
     },
-    [2133] = { -- TODO: Zaralek Cavern
+    [2133] = { -- Zaralek Cavern
         [1] = {
-            advanced = "17434",
-            normal = "17431",
-            reversed = "17437",
+            id = 415795,
+            normal = {
+                bronze = 17429,
+                silver = 17430,
+                gold = 17431
+            },
+            advanced = {
+                bronze = 17432,
+                silver = 17433,
+                gold = 17434
+            },
+            reversed = {
+                bronze = 17435,
+                silver = 17436,
+                gold = 17437
+            },
+            coords = {
+                x = 38.7,
+                y = 60.5
+            },
             name = "Crystal Circuit",
             zone = 2133
         },
         [2] = {
-            advanced = "17452",
-            normal = "17449",
-            reversed = "17455",
+            id = 415797,
+            normal = {
+                bronze = 17447,
+                silver = 17448,
+                gold = 17449
+            },
+            advanced = {
+                bronze = 17450,
+                silver = 17451,
+                gold = 17452
+            },
+            reversed = {
+                bronze = 17453,
+                silver = 17454,
+                gold = 17455
+            },
+            coords = {
+                x = 54.5,
+                y = 23.75
+            },
             name = "Brimstone Scramble",
             zone = 2133
         },
         [3] = {
-            advanced = "17470",
-            normal = "17467",
-            reversed = "17473",
+            id = 415799,
+            normal = {
+                bronze = 17465,
+                silver = 17466,
+                gold = 17467
+            },
+            advanced = {
+                bronze = 17468,
+                silver = 17469,
+                gold = 17470
+            },
+            reversed = {
+                bronze = 17470,
+                silver = 17471,
+                gold = 17473
+            },
+            coords = {
+                x = 58.1,
+                y = 57.65
+            },
             name = "Loamm Roamm",
             zone = 2133
         },
         [4] = {
-            advanced = "17443",
-            normal = "17440",
-            reversed = "17446",
+            id = 415796,
+            normal = {
+                bronze = 17438,
+                silver = 17439,
+                gold = 17440
+            },
+            advanced = {
+                bronze = 17441,
+                silver = 17442,
+                gold = 17443
+            },
+            reversed = {
+                bronze = 17444,
+                silver = 17445,
+                gold = 17446
+            },
+            coords = {
+                x = 39.0,
+                y = 50.0
+            },
             name = "Caldera Cruise",
             zone = 2133
         },
         [5] = {
-            advanced = "17461",
-            normal = "17458",
-            reversed = "17464",
+            id = 415798,
+            normal = {
+                bronze = 17456,
+                silver = 17457,
+                gold = 17458
+            },
+            advanced = {
+                bronze = 17459,
+                silver = 17460,
+                gold = 17461
+            },
+            reversed = {
+                bronze = 17462,
+                silver = 17463,
+                gold = 17464
+            },
+            coords = {
+                x = 58.65,
+                y = 45.1
+            },
             name = "Shimmering Slalom",
             zone = 2133
         },
         [6] = {
-            advanced = "17479",
-            normal = "17476",
-            reversed = "17482",
+            id = 415800,
+            normal = {
+                bronze = 17474,
+                silver = 17475,
+                gold = 17476
+            },
+            advanced = {
+                bronze = 17477,
+                silver = 17478,
+                gold = 17479
+            },
+            reversed = {
+                bronze = 17480,
+                silver = 17481,
+                gold = 17482
+            },
+            coords = {
+                x = 51.26,
+                y = 46.55
+            },
             name = "Sulfur Sprint",
             zone = 2133
         }
     },
-    [2151] = { -- TODO: Forbidden Reach
+    [2151] = { -- The Forbidden Reach
         [1] = {
-            advanced = "17219",
-            normal = "17216",
-            reversed = "17222",
+            id = 415789,
+            normal = {
+                bronze = 17214,
+                silver = 17215,
+                gold = 17216
+            },
+            advanced = {
+                bronze = 17217,
+                silver = 17218,
+                gold = 17219
+            },
+            reversed = {
+                bronze = 17220,
+                silver = 17221,
+                gold = 17222
+            },
+            coords = {
+                x = 76.08,
+                y = 65.7
+            },
             name = "Stormsunder Crater Circuit",
             zone = 2151
         },
         [2] = {
-            advanced = "17248",
-            normal = "17245",
-            reversed = "17251",
+            id = 415791,
+            normal = {
+                bronze = 17243,
+                silver = 17244,
+                gold = 17245
+            },
+            advanced = {
+                bronze = 17246,
+                silver = 17247,
+                gold = 17248
+            },
+            reversed = {
+                bronze = 17249,
+                silver = 17250,
+                gold = 17251
+            },
+            coords = {
+                x = 63.1,
+                y = 51.85
+            },
             name = "Aerie Chasm Cruise",
             zone = 2151
         },
         [3] = {
-            advanced = "17266",
-            normal = "17263",
-            reversed = "17269",
+            id = 415793,
+            normal = {
+                bronze = 17261,
+                silver = 17262,
+                gold = 17263
+            },
+            advanced = {
+                bronze = 17264,
+                silver = 17265,
+                gold = 17266
+            },
+            reversed = {
+                bronze = 17267,
+                silver = 17268,
+                gold = 17269
+            },
+            coords = {
+                x = 41.3,
+                y = 14.6
+            },
             name = "Caldera Coaster",
             zone = 2151
         },
         [4] = {
-            advanced = "17228",
-            normal = "17225",
-            reversed = "17231",
+            id = 415790,
+            normal = {
+                bronze = 17223,
+                silver = 17224,
+                gold = 17225
+            },
+            advanced = {
+                bronze = 17226,
+                silver = 17227,
+                gold = 17228
+            },
+            reversed = {
+                bronze = 17229,
+                silver = 17230,
+                gold = 17231
+            },
+            coords = {
+                x = 35.34,
+                y = 65.7
+            },
             name = "Morqut Ascent",
             zone = 2151
         },
         [5] = {
-            advanced = "17257",
-            normal = "17254",
-            reversed = "17260",
+            id = 415792,
+            normal = {
+                bronze = 17252,
+                silver = 17253,
+                gold = 17254
+            },
+            advanced = {
+                bronze = 17244,
+                silver = 17256,
+                gold = 17257
+            },
+            reversed = {
+                bronze = 17258,
+                silver = 17259,
+                gold = 17260
+            },
+            coords = {
+                x = 63.65,
+                y = 84.05
+            },
             name = "Southern Reach Route",
             zone = 2151
         },
         [6] = {
-            advanced = "17275",
-            normal = "17272",
-            reversed = "17278",
+            id = 415794,
+            normal = {
+                bronze = 17270,
+                silver = 17271,
+                gold = 17272
+            },
+            advanced = {
+                bronze = 17273,
+                silver = 17274,
+                gold = 17275
+            },
+            reversed = {
+                bronze = 17276,
+                silver = 17277,
+                gold = 17278
+            },
+            coords = {
+                x = 49.4,
+                y = 60.14
+            },
             name = "Forbidden Reach Rush",
             zone = 2151
         }
     },
-    [2200] = { -- TODO: Emerald Dream
-
+    [2200] = { -- Emerald Dream
+        [1] = {
+            id = 426030,
+            normal = {
+                bronze = 19047,
+                silver = 19048,
+                gold = 19049
+            },
+            advanced = {
+                bronze = 19050,
+                silver = 19051,
+                gold = 19052
+            },
+            reversed = {
+                bronze = 19053,
+                silver = 19054,
+                gold = 19055
+            },
+            coords = {
+                x = 62.8,
+                y = 88.1
+            },
+            name = 'Canopy Concours',
+            zone = 2200
+        },
+        [2] = {
+            id = 426031,
+            normal = {
+                bronze = 19062,
+                silver = 19063,
+                gold = 19064
+            },
+            advanced = {
+                bronze = 19065,
+                silver = 19066,
+                gold = 19067
+            },
+            reversed = {
+                bronze = 19068,
+                silver = 19069,
+                gold = 19070
+            },
+            coords = {
+                x = 32.3,
+                y = 48.2
+            },
+            name = 'Emerald Amble',
+            zone = 2200
+        },
+        [3] = {
+            id = 426029,
+            normal = {
+                bronze = 19032,
+                silver = 19033,
+                gold = 19034
+            },
+            advanced = {
+                bronze = 19035,
+                silver = 19036,
+                gold = 19037
+            },
+            reversed = {
+                bronze = 19038,
+                silver = 19039,
+                gold = 19040
+            },
+            coords = {
+                x = 69.6,
+                y = 52.6
+            },
+            name = 'Shoreline Switchback',
+            zone = 2200
+        },
+        [4] = {
+            id = 426027,
+            normal = {
+                bronze = 18978,
+                silver = 18979,
+                gold = 18980
+            },
+            advanced = {
+                bronze = 18981,
+                silver = 18982,
+                gold = 18983
+            },
+            reversed = {
+                bronze = 18984,
+                silver = 18985,
+                gold = 18986
+            },
+            coords = {
+                x = 37.2,
+                y = 44.1
+            },
+            name = 'Smoldering Sprint',
+            zone = 2200
+        },
+        [5] = {
+            id = 426028,
+            normal = {
+                bronze = 18993,
+                silver = 18994,
+                gold = 18995
+            },
+            advanced = {
+                bronze = 18996,
+                silver = 18997,
+                gold = 18998
+            },
+            reversed = {
+                bronze = 18999,
+                silver = 19000,
+                gold = 19001
+            },
+            coords = {
+                x = 35.1,
+                y = 55.2
+            },
+            name = 'Viridescent Venture',
+            zone = 2200
+        },
+        [6] = {
+            id = 426026,
+            normal = {
+                bronze = 18943,
+                silver = 18944,
+                gold = 18945
+            },
+            advanced = {
+                bronze = 18946,
+                silver = 18947,
+                gold = 18948
+            },
+            reversed = {
+                bronze = 18949,
+                silver = 18950,
+                gold = 18951
+            },
+            coords = {
+                x = 59.1,
+                y = 28.8
+            },
+            name = 'Ysera Invitational',
+            zone = 2200
+        },
     }
 }
 

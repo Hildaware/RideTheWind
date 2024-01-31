@@ -53,7 +53,9 @@ function item.Create(raceInfo, raceDetails)
         if raceDetails == nil then return end
         if raceDetails.normal == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.normal)
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.normal)
+        GameTooltip:SetText(tooltip)
         GameTooltip:Show()
     end)
     normalImage:SetCallback('OnLeave', function(self)
@@ -74,7 +76,9 @@ function item.Create(raceInfo, raceDetails)
         if raceDetails == nil then return end
         if raceDetails.advanced == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.advanced)
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.advanced)
+        GameTooltip:SetText(tooltip)
         GameTooltip:Show()
     end)
     advancedImage:SetCallback('OnLeave', function(self)
@@ -95,7 +99,9 @@ function item.Create(raceInfo, raceDetails)
         if raceDetails == nil then return end
         if raceDetails.reverse == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.reverse)
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.reverse)
+        GameTooltip:SetText(tooltip)
         GameTooltip:Show()
     end)
     reverseImage:SetCallback('OnLeave', function(self)
