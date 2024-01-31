@@ -93,7 +93,7 @@ function item.Create(raceInfo, raceDetails)
     reverseImage:SetJustifyH('CENTER')
     reverseImage:SetFontObject('GameFontNormalLarge')
 
-    local reversedPlace = utils.GetRacePlace(raceInfo.reversed)
+    local reversedPlace = utils.GetRacePlace(raceInfo.reverse)
     reverseImage:SetText(utils.GetPositionIcon(reversedPlace))
     reverseImage:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end

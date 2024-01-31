@@ -5,6 +5,7 @@ local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
 local maps = addon:NewModule('Maps')
 
 maps.Races = {
+    ---@type Race[]
     [2022] = { -- Waking Shores
         [1] = {
             id = 415640,
@@ -18,10 +19,20 @@ maps.Races = {
                 silver = 15734,
                 gold = 15735
             },
-            reversed = {
+            reverse = {
                 bronze = 17129,
                 silver = 17130,
                 gold = 17131
+            },
+            challenge = {
+                bronze = 17871,
+                silver = 17872,
+                gold = 17873
+            },
+            challengeReverse = {
+                bronze = 17874,
+                silver = 17875,
+                gold = 17876
             },
             coords = {
                 x = 23.2,
@@ -42,10 +53,20 @@ maps.Races = {
                 silver = 15728,
                 gold = 15729
             },
-            reversed = {
+            reverse = {
                 bronze = 17126,
                 silver = 17127,
                 gold = 17128
+            },
+            challenge = {
+                bronze = 17865,
+                silver = 17866,
+                gold = 17867
+            },
+            challengeReverse = {
+                bronze = 17868,
+                silver = 17869,
+                gold = 17870
             },
             coords = {
                 x = 41.9,
@@ -66,10 +87,20 @@ maps.Races = {
                 silver = 15710,
                 gold = 15711
             },
-            reversed = {
+            reverse = {
                 bronze = 17138,
                 silver = 17139,
                 gold = 17140
+            },
+            challenge = {
+                bronze = 17897,
+                silver = 17898,
+                gold = 17899
+            },
+            challengeReverse = {
+                bronze = 17900,
+                silver = 17901,
+                gold = 17902
             },
             coords = {
                 x = 62.7,
@@ -90,10 +121,20 @@ maps.Races = {
                 silver = 15703,
                 gold = 15704
             },
-            reversed = {
+            reverse = {
                 bronze = 17120,
                 silver = 17121,
                 gold = 17122
+            },
+            challenge = {
+                bronze = 17853,
+                silver = 17854,
+                gold = 17855
+            },
+            challengeReverse = {
+                bronze = 17856,
+                silver = 17857,
+                gold = 17858
             },
             coords = {
                 x = 63.2,
@@ -114,10 +155,20 @@ maps.Races = {
                 silver = 15740,
                 gold = 15741
             },
-            reversed = {
+            reverse = {
                 bronze = 17132,
                 silver = 17133,
                 gold = 17134
+            },
+            challenge = {
+                bronze = 17884,
+                silver = 17885,
+                gold = 17886
+            },
+            challengeReverse = {
+                bronze = 17887,
+                silver = 17888,
+                gold = 17889
             },
             coords = {
                 x = 55.4,
@@ -138,10 +189,20 @@ maps.Races = {
                 silver = 15722,
                 gold = 15723
             },
-            reversed = {
+            reverse = {
                 bronze = 17141,
                 silver = 17142,
                 gold = 17143
+            },
+            challenge = {
+                bronze = 17906,
+                silver = 17907,
+                gold = 17908
+            },
+            challengeReverse = {
+                bronze = 17909,
+                silver = 17910,
+                gold = 17911
             },
             coords = {
                 x = 42.6,
@@ -162,10 +223,20 @@ maps.Races = {
                 silver = 15716,
                 gold = 15717
             },
-            reversed = {
+            reverse = {
                 bronze = 17123,
                 silver = 17124,
                 gold = 17125
+            },
+            challenge = {
+                bronze = 17859,
+                silver = 17860,
+                gold = 17861
+            },
+            challengeReverse = {
+                bronze = 17862,
+                silver = 17863,
+                gold = 17864
             },
             coords = {
                 x = 47.0,
@@ -186,10 +257,20 @@ maps.Races = {
                 silver = 15746,
                 gold = 15747
             },
-            reversed = {
+            reverse = {
                 bronze = 17135,
                 silver = 17136,
                 gold = 17137
+            },
+            challenge = {
+                bronze = 17891,
+                silver = 17892,
+                gold = 17893
+            },
+            challengeReverse = {
+                bronze = 17894,
+                silver = 17895,
+                gold = 17896
             },
             coords = {
                 x = 73.1,
@@ -212,10 +293,20 @@ maps.Races = {
                 silver = 15767,
                 gold = 15768
             },
-            reversed = {
+            reverse = {
                 bronze = 17147,
                 silver = 17148,
                 gold = 17149
+            },
+            challenge = {
+                bronze = 17922,
+                silver = 17923,
+                gold = 17924
+            },
+            challengeReverse = {
+                bronze = 17925,
+                silver = 17926,
+                gold = 17927
             },
             coords = {
                 x = 86.2,
@@ -236,10 +327,20 @@ maps.Races = {
                 silver = 15761,
                 gold = 15762
             },
-            reversed = {
+            reverse = {
                 bronze = 17144,
                 silver = 17145,
                 gold = 17146
+            },
+            challenge = {
+                bronze = 17912,
+                silver = 17913,
+                gold = 17914
+            },
+            challengeReverse = {
+                bronze = 17915,
+                silver = 17916,
+                gold = 17917
             },
             coords = {
                 x = 63.7,
@@ -260,7 +361,17 @@ maps.Races = {
                 silver = 0,
                 gold = 0
             },
-            reversed = {
+            reverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challenge = {
+                bronze = 17947,
+                silver = 17948,
+                gold = 17949
+            },
+            challengeReverse = {
                 bronze = 0,
                 silver = 0,
                 gold = 0
@@ -284,10 +395,20 @@ maps.Races = {
                 silver = 15773,
                 gold = 15774
             },
-            reversed = {
+            reverse = {
                 bronze = 17150,
                 silver = 17151,
                 gold = 17152
+            },
+            challenge = {
+                bronze = 17928,
+                silver = 17929,
+                gold = 17930
+            },
+            challengeReverse = {
+                bronze = 17931,
+                silver = 17932,
+                gold = 17933
             },
             coords = {
                 x = 80.8,
@@ -308,7 +429,17 @@ maps.Races = {
                 silver = 0,
                 gold = 0
             },
-            reversed = {
+            reverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challenge = {
+                bronze = 17950,
+                silver = 17951,
+                gold = 17952
+            },
+            challengeReverse = {
                 bronze = 0,
                 silver = 0,
                 gold = 0
@@ -332,10 +463,20 @@ maps.Races = {
                 silver = 16306,
                 gold = 16307
             },
-            reversed = {
+            reverse = {
                 bronze = 17156,
                 silver = 17157,
                 gold = 17158
+            },
+            challenge = {
+                bronze = 17941,
+                silver = 17942,
+                gold = 17943
+            },
+            challengeReverse = {
+                bronze = 17944,
+                silver = 17945,
+                gold = 17946
             },
             coords = {
                 x = 43.7,
@@ -356,10 +497,20 @@ maps.Races = {
                 silver = 15779,
                 gold = 15780
             },
-            reversed = {
+            reverse = {
                 bronze = 17153,
                 silver = 17154,
                 gold = 17155
+            },
+            challenge = {
+                bronze = 17935,
+                silver = 17936,
+                gold = 17937
+            },
+            challengeReverse = {
+                bronze = 17938,
+                silver = 17939,
+                gold = 17940
             },
             coords = {
                 x = 25.7,
@@ -382,10 +533,20 @@ maps.Races = {
                 silver = 15839,
                 gold = 15840
             },
-            reversed = {
+            reverse = {
                 bronze = 17168,
                 silver = 17169,
                 gold = 17170
+            },
+            challenge = {
+                bronze = 17971,
+                silver = 17972,
+                gold = 17973
+            },
+            challengeReverse = {
+                bronze = 17974,
+                silver = 17975,
+                gold = 17976
             },
             coords = {
                 x = 16.5,
@@ -406,10 +567,20 @@ maps.Races = {
                 silver = 15803,
                 gold = 15804
             },
-            reversed = {
+            reverse = {
                 bronze = 17162,
                 silver = 17163,
                 gold = 17164
+            },
+            challenge = {
+                bronze = 17959,
+                silver = 17960,
+                gold = 17961
+            },
+            challengeReverse = {
+                bronze = 17962,
+                silver = 17963,
+                gold = 17964
             },
             coords = {
                 x = 20.9,
@@ -430,10 +601,20 @@ maps.Races = {
                 silver = 15845,
                 gold = 15846
             },
-            reversed = {
+            reverse = {
                 bronze = 17171,
                 silver = 17172,
                 gold = 17173
+            },
+            challenge = {
+                bronze = 17979,
+                silver = 17980,
+                gold = 17981
+            },
+            challengeReverse = {
+                bronze = 17982,
+                silver = 17983,
+                gold = 17984
             },
             coords = {
                 x = 48.4,
@@ -454,10 +635,20 @@ maps.Races = {
                 silver = 15792,
                 gold = 15793
             },
-            reversed = {
+            reverse = {
                 bronze = 17159,
                 silver = 17160,
                 gold = 17161
+            },
+            challenge = {
+                bronze = 17953,
+                silver = 17954,
+                gold = 17955
+            },
+            challengeReverse = {
+                bronze = 17956,
+                silver = 17957,
+                gold = 17958
             },
             coords = {
                 x = 47.9,
@@ -478,10 +669,20 @@ maps.Races = {
                 silver = 15851,
                 gold = 15852
             },
-            reversed = {
+            reverse = {
                 bronze = 17174,
                 silver = 17175,
                 gold = 17176
+            },
+            challenge = {
+                bronze = 17985,
+                silver = 17986,
+                gold = 17987
+            },
+            challengeReverse = {
+                bronze = 17988,
+                silver = 17989,
+                gold = 17990
             },
             coords = {
                 x = 42.2,
@@ -502,10 +703,20 @@ maps.Races = {
                 silver = 15822,
                 gold = 15823
             },
-            reversed = {
+            reverse = {
                 bronze = 17165,
                 silver = 17166,
                 gold = 17167
+            },
+            challenge = {
+                bronze = 17965,
+                silver = 17966,
+                gold = 17967
+            },
+            challengeReverse = {
+                bronze = 17968,
+                silver = 17969,
+                gold = 17970
             },
             coords = {
                 x = 71.3,
@@ -528,10 +739,20 @@ maps.Races = {
                 silver = 15831,
                 gold = 15832
             },
-            reversed = {
+            reverse = {
                 bronze = 17177,
                 silver = 17178,
                 gold = 17179
+            },
+            challenge = {
+                bronze = 17991,
+                silver = 17992,
+                gold = 17993
+            },
+            challengeReverse = {
+                bronze = 17994,
+                silver = 17995,
+                gold = 17996
             },
             coords = {
                 x = 57.7,
@@ -552,10 +773,20 @@ maps.Races = {
                 silver = 15895,
                 gold = 15896
             },
-            reversed = {
+            reverse = {
                 bronze = 17183,
                 silver = 17184,
                 gold = 17185
+            },
+            challenge = {
+                bronze = 18003,
+                silver = 18004,
+                gold = 18005
+            },
+            challengeReverse = {
+                bronze = 18006,
+                silver = 18007,
+                gold = 18008
             },
             coords = {
                 x = 37.6,
@@ -576,10 +807,20 @@ maps.Races = {
                 silver = 15907,
                 gold = 15908
             },
-            reversed = {
+            reverse = {
                 bronze = 17189,
                 silver = 17190,
                 gold = 17191
+            },
+            challenge = {
+                bronze = 18015,
+                silver = 18016,
+                gold = 18017
+            },
+            challengeReverse = {
+                bronze = 18018,
+                silver = 18019,
+                gold = 18020
             },
             coords = {
                 x = 39.5,
@@ -600,10 +841,20 @@ maps.Races = {
                 silver = 15859,
                 gold = 15860
             },
-            reversed = {
+            reverse = {
                 bronze = 17180,
                 silver = 17181,
                 gold = 17182
+            },
+            challenge = {
+                bronze = 17998,
+                silver = 17998,
+                gold = 17999
+            },
+            challengeReverse = {
+                bronze = 18000,
+                silver = 18001,
+                gold = 18002
             },
             coords = {
                 x = 57.2,
@@ -624,10 +875,20 @@ maps.Races = {
                 silver = 15901,
                 gold = 15902
             },
-            reversed = {
+            reverse = {
                 bronze = 17186,
                 silver = 17187,
                 gold = 17188
+            },
+            challenge = {
+                bronze = 18009,
+                silver = 18010,
+                gold = 18011
+            },
+            challengeReverse = {
+                bronze = 18012,
+                silver = 18013,
+                gold = 18014
             },
             coords = {
                 x = 60.3,
@@ -648,10 +909,20 @@ maps.Races = {
                 silver = 15913,
                 gold = 15914
             },
-            reversed = {
+            reverse = {
                 bronze = 17192,
                 silver = 17193,
                 gold = 17194
+            },
+            challenge = {
+                bronze = 18021,
+                silver = 18022,
+                gold = 18023
+            },
+            challengeReverse = {
+                bronze = 18024,
+                silver = 18025,
+                gold = 18026
             },
             coords = {
                 x = 58.0,
@@ -674,10 +945,20 @@ maps.Races = {
                 silver = 17433,
                 gold = 17434
             },
-            reversed = {
+            reverse = {
                 bronze = 17435,
                 silver = 17436,
                 gold = 17437
+            },
+            challenge = {
+                bronze = 18064,
+                silver = 18065,
+                gold = 18066
+            },
+            challengeReverse = {
+                bronze = 18067,
+                silver = 18068,
+                gold = 18069
             },
             coords = {
                 x = 38.7,
@@ -698,10 +979,20 @@ maps.Races = {
                 silver = 17451,
                 gold = 17452
             },
-            reversed = {
+            reverse = {
                 bronze = 17453,
                 silver = 17454,
                 gold = 17455
+            },
+            challenge = {
+                bronze = 18076,
+                silver = 18077,
+                gold = 18078
+            },
+            challengeReverse = {
+                bronze = 18079,
+                silver = 18080,
+                gold = 18081
             },
             coords = {
                 x = 54.5,
@@ -722,10 +1013,20 @@ maps.Races = {
                 silver = 17469,
                 gold = 17470
             },
-            reversed = {
+            reverse = {
                 bronze = 17470,
                 silver = 17471,
                 gold = 17473
+            },
+            challenge = {
+                bronze = 18088,
+                silver = 18089,
+                gold = 18090
+            },
+            challengeReverse = {
+                bronze = 18091,
+                silver = 18092,
+                gold = 18093
             },
             coords = {
                 x = 58.1,
@@ -746,10 +1047,20 @@ maps.Races = {
                 silver = 17442,
                 gold = 17443
             },
-            reversed = {
+            reverse = {
                 bronze = 17444,
                 silver = 17445,
                 gold = 17446
+            },
+            challenge = {
+                bronze = 18070,
+                silver = 18071,
+                gold = 18072
+            },
+            challengeReverse = {
+                bronze = 18073,
+                silver = 18074,
+                gold = 18075
             },
             coords = {
                 x = 39.0,
@@ -770,10 +1081,20 @@ maps.Races = {
                 silver = 17460,
                 gold = 17461
             },
-            reversed = {
+            reverse = {
                 bronze = 17462,
                 silver = 17463,
                 gold = 17464
+            },
+            challenge = {
+                bronze = 18082,
+                silver = 18083,
+                gold = 18084
+            },
+            challengeReverse = {
+                bronze = 18085,
+                silver = 18086,
+                gold = 18087
             },
             coords = {
                 x = 58.65,
@@ -794,10 +1115,20 @@ maps.Races = {
                 silver = 17478,
                 gold = 17479
             },
-            reversed = {
+            reverse = {
                 bronze = 17480,
                 silver = 17481,
                 gold = 17482
+            },
+            challenge = {
+                bronze = 18094,
+                silver = 18095,
+                gold = 18096
+            },
+            challengeReverse = {
+                bronze = 18097,
+                silver = 18098,
+                gold = 18099
             },
             coords = {
                 x = 51.26,
@@ -820,10 +1151,20 @@ maps.Races = {
                 silver = 17218,
                 gold = 17219
             },
-            reversed = {
+            reverse = {
                 bronze = 17220,
                 silver = 17221,
                 gold = 17222
+            },
+            challenge = {
+                bronze = 18028,
+                silver = 18029,
+                gold = 18030
+            },
+            challengeReverse = {
+                bronze = 18031,
+                silver = 18032,
+                gold = 18033
             },
             coords = {
                 x = 76.08,
@@ -844,10 +1185,20 @@ maps.Races = {
                 silver = 17247,
                 gold = 17248
             },
-            reversed = {
+            reverse = {
                 bronze = 17249,
                 silver = 17250,
                 gold = 17251
+            },
+            challenge = {
+                bronze = 18040,
+                silver = 18041,
+                gold = 18042
+            },
+            challengeReverse = {
+                bronze = 18043,
+                silver = 18044,
+                gold = 18045
             },
             coords = {
                 x = 63.1,
@@ -868,10 +1219,20 @@ maps.Races = {
                 silver = 17265,
                 gold = 17266
             },
-            reversed = {
+            reverse = {
                 bronze = 17267,
                 silver = 17268,
                 gold = 17269
+            },
+            challenge = {
+                bronze = 18052,
+                silver = 18053,
+                gold = 18054
+            },
+            challengeReverse = {
+                bronze = 18055,
+                silver = 18056,
+                gold = 18057
             },
             coords = {
                 x = 41.3,
@@ -892,10 +1253,20 @@ maps.Races = {
                 silver = 17227,
                 gold = 17228
             },
-            reversed = {
+            reverse = {
                 bronze = 17229,
                 silver = 17230,
                 gold = 17231
+            },
+            challenge = {
+                bronze = 18034,
+                silver = 18035,
+                gold = 18036
+            },
+            challengeReverse = {
+                bronze = 18037,
+                silver = 18038,
+                gold = 18039
             },
             coords = {
                 x = 35.34,
@@ -916,10 +1287,20 @@ maps.Races = {
                 silver = 17256,
                 gold = 17257
             },
-            reversed = {
+            reverse = {
                 bronze = 17258,
                 silver = 17259,
                 gold = 17260
+            },
+            challenge = {
+                bronze = 18046,
+                silver = 18047,
+                gold = 18048
+            },
+            challengeReverse = {
+                bronze = 18049,
+                silver = 18050,
+                gold = 18051
             },
             coords = {
                 x = 63.65,
@@ -940,10 +1321,20 @@ maps.Races = {
                 silver = 17274,
                 gold = 17275
             },
-            reversed = {
+            reverse = {
                 bronze = 17276,
                 silver = 17277,
                 gold = 17278
+            },
+            challenge = {
+                bronze = 18058,
+                silver = 18059,
+                gold = 18060
+            },
+            challengeReverse = {
+                bronze = 18061,
+                silver = 18062,
+                gold = 18063
             },
             coords = {
                 x = 49.4,
@@ -966,10 +1357,20 @@ maps.Races = {
                 silver = 19051,
                 gold = 19052
             },
-            reversed = {
+            reverse = {
                 bronze = 19053,
                 silver = 19054,
                 gold = 19055
+            },
+            challenge = {
+                bronze = 19056,
+                silver = 19057,
+                gold = 19058
+            },
+            challengeReverse = {
+                bronze = 19059,
+                silver = 19060,
+                gold = 19061
             },
             coords = {
                 x = 62.8,
@@ -990,10 +1391,20 @@ maps.Races = {
                 silver = 19066,
                 gold = 19067
             },
-            reversed = {
+            reverse = {
                 bronze = 19068,
                 silver = 19069,
                 gold = 19070
+            },
+            challenge = {
+                bronze = 19071,
+                silver = 19072,
+                gold = 19073
+            },
+            challengeReverse = {
+                bronze = 19074,
+                silver = 19075,
+                gold = 19076
             },
             coords = {
                 x = 32.3,
@@ -1014,10 +1425,20 @@ maps.Races = {
                 silver = 19036,
                 gold = 19037
             },
-            reversed = {
+            reverse = {
                 bronze = 19038,
                 silver = 19039,
                 gold = 19040
+            },
+            challenge = {
+                bronze = 19041,
+                silver = 19042,
+                gold = 19043
+            },
+            challengeReverse = {
+                bronze = 19044,
+                silver = 19045,
+                gold = 19046
             },
             coords = {
                 x = 69.6,
@@ -1038,10 +1459,20 @@ maps.Races = {
                 silver = 18982,
                 gold = 18983
             },
-            reversed = {
+            reverse = {
                 bronze = 18984,
                 silver = 18985,
                 gold = 18986
+            },
+            challenge = {
+                bronze = 18987,
+                silver = 18988,
+                gold = 18989
+            },
+            challengeReverse = {
+                bronze = 18990,
+                silver = 18991,
+                gold = 18992
             },
             coords = {
                 x = 37.2,
@@ -1062,10 +1493,20 @@ maps.Races = {
                 silver = 18997,
                 gold = 18998
             },
-            reversed = {
+            reverse = {
                 bronze = 18999,
                 silver = 19000,
                 gold = 19001
+            },
+            challenge = {
+                bronze = 19002,
+                silver = 19003,
+                gold = 19004
+            },
+            challengeReverse = {
+                bronze = 19005,
+                silver = 19006,
+                gold = 19007
             },
             coords = {
                 x = 35.1,
@@ -1086,10 +1527,20 @@ maps.Races = {
                 silver = 18947,
                 gold = 18948
             },
-            reversed = {
+            reverse = {
                 bronze = 18949,
                 silver = 18950,
                 gold = 18951
+            },
+            challenge = {
+                bronze = 18952,
+                silver = 18953,
+                gold = 18954
+            },
+            challengeReverse = {
+                bronze = 18955,
+                silver = 18956,
+                gold = 18957
             },
             coords = {
                 x = 59.1,

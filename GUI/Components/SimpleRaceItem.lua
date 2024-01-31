@@ -63,7 +63,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
         GameTooltip:Hide()
     end)
 
-    local reversePlace = utils.GetRacePlace(raceInfo.reversed)
+    local reversePlace = utils.GetRacePlace(raceInfo.reverse)
     frame.Reverse:SetText(utils.GetPositionIcon(reversePlace))
     frame.Reverse:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
