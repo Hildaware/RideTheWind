@@ -24,14 +24,14 @@ local resolver = addon:GetModule('Resolver')
 ---@class SimpleRaceItem: AceModule
 local simpleRaceItem = addon:GetModule('SimpleRaceItem')
 
----@class (exact) View
+---@class (exact) ZoneViewData
 ---@field view AceGUIFrame
 ---@field races Race[]
 ---@field currentZone integer
 local viewPrototype = {}
 
 function zoneView:OnInitialize()
-    ---@type View
+    ---@type ZoneViewData
     self.data = {
         view = {},
         currentZone = 0,

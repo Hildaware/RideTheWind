@@ -20,17 +20,19 @@ local data = addon:GetModule('Database')
 ---@class Options: AceModule
 local options = addon:GetModule('Options')
 
-function addon:OnCompartmentClick(arg1, arg2, arg3, button, arg4)
-    print(arg1, arg2, arg3, arg4)
+---@class Maps: AceModule
+local maps = addon:GetModule('Maps')
+
+function addon:OnCompartmentClick(_, _, _, button)
     if button == 'RightButton' then
         ---@class ZoneView
         local zoneView = addon:GetModule('ZoneView')
         zoneView:Toggle()
     else
         if IsShiftKeyDown() then
-            ---@class RaceListView
-            local raceListView = addon:GetModule('RaceListView')
-            raceListView:Toggle()
+            ---@class StatsView
+            local statsView = addon:GetModule('StatsView')
+            statsView:Toggle()
         else
             _G['InterfaceOptionsFrame_OpenToCategory'](options.optionsFrame)
         end
@@ -82,4 +84,17 @@ function events:UNIT_AURA(_, unitTarget, updateInfo)
             end
         end
     end
+end
+
+function events:PLAYER_LOGIN()
+    local buffIDs = {}
+    local iter = 1
+    for _, zones in pairs(maps.Races) do
+        for _, race in pairs(zones) do
+            buffIDs[iter] = race.id
+            iter = iter + 1
+        end
+    end
+
+    session.raceIDs = buffIDs
 end
