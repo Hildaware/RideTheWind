@@ -4,7 +4,6 @@ local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
 ---@class Maps: AceModule
 local maps = addon:NewModule('Maps')
 
--- TODO: Add race coords
 maps.Races = {
     [2022] = { -- Waking Shores
         [1] = {
@@ -200,58 +199,177 @@ maps.Races = {
             zone = 2022
         }
     },
-    [2023] = {
+    [2023] = { -- Om nom nom Plains
         [1] = {
-            advanced = "15768",
-            normal = "15765",
-            reversed = "17149",
+            id = 415652,
+            normal = {
+                bronze = 15763,
+                silver = 15764,
+                gold = 15765
+            },
+            advanced = {
+                bronze = 15766,
+                silver = 15767,
+                gold = 15768
+            },
+            reversed = {
+                bronze = 17147,
+                silver = 17148,
+                gold = 17149
+            },
+            coords = {
+                x = 86.2,
+                y = 35.8
+            },
             name = "Fen Flythrough",
             zone = 2023
         },
         [2] = {
-            advanced = "15762",
-            normal = "15759",
-            reversed = "17146",
+            id = 415650,
+            normal = {
+                bronze = 15757,
+                silver = 15758,
+                gold = 15759
+            },
+            advanced = {
+                bronze = 15760,
+                silver = 15761,
+                gold = 15762
+            },
+            reversed = {
+                bronze = 17144,
+                silver = 17145,
+                gold = 17146
+            },
+            coords = {
+                x = 63.7,
+                y = 30.5
+            },
             name = "Sundapple Copse Circuit",
             zone = 2023
         },
         [3] = {
-            advanced = "15784",
-            normal = "15784",
-            reversed = "",
+            id = 415656,
+            normal = {
+                bronze = 15782,
+                silver = 15783,
+                gold = 15784
+            },
+            advanced = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            reversed = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 59.5,
+                y = 35.5
+            },
             name = "Maruukai Dash",
             zone = 2023
         },
         [4] = {
-            advanced = "15774",
-            normal = "15771",
-            reversed = "17152",
+            id = 415653,
+            normal = {
+                bronze = 15769,
+                silver = 15770,
+                gold = 15771
+            },
+            advanced = {
+                bronze = 15772,
+                silver = 15773,
+                gold = 15774
+            },
+            reversed = {
+                bronze = 17150,
+                silver = 17151,
+                gold = 17152
+            },
+            coords = {
+                x = 80.8,
+                y = 72.1
+            },
             name = "Ravine River Run",
             zone = 2023
         },
         [5] = {
-            advanced = "15787",
-            normal = "15787",
-            reversed = "",
+            id = 415657,
+            normal = {
+                bronze = 15785,
+                silver = 15786,
+                gold = 15787
+            },
+            advanced = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            reversed = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 47.4,
+                y = 70.6
+            },
             name = "Mirror of the Sky Dash",
             zone = 2023
         },
         [6] = {
-            advanced = "16307",
-            normal = "16304",
-            reversed = "17158",
+            id = 415658,
+            normal = {
+                bronze = 16302,
+                silver = 16303,
+                gold = 16304
+            },
+            advanced = {
+                bronze = 16305,
+                silver = 16306,
+                gold = 16307
+            },
+            reversed = {
+                bronze = 17156,
+                silver = 17157,
+                gold = 17158
+            },
+            coords = {
+                x = 43.7,
+                y = 66.8
+            },
             name = "River Rapids Route",
             zone = 2023
         },
         [7] = {
-            advanced = "15780",
-            normal = "15777",
-            reversed = "17155",
+            id = 415654,
+            normal = {
+                bronze = 15775,
+                silver = 15776,
+                gold = 15777
+            },
+            advanced = {
+                bronze = 15778,
+                silver = 15779,
+                gold = 15780
+            },
+            reversed = {
+                bronze = 17153,
+                silver = 17154,
+                gold = 17155
+            },
+            coords = {
+                x = 25.7,
+                y = 55.0
+            },
             name = "Emerald Garden Ascent",
             zone = 2023
         }
     },
-    [2024] = {
+    [2024] = { -- TODO: Azure Span
         [1] = {
             advanced = "15840",
             normal = "15837",
@@ -295,7 +413,7 @@ maps.Races = {
             zone = 2024
         }
     },
-    [2025] = {
+    [2025] = { -- TODO: Thaldraszus
         [1] = {
             advanced = "15832",
             normal = "15829",
@@ -339,7 +457,7 @@ maps.Races = {
             zone = 2025
         }
     },
-    [2133] = {
+    [2133] = { -- TODO: Zaralek Cavern
         [1] = {
             advanced = "17434",
             normal = "17431",
@@ -383,7 +501,7 @@ maps.Races = {
             zone = 2133
         }
     },
-    [2151] = {
+    [2151] = { -- TODO: Forbidden Reach
         [1] = {
             advanced = "17219",
             normal = "17216",
@@ -426,6 +544,9 @@ maps.Races = {
             name = "Forbidden Reach Rush",
             zone = 2151
         }
+    },
+    [2200] = { -- TODO: Emerald Dream
+
     }
 }
 

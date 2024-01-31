@@ -23,11 +23,6 @@ end
 function Pool.Cleanup(self)
     for i = 1, #self.Active do
         if self.Active[i] then
-            self.Active[i]:SetParent(nil)
-            self.Active[i]:Hide()
-            if self.Active[i].texture then
-                self.Active[i].texture:SetTexture(nil)
-            end
             Pool.InsertInactive(self, self.Active[i], i)
             Pool.RemoveActive(self, i)
         end

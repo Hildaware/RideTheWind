@@ -35,6 +35,8 @@ end
 ---@param identifiers RaceIDs
 ---@return integer
 function resolver.GetAchievementInfo(identifiers)
+    if identifiers.gold == 0 then return 0 end
+
     local gold = GetAchievementData(identifiers.gold)
     if (gold.completed and gold.wasEarnedByMe) then
         return 1

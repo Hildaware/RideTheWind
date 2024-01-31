@@ -21,15 +21,11 @@ local database = addon:GetModule('Database')
 ---@class Resolver: AceModule
 local resolver = addon:GetModule('Resolver')
 
----@class Pooling: AceModule
-local pooling = addon:GetModule('Pooling')
-
 ---@class SimpleRaceItem: AceModule
 local simpleRaceItem = addon:GetModule('SimpleRaceItem')
 
 ---@class (exact) View
 ---@field view AceGUIFrame
----@field pool Pool
 ---@field races Race[]
 ---@field currentZone integer
 local viewPrototype = {}
@@ -37,7 +33,6 @@ local viewPrototype = {}
 function zoneView:OnInitialize()
     ---@type View
     self.data = {
-        pool = pooling.Pool.New(),
         view = {},
         currentZone = 0,
         races = {}
@@ -60,7 +55,7 @@ function zoneView:Create()
     view:SetWidth(240)
     view:SetLayout('Flow')
     view:EnableResize(false)
-    view.closebutton:Hide()
+    -- view.closebutton:Hide()
     view.frame:DisableDrawLayer('BACKGROUND')
     view.frame:DisableDrawLayer('BORDER')
     view.titletext:SetFont(font.path, 16, 'OUTLINE')
@@ -133,11 +128,15 @@ function zoneView:Create()
     ---@type AceGUISimpleGroup
     local container = gui:Create('SimpleGroup')
     container:SetFullWidth(true)
-    container:SetHeight(800)
     container:SetLayout('Fill')
     header:AddChild(container)
 
+    view.ScrollHeight = function(val)
+        container:SetHeight(val)
+    end
+
     ---@class AceGUIScrollFrame
+    ---@field children table
     local scroll = gui:Create('ScrollFrame')
     scroll:SetLayout('Flow')
     container:AddChild(scroll)
@@ -154,20 +153,24 @@ function zoneView:Update()
 
     self.data.view:SetTitle(resolver.GetMapName(self.data.races[1].zone))
 
-    -- Cleanup the pool
-    Pool.Cleanup(self.data.pool)
     self.data.view.ScrollContainer:ReleaseChildren()
 
     local index = 1
     for _, race in pairs(self.data.races) do
-        local frame = Pool.FetchInactive(self.data.pool, index, simpleRaceItem.Create)
-        Pool.InsertActive(self.data.pool, frame, index)
+        local widget = simpleRaceItem:Create()
         local raceStats = database:GetRaceDetailsById(race.id)
-        simpleRaceItem.Build(frame, race, raceStats)
+        simpleRaceItem.Build(widget, race, raceStats)
 
-        self.data.view.ScrollContainer:AddChild(frame)
+        self.data.view.ScrollContainer:AddChild(widget)
 
         index = index + 1
+    end
+
+    local scrollKids = self.data.view.ScrollContainer.children
+    if #scrollKids > 0 then
+        local calculatedHeight = #scrollKids * (scrollKids[1].frame:GetHeight() + 3)
+        self.data.view.ScrollHeight(calculatedHeight)
+        self.data.view:SetHeight(calculatedHeight + 70)
     end
 
     self.data.view.frame:Show()
@@ -185,12 +188,20 @@ function zoneView:UpdateFont(fontPath)
     self.data.view.ListHeader.Advanced:SetFont(fontPath, 14, 'OUTLINE')
     self.data.view.ListHeader.Reverse:SetFont(fontPath, 14, 'OUTLINE')
 
-    for _, frame in pairs(self.data.pool.Active) do
-        frame.Name:SetFont(fontPath, 16, 'OUTLINE')
+    for _, widget in pairs(self.data.view.ScrollContainer.children) do
+        widget.Name:SetFont(fontPath, 16, 'OUTLINE')
     end
 end
 
-function events:ZONE_CHANGED()
+function zoneView:UpdateRaces(raceData)
+    self.data.races = raceData
+end
+
+function zoneView:Show()
+    self.data.view:Show()
+end
+
+function events:ZONE_CHANGED_NEW_AREA()
     local zoneInfo = utils.GetDragonRacingZone()
     if zoneInfo == nil then return end
 
@@ -200,7 +211,7 @@ function events:ZONE_CHANGED()
     local raceData = maps.Races[zoneInfo.id]
     if raceData == nil then return end
 
-    zoneView.data.races = raceData
+    zoneView:UpdateRaces(raceData)
 
     if database:GetZoneViewEnabled() == true then
         zoneView:Update()
@@ -217,7 +228,7 @@ function events:VARIABLES_LOADED()
     local raceData = maps.Races[zoneInfo.id]
     if raceData == nil then return end
 
-    zoneView.data.races = raceData
+    zoneView:UpdateRaces(raceData)
 
     if database:GetZoneViewEnabled() == true then
         zoneView:Update()

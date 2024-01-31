@@ -94,7 +94,7 @@ frame:Hide()
 -- Events
 
 -- On Event > Check Race Stats
-function events:ZONE_CHANGED()
+function events:ZONE_CHANGED_NEW_AREA()
     local zoneInfo = utils.GetDragonRacingZone()
     if zoneInfo == nil then return end
 

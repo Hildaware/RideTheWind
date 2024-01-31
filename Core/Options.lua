@@ -12,12 +12,20 @@ local database = addon:GetModule('Database')
 local settings = {
     type = 'group',
     args = {
-        zoneViewOptions = {
+        zoneview = {
             name = 'Zone View',
             type = 'group',
             args = {
+                show = {
+                    name = 'Show',
+                    type = 'execute',
+                    func = function()
+                        ---@class ZoneView
+                        local zoneView = addon:GetModule('ZoneView')
+                        zoneView:Show()
+                    end
+                },
                 enabled = {
-                    order = 1,
                     name = 'Enable',
                     desc = 'Enable the Zone View frame',
                     type = 'toggle',
@@ -25,7 +33,6 @@ local settings = {
                     set = function(_, val) database:SetZoneViewEnabled(val) end
                 },
                 backgroundColor = {
-                    order = 2,
                     name = 'Background Color',
                     desc = 'Set the background color of the frame',
                     type = 'color',
@@ -39,7 +46,6 @@ local settings = {
                     end
                 },
                 font = {
-                    order = 3,
                     name = 'Font',
                     desc = 'Set the default font used',
                     type = 'select',

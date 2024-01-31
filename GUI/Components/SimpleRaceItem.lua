@@ -82,10 +82,6 @@ function simpleRaceItem:Create()
     local frame = gui:Create('SimpleGroup')
     frame:SetFullWidth(true)
     frame:SetLayout('Flow')
-    local tex = frame.frame:CreateTexture(nil, 'ARTWORK')
-    tex:SetPoint('TOPLEFT', frame.frame, 'TOPLEFT', 0, 0)
-    tex:SetPoint('BOTTOMRIGHT', frame.frame, 'TOPRIGHT', 0, -1)
-    tex:SetColorTexture(1, 1, 1, 0.3)
 
     ---@class AceGUISimpleGroup
     local heading = gui:Create('SimpleGroup')
