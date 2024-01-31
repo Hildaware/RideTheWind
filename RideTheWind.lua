@@ -76,11 +76,15 @@ function events:UNIT_AURA(_, unitTarget, updateInfo)
             if tContains(session.raceIDs, aura.spellId) then
                 local instanceId = aura.auraInstanceID
                 local ttData = C_TooltipInfo.GetUnitBuffByAuraInstanceID('player', instanceId, 'HELPFUL')
-                if ttData.lines == nil and ttData.lines[2] == nil then return end
-                local tooltipText = ttData.lines[2].leftText
-
-                local raceTimes = utils.ParseRaceTimeTooltip(tooltipText)
-                data:SaveRaceTimes(aura.spellId, raceTimes)
+                if not ttData and not ttData.lines then return end
+                for _, line in ipairs(ttData.lines) do
+                    if line.leftText then
+                        if line.leftText:len() > 100 then
+                            local raceTimes = utils.ParseRaceTimeTooltip(line.leftText)
+                            data:SaveRaceTimes(aura.spellId, raceTimes)
+                        end
+                    end
+                end
             end
         end
     end

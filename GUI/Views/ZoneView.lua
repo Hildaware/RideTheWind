@@ -168,15 +168,12 @@ function zoneView:Update()
 
     self.data.view.ScrollContainer:ReleaseChildren()
 
-    local index = 1
     for _, race in pairs(self.data.races) do
         local widget = simpleRaceItem:Create()
         local raceStats = database:GetRaceDetailsById(race.id)
         simpleRaceItem.Build(widget, race, raceStats)
 
         self.data.view.ScrollContainer:AddChild(widget)
-
-        index = index + 1
     end
 
     local scrollKids = self.data.view.ScrollContainer.children

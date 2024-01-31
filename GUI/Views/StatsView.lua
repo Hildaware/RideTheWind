@@ -101,6 +101,7 @@ function statsView:Create()
     frame.scroll = gui:Create('ScrollFrame')
     frame.scroll:SetLayout('Flow')
     frame.scrollContainer:AddChild(frame.scroll)
+    frame.ScrollContainer = frame.scroll
 
     self.data.view = frame
 
@@ -108,14 +109,16 @@ function statsView:Create()
 end
 
 function statsView:Show()
+    self.data.view.ScrollContainer:ReleaseChildren()
+
     -- Gather Data
     for _, races in pairs(maps.Races) do
         for _, race in pairs(races) do
             ---@type Race
             local raceInfo = race
             local raceStats = database:GetRaceDetailsById(raceInfo.id)
-            local f = listItem.Create(raceInfo, raceStats)
-            self.data.view.scroll:AddChild(f)
+            local widget = listItem.Create(raceInfo, raceStats)
+            self.data.view.ScrollContainer:AddChild(widget)
         end
     end
 
