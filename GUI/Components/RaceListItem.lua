@@ -13,7 +13,7 @@ local utils = addon:GetModule('Utils')
 local resolver = addon:GetModule('Resolver')
 
 ---@param raceInfo Race
----@param raceDetails RaceDetails
+---@param raceDetails RaceStats
 ---@return AceGUISimpleGroup
 function item.Create(raceInfo, raceDetails)
     ---@type AceGUISimpleGroup
@@ -93,9 +93,9 @@ function item.Create(raceInfo, raceDetails)
     reverseImage:SetText(utils.GetPositionIcon(reversedPlace))
     reverseImage:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
-        if raceDetails.reversed == nil then return end
+        if raceDetails.reverse == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.reversed)
+        GameTooltip:SetText(raceDetails.reverse)
         GameTooltip:Show()
     end)
     reverseImage:SetCallback('OnLeave', function(self)

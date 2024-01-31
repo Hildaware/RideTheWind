@@ -21,7 +21,7 @@ local viewPrototype = {}
 --- Builds based on RaceInfo
 ---@param frame AceGUISimpleGroup
 ---@param raceInfo Race
----@param raceDetails RaceDetails
+---@param raceDetails RaceStats
 function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     if frame == nil then return end
 
@@ -39,7 +39,9 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
         if raceDetails == nil then return end
         if raceDetails.normal == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.normal)
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.normal)
+        GameTooltip:SetText(tooltip)
         GameTooltip:Show()
     end)
     frame.Normal:SetCallback('OnLeave', function()
@@ -52,7 +54,9 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
         if raceDetails == nil then return end
         if raceDetails.advanced == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.advanced)
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.advanced)
+        GameTooltip:SetText(tooltip)
         GameTooltip:Show()
     end)
     frame.Advanced:SetCallback('OnLeave', function()
@@ -63,9 +67,11 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Reverse:SetText(utils.GetPositionIcon(reversePlace))
     frame.Reverse:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
-        if raceDetails.reversed == nil then return end
+        if raceDetails.reverse == nil then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-        GameTooltip:SetText(raceDetails.reversed)
+
+        local tooltip = utils:BuildRaceTooltip(raceDetails.reverse)
+        GameTooltip:SetText(tooltip)
         GameTooltip:Show()
     end)
     frame.Reverse:SetCallback('OnLeave', function()

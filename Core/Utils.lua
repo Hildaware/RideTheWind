@@ -40,27 +40,75 @@ function utils.GetRacePlace(raceIdentifiers)
     return resolver.GetAchievementInfo(raceIdentifiers)
 end
 
+--#region Tooltips
+
 ---@param tooltipText string
----@return RaceDetails
+---@return RaceStats
 function utils.ParseRaceTimeTooltip(tooltipText)
-    -- parsing in english only...
-    -- Normal
-    local _, n = string.find(tooltipText, 'Normal')
-    local k, _ = string.find(tooltipText, 'Gold time:')
-    local normalTime = string.sub(tooltipText, n + 1, k - 1):gsub("\r\n", "")
+    -- |Cffffffff |R\r\n|CFFffd100Normal|R\r\nBronze (56.352 sec) |A:challenges-medal-small-bronze:0:0:0:0|a\r\n|CFF808080Gold time: 50 sec|R\r\n\r\n
+    -- |CFFffd100Advanced|R\r\nNo Attempts\r\n|CFF808080Gold time: 44 sec|R\r\n\r\n
+    -- |CFFffd100Reverse|R\r\nNo Attempts\r\n|CFF808080Gold time: 45 sec|R\r\n\r\n
+    -- |CFFffd100Challenge|R\r\nNo Attempts\r\n|CFF808080Gold time: 50 sec|R\r\n\r\n
+    -- |CFFffd100Challenge Reverse|R\r\nNo Attempts\r\n|CFF808080Gold time: 51 sec|R \r\n
 
-    -- Advanced
-    local x, a = string.find(tooltipText, 'Advanced')
-    k, _ = string.find(tooltipText, 'Gold time:', a)
-    local advancedTime = string.sub(tooltipText, a + 1, k - 1):gsub("\r\n", "")
+    local normal = utils:ParseRaceTooltipChunk(tooltipText)
+    local normalBest = utils:ParseNumbersFromString(normal.best)
+    local normalGold = utils:ParseNumbersFromString(normal.gold)
 
-    -- Reversed
-    local _, r = string.find(tooltipText, 'Reverse')
-    k, _ = string.find(tooltipText, 'Gold time:', r)
-    local reverseTime = string.sub(tooltipText, r + 1, k - 1):gsub("\r\n", "")
+    local advanced = utils:ParseRaceTooltipChunk(tooltipText, normal.endIndex)
+    local advancedBest = utils:ParseNumbersFromString(advanced.best)
+    local advancedGold = utils:ParseNumbersFromString(advanced.gold)
 
-    return { normal = normalTime, advanced = advancedTime, reversed = reverseTime }
+    local reverse = utils:ParseRaceTooltipChunk(tooltipText, advanced.endIndex)
+    local reverseBest = utils:ParseNumbersFromString(reverse.best)
+    local reverseGold = utils:ParseNumbersFromString(reverse.gold)
+
+    return {
+        normal = { best = normalBest, gold = normalGold },
+        advanced = { best = advancedBest, gold = advancedGold },
+        reverse = { best = reverseBest, gold = reverseGold }
+    }
 end
+
+---@param str string
+---@param start integer?
+---@return { best: string, gold: string, endIndex: integer  }
+function utils:ParseRaceTooltipChunk(str, start)
+    local _, o = string.find(str, '|CFFffd100', start or 0)
+    local x, w = string.find(str, '|CFFffd100', o)
+    local chunk = string.sub(str, o + 1, w)
+
+    local _, b = string.find(chunk, '|R\r\n')         -- Beginning of time
+    local t, y = string.find(chunk, '\r\n|CFF808080') -- End time / Beginning Gold
+
+    local bestTime = string.sub(chunk, b + 1, t - 1)
+    local goldTime = string.sub(chunk, y + 1, w - 1):gsub('\r\n', '')
+    return { best = bestTime, gold = goldTime, endIndex = x }
+end
+
+---@param str string
+---@return integer
+function utils:ParseNumbersFromString(str)
+    if str:find('%d') ~= nil then
+        local match = string.match(str, '%f[%d]%d[,.%d]*%f[%D]')
+        return tonumber(match) or 0
+    else
+        return 0
+    end
+end
+
+---@param raceDetails RaceDetails
+---@return string
+function utils:BuildRaceTooltip(raceDetails)
+    local best = (raceDetails.best and tostring(raceDetails.best)) or 'No Attempts'
+    local bestStr = '|CFFffd100Best: ' .. best .. '|R'
+
+    local goldStr = '|CFF808080Gold: ' .. raceDetails.gold .. ' sec|R'
+
+    return bestStr .. '\r\n' .. goldStr
+end
+
+--#endregion
 
 function utils:CreateBorder(self)
     if not self.borders then

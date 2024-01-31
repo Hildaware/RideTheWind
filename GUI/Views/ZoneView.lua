@@ -149,6 +149,19 @@ function zoneView:Create()
 end
 
 function zoneView:Update()
+    local zoneInfo = utils.GetDragonRacingZone()
+    if zoneInfo == nil then return end
+
+    -- No need to refresh if the *main* zone didn't change
+    if zoneView.data.currentZone == zoneInfo.id then return end
+
+    local raceData = maps.Races[zoneInfo.id]
+    if raceData == nil then return end
+
+    zoneView:UpdateRaces(raceData)
+
+    if database:GetZoneViewEnabled() ~= true then return end
+
     if self.data == nil then return end
 
     self.data.view:SetTitle(resolver.GetMapName(self.data.races[1].zone))
@@ -168,7 +181,7 @@ function zoneView:Update()
 
     local scrollKids = self.data.view.ScrollContainer.children
     if #scrollKids > 0 then
-        local calculatedHeight = #scrollKids * (scrollKids[1].frame:GetHeight() + 3)
+        local calculatedHeight = #scrollKids * (scrollKids[1].frame:GetHeight() + 4)
         self.data.view.ScrollHeight(calculatedHeight)
         self.data.view:SetHeight(calculatedHeight + 70)
     end
@@ -201,38 +214,16 @@ function zoneView:Show()
     self.data.view:Show()
 end
 
+function events:ACHIEVEMENT_EARNED()
+    zoneView:Update()
+end
+
 function events:ZONE_CHANGED_NEW_AREA()
-    local zoneInfo = utils.GetDragonRacingZone()
-    if zoneInfo == nil then return end
-
-    -- No need to refresh if the *main* zone didn't change
-    if zoneView.data.currentZone == zoneInfo.id then return end
-
-    local raceData = maps.Races[zoneInfo.id]
-    if raceData == nil then return end
-
-    zoneView:UpdateRaces(raceData)
-
-    if database:GetZoneViewEnabled() == true then
-        zoneView:Update()
-    end
+    zoneView:Update()
 end
 
 function events:VARIABLES_LOADED()
-    local zoneInfo = utils.GetDragonRacingZone()
-    if zoneInfo == nil then return end
-
-    -- No need to refresh if the *main* zone didn't change
-    if zoneView.data.currentZone == zoneInfo.id then return end
-
-    local raceData = maps.Races[zoneInfo.id]
-    if raceData == nil then return end
-
-    zoneView:UpdateRaces(raceData)
-
-    if database:GetZoneViewEnabled() == true then
-        zoneView:Update()
-    end
+    zoneView:Update()
 end
 
 zoneView:Enable()

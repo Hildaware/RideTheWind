@@ -8,20 +8,28 @@ local database = addon:NewModule('Database')
 local enums = addon:GetModule('Enums')
 
 ---@class RaceDetails
----@field normal integer?
----@field advanced integer?
----@field reversed integer?
-local raceDetails = {
+---@field best integer?
+---@field gold integer?
+local raceDetailsProto = {
+    best = nil,
+    gold = nil
+}
+
+---@class RaceStats
+---@field normal RaceDetails?
+---@field advanced RaceDetails?
+---@field reverse RaceDetails?
+local raceStatsProto = {
     normal = nil,
     advanced = nil,
-    reversed = nil
+    reverse = nil
 }
 
 ---@class databaseOptions
 local defaults = {
     global = {
         Races = {
-            [1] = {} ---@class RaceDetails
+            [1] = {} ---@class RaceStats
         },
         Views = {
             ZoneView = {
@@ -54,7 +62,7 @@ end
 
 --- Gets the race details by the Buff ID. This id shows up when the aura is found
 ---@param id integer
----@return RaceDetails
+---@return RaceStats
 function database:GetRaceDetailsById(id)
     return self.internal.global.Races[id]
 end
@@ -86,8 +94,26 @@ end
 
 --#region Writes
 
+---@param raceId integer
+---@param raceTimes RaceStats
 function database:SaveRaceTimes(raceId, raceTimes)
-    database.internal.global.Races[raceId] = raceTimes
+    local savedTimes = database.internal.global.Races[raceId]
+    if savedTimes == nil then
+        database.internal.global.Races[raceId] = raceTimes
+        return
+    end
+
+    if raceTimes.normal.best < savedTimes.normal.best then
+        database.internal.global.Races[raceId].normal.best = raceTimes.normal.best
+    end
+
+    if raceTimes.advanced.best < savedTimes.advanced.best then
+        database.internal.global.Races[raceId].advanced.best = raceTimes.advanced.best
+    end
+
+    if raceTimes.reverse.best < savedTimes.reverse.best then
+        database.internal.global.Races[raceId].reverse.best = raceTimes.reverse.best
+    end
 end
 
 ---@param x integer
