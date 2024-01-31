@@ -44,7 +44,7 @@ local defaults = {
                     X = 500,
                     Y = 500
                 },
-                Font = {
+                Font = { -- TODO: Add default font
                     Name = '',
                     Path = ''
                 }

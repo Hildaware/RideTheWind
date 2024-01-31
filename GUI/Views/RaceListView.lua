@@ -91,6 +91,27 @@ frame.scrollContainer:AddChild(frame.scroll)
 
 frame:Hide()
 
+function view:Show()
+    frame:Show()
+end
+
+function view:Hide()
+    frame:Hide()
+end
+
+---@return boolean
+function view:IsShown()
+    return frame:IsShown()
+end
+
+function view:Toggle()
+    if view:IsShown() then
+        view:Hide()
+    else
+        view:Show()
+    end
+end
+
 -- Events
 
 -- On Event > Check Race Stats

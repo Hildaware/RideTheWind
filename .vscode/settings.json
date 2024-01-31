@@ -298,7 +298,8 @@
         "SELECTED_CHAT_FRAME",
         "GameFontHighlight",
         "InterfaceOptions_AddCategory",
-        "GameFontHighlightLarge"
+        "GameFontHighlightLarge",
+        "AddonCompartmentFrame"
     ],
     "Lua.diagnostics.disable": [
         "inject-field",

@@ -1,12 +1,15 @@
 local addonName = ...
 local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
 local LSM = LibStub("LibSharedMedia-3.0")
+local aceConsole = LibStub('AceConsole-3.0')
 
 ---@class Options: AceModule
 local options = addon:NewModule('Options')
 
 ---@class Database: AceModule
 local database = addon:GetModule('Database')
+
+local optionsFrame
 
 ---@class AceConfig.OptionsTable
 local settings = {
@@ -66,8 +69,15 @@ local settings = {
 }
 
 function options:OnInitialize()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, settings, { 'rtw', 'ridethewind' })
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, addonName)
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, settings)
+    self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, addonName)
+
+    aceConsole:RegisterChatCommand('rtw', 'SlashCommand')
+    aceConsole:RegisterChatCommand('ridethewind', 'SlashCommand')
+end
+
+function aceConsole:SlashCommand(...)
+    _G['InterfaceOptionsFrame_OpenToCategory'](options.optionsFrame)
 end
 
 options:Enable()

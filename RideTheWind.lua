@@ -17,19 +17,45 @@ local utils = addon:GetModule('Utils')
 ---@class Database: AceModule
 local data = addon:GetModule('Database')
 
-local playerIdentifier = ''
+---@class Options: AceModule
+local options = addon:GetModule('Options')
+
+function addon:OnCompartmentClick(arg1, arg2, arg3, button, arg4)
+    print(arg1, arg2, arg3, arg4)
+    if button == 'RightButton' then
+        ---@class ZoneView
+        local zoneView = addon:GetModule('ZoneView')
+        zoneView:Toggle()
+    else
+        if IsShiftKeyDown() then
+            ---@class RaceListView
+            local raceListView = addon:GetModule('RaceListView')
+            raceListView:Toggle()
+        else
+            _G['InterfaceOptionsFrame_OpenToCategory'](options.optionsFrame)
+        end
+    end
+end
 
 function addon:OnInitialize()
-    -- Build player data
-    local playerId = UnitGUID('player')
-    local playerName = UnitName('player')
-
-    if playerId == nil or playerName == nil then return end
-    playerIdentifier = playerId
-
-    -- CB.Data.Characters[playerId] = {
-    --     Name = playerName
-    -- }
+    _G['AddonCompartmentFrame']:RegisterAddon({
+        text = "Ride the Wind",
+        icon = "Interface\\AddOns\\RideTheWind\\Media\\logo.blp",
+        registerForAnyClick = true,
+        notCheckable = true,
+        func = addon.OnCompartmentClick,
+        funcOnEnter = function()
+            GameTooltip:SetOwner(_G['AddonCompartmentFrame'], 'ANCHOR_TOPRIGHT')
+            GameTooltip:AddLine("Ride the Wind")
+            GameTooltip:AddLine("|cffeda55fClick|r |cFFFFFFFFto open the options configuration.|r")
+            GameTooltip:AddLine("|cffeda55fRight-Click|r |cFFFFFFFFto toggle the Zone View window.|r")
+            GameTooltip:AddLine("|cffeda55fShift-Click|r |cFFFFFFFFto open the Stats window.|r")
+            GameTooltip:Show()
+        end,
+        funcOnLeave = function()
+            GameTooltip:Hide()
+        end
+    })
 end
 
 function addon:OnEnable()

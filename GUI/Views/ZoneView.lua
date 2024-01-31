@@ -214,6 +214,23 @@ function zoneView:Show()
     self.data.view:Show()
 end
 
+function zoneView:Hide()
+    self.data.view:Hide()
+end
+
+---@return boolean
+function zoneView:IsShown()
+    return self.data.view:IsShown()
+end
+
+function zoneView:Toggle()
+    if zoneView:IsShown() then
+        zoneView:Hide()
+    else
+        zoneView:Show()
+    end
+end
+
 function events:ACHIEVEMENT_EARNED()
     zoneView:Update()
 end
