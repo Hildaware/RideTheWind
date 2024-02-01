@@ -89,11 +89,26 @@ function zoneView:Create()
 
     header:AddChild(listHeader)
 
-    zoneView:CreateHeader('N', 'Normal Course', font.path, listHeader)
-    zoneView:CreateHeader('A', 'Advanced Course', font.path, listHeader)
-    zoneView:CreateHeader('R', 'Reverse Course', font.path, listHeader)
-    zoneView:CreateHeader('C', 'Challenge Course', font.path, listHeader)
-    zoneView:CreateHeader('CR', 'Challenge Reverse Course', font.path, listHeader)
+    local normal = zoneView:CreateHeader('N', 'Normal Course', font.path)
+    listHeader.Normal = normal
+    listHeader:AddChild(normal)
+
+    local advanced = zoneView:CreateHeader('A', 'Advanced Course', font.path)
+    listHeader.Advanced = advanced
+    listHeader:AddChild(advanced)
+
+    local reverse = zoneView:CreateHeader('R', 'Reverse Course', font.path)
+    listHeader.Reverse = reverse
+    listHeader:AddChild(reverse)
+
+    local challenge = zoneView:CreateHeader('C', 'Challenge Course', font.path)
+    listHeader.Challenge = challenge
+    listHeader:AddChild(challenge)
+
+    local challengeReverse = zoneView:CreateHeader('CR', 'Challenge Reverse Course', font.path)
+    listHeader.ChallengeReverse = challengeReverse
+    listHeader:AddChild(challengeReverse)
+
 
     view.ListHeader = listHeader
 
@@ -163,8 +178,8 @@ end
 ---@param label string
 ---@param tooltipText string
 ---@param fontPath string
----@param parent AceGUIFrame
-function zoneView:CreateHeader(label, tooltipText, fontPath, parent)
+---@return AceGUIInteractiveLabel
+function zoneView:CreateHeader(label, tooltipText, fontPath)
     ---@class AceGUIInteractiveLabel
     local widget = gui:Create('InteractiveLabel')
     widget:SetText(label)
@@ -181,8 +196,8 @@ function zoneView:CreateHeader(label, tooltipText, fontPath, parent)
     widget:SetCallback('OnLeave', function(self)
         GameTooltip:Hide()
     end)
-    parent.Name = widget
-    parent:AddChild(widget)
+
+    return widget
 end
 
 ---@param color { R:integer, G:integer, B:integer, A:integer }
@@ -193,9 +208,11 @@ end
 function zoneView:UpdateFont(fontPath)
     self.data.view.titletext:SetFont(fontPath, 16, 'OUTLINE')
 
-    self.data.view.ListHeader.Name:SetFont(fontPath, 14, 'OUTLINE')
+    self.data.view.ListHeader.Normal:SetFont(fontPath, 14, 'OUTLINE')
     self.data.view.ListHeader.Advanced:SetFont(fontPath, 14, 'OUTLINE')
     self.data.view.ListHeader.Reverse:SetFont(fontPath, 14, 'OUTLINE')
+    self.data.view.ListHeader.Challenge:SetFont(fontPath, 14, 'OUTLINE')
+    self.data.view.ListHeader.ChallengeReverse:SetFont(fontPath, 14, 'OUTLINE')
 
     for _, widget in pairs(self.data.view.ScrollContainer.children) do
         widget.Name:SetFont(fontPath, 16, 'OUTLINE')
