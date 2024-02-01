@@ -93,7 +93,7 @@ function utils:ParseRaceTooltipChunk(str, start)
     local chunk = string.sub(str, o + 1, w)
 
     local _, b = string.find(chunk, '|R\r\n')         -- Beginning of time
-    local t, y = string.find(chunk, '\r\n|CFF808080') -- End time / Beginning Gold
+    local t, y = string.find(chunk, '\r\n|CFF808080') -- End time / Beginning Gold --TODO: Doesnt work
 
     local bestTime = string.sub(chunk, b + 1, t - 1)
     local goldTime = string.sub(chunk, y + 1, w - 1):gsub('\r\n', '')
