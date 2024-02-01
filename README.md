@@ -1,9 +1,11 @@
-<div align='center'>
-    # Ride the Wind
-    ![Logo](https://github.com/Hildaware/RideTheWind/raw/main/Media/logo.png)
+<div align="center">
 
-    Ride the Wind is a Dragonriding (Dynamic Riding?) Racing companion to help you on your way to be an Ace of the skies! View your completed and uncompleted races, best times, find new races, and much more.
+# Ride the Wind
+![Logo](https://github.com/Hildaware/RideTheWind/raw/main/Media/logo.png)
+
 </div>
+
+Ride the Wind is a Dragonriding (Dynamic Riding?) Racing companion to help you on your way to be an Ace of the skies! View your completed and uncompleted races, best times, find new races, and much more.
 
 ## Features
 
