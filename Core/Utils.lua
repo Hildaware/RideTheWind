@@ -53,36 +53,31 @@ function utils.ParseRaceTimeTooltip(tooltipText)
 
     local normal = utils:ParseRaceTooltipChunk(tooltipText)
     local normalBest = utils:ParseNumbersFromString(normal.best)
-    local normalGold = utils:ParseNumbersFromString(normal.gold)
 
     local advanced = utils:ParseRaceTooltipChunk(tooltipText, normal.endIndex)
     local advancedBest = utils:ParseNumbersFromString(advanced.best)
-    local advancedGold = utils:ParseNumbersFromString(advanced.gold)
 
     local reverse = utils:ParseRaceTooltipChunk(tooltipText, advanced.endIndex)
     local reverseBest = utils:ParseNumbersFromString(reverse.best)
-    local reverseGold = utils:ParseNumbersFromString(reverse.gold)
 
     local challenge = utils:ParseRaceTooltipChunk(tooltipText, reverse.endIndex)
     local challengeBest = utils:ParseNumbersFromString(challenge.best)
-    local challengeGold = utils:ParseNumbersFromString(challenge.gold)
 
     local challengeRev = utils:ParseRaceTooltipChunk(tooltipText, challenge.endIndex)
     local challengeRevBest = utils:ParseNumbersFromString(challengeRev.best)
-    local challengeRevGold = utils:ParseNumbersFromString(challengeRev.gold)
 
     return {
-        normal = { best = normalBest, gold = normalGold },
-        advanced = { best = advancedBest, gold = advancedGold },
-        reverse = { best = reverseBest, gold = reverseGold },
-        challenge = { best = challengeBest, gold = challengeGold },
-        challengeReverse = { best = challengeRevBest, gold = challengeRevGold }
+        normal = normalBest,
+        advanced = advancedBest,
+        reverse = reverseBest,
+        challenge = challengeBest,
+        challengeReverse = challengeRevBest
     }
 end
 
 ---@param str string
 ---@param start integer?
----@return { best: string, gold: string, endIndex: integer  }
+---@return { best: string, endIndex: integer  }
 function utils:ParseRaceTooltipChunk(str, start)
     local _, o = string.find(str, '|CFFffd100', start or 0)
     local x, w = string.find(str, '|CFFffd100', o)
@@ -93,11 +88,10 @@ function utils:ParseRaceTooltipChunk(str, start)
     local chunk = string.sub(str, o + 1, w)
 
     local _, b = string.find(chunk, '|R\r\n')         -- Beginning of time
-    local t, y = string.find(chunk, '\r\n|CFF808080') -- End time / Beginning Gold --TODO: Doesnt work
+    local t, _ = string.find(chunk, '\r\n|CFF808080') -- End time / Beginning Gold
 
     local bestTime = string.sub(chunk, b + 1, t - 1)
-    local goldTime = string.sub(chunk, y + 1, w - 1):gsub('\r\n', '')
-    return { best = bestTime, gold = goldTime, endIndex = x }
+    return { best = bestTime, endIndex = x }
 end
 
 ---@param str string
@@ -111,15 +105,12 @@ function utils:ParseNumbersFromString(str)
     end
 end
 
----@param raceDetails RaceDetails
+---@param raceDetails integer?
 ---@return string
 function utils:BuildRaceTooltip(raceDetails)
-    local best = (raceDetails.best and tostring(raceDetails.best)) or 'No Attempts'
+    local best = (raceDetails and tostring(raceDetails)) or 'No Attempts'
     local bestStr = '|CFFffd100Best: ' .. best .. '|R'
-
-    local goldStr = '|CFF808080Gold: ' .. raceDetails.gold .. ' sec|R'
-
-    return bestStr .. '\r\n' .. goldStr
+    return bestStr
 end
 
 --#endregion

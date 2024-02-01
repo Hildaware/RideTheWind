@@ -256,4 +256,8 @@ function events:VARIABLES_LOADED()
     zoneView:Update()
 end
 
+function events:TRACKED_ACHIEVEMENT_UPDATE()
+    zoneView:Update()
+end
+
 zoneView:Enable()

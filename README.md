@@ -3,4 +3,5 @@
 - List View (filtering, etc.)
 
 ### TODO
-- Races will require a 'gold' Time to beat in the Race Map. Tooltip is unreliable
+- Update Race Gold Times (get from TT and update Race Map)
+- Validate the

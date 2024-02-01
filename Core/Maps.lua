@@ -9,6 +9,28 @@ maps.Races = {
     [2022] = { -- Waking Shores
         [1] = {
             id = 415640,
+            times = {
+                normal = {
+                    silver = 55,
+                    gold = 52
+                },
+                advanced = {
+                    silver = 50,
+                    gold = 45
+                },
+                reverse = {
+                    silver = 53,
+                    gold = 48
+                },
+                challenge = {
+                    silver = 56,
+                    gold = 53
+                },
+                challengeReverse = {
+                    silver = 56,
+                    gold = 53
+                }
+            },
             normal = {
                 bronze = 15730,
                 silver = 15731,
@@ -43,6 +65,28 @@ maps.Races = {
         },
         [2] = {
             id = 415639,
+            times = {
+                normal = {
+                    silver = 53,
+                    gold = 47
+                },
+                advanced = {
+                    silver = 49,
+                    gold = 44
+                },
+                reverse = {
+                    silver = 50,
+                    gold = 45
+                },
+                challenge = {
+                    silver = 53,
+                    gold = 50
+                },
+                challengeReverse = {
+                    silver = 54,
+                    gold = 51
+                }
+            },
             normal = {
                 bronze = 15724,
                 silver = 15725,
@@ -77,6 +121,28 @@ maps.Races = {
         },
         [3] = {
             id = 415643,
+            times = {
+                normal = {
+                    silver = 66,
+                    gold = 63
+                },
+                advanced = {
+                    silver = 66,
+                    gold = 61
+                },
+                reverse = {
+                    silver = 65,
+                    gold = 60
+                },
+                challenge = {
+                    silver = 67,
+                    gold = 64
+                },
+                challengeReverse = {
+                    silver = 74,
+                    gold = 69
+                }
+            },
             normal = {
                 bronze = 15705,
                 silver = 15706,
@@ -111,6 +177,28 @@ maps.Races = {
         },
         [4] = {
             id = 415541,
+            times = {
+                normal = {
+                    silver = 56,
+                    gold = 53
+                },
+                advanced = {
+                    silver = 57,
+                    gold = 52
+                },
+                reverse = {
+                    silver = 55,
+                    gold = 50
+                },
+                challenge = {
+                    silver = 57,
+                    gold = 54
+                },
+                challengeReverse = {
+                    silver = 60,
+                    gold = 57
+                }
+            },
             normal = {
                 bronze = 15696,
                 silver = 15697,
@@ -145,6 +233,28 @@ maps.Races = {
         },
         [5] = {
             id = 415641,
+            times = {
+                normal = {
+                    silver = 48,
+                    gold = 45
+                },
+                advanced = {
+                    silver = 45,
+                    gold = 40
+                },
+                reverse = {
+                    silver = 48,
+                    gold = 43
+                },
+                challenge = {
+                    silver = 49,
+                    gold = 46
+                },
+                challengeReverse = {
+                    silver = 51,
+                    gold = 48
+                }
+            },
             normal = {
                 bronze = 15736,
                 silver = 15737,
@@ -179,6 +289,28 @@ maps.Races = {
         },
         [6] = {
             id = 41564,
+            times = {
+                normal = {
+                    silver = 43,
+                    gold = 40
+                },
+                advanced = {
+                    silver = 43,
+                    gold = 38
+                },
+                reverse = {
+                    silver = 46,
+                    gold = 41
+                },
+                challenge = {
+                    silver = 46,
+                    gold = 43
+                },
+                challengeReverse = {
+                    silver = 47,
+                    gold = 44
+                }
+            },
             normal = {
                 bronze = 15718,
                 silver = 15719,
@@ -213,6 +345,28 @@ maps.Races = {
         },
         [7] = {
             id = 415638,
+            times = {
+                normal = {
+                    silver = 45,
+                    gold = 42
+                },
+                advanced = {
+                    silver = 45,
+                    gold = 40
+                },
+                reverse = {
+                    silver = 46,
+                    gold = 41
+                },
+                challenge = {
+                    silver = 51,
+                    gold = 48
+                },
+                challengeReverse = {
+                    silver = 52,
+                    gold = 49
+                }
+            },
             normal = {
                 bronze = 15712,
                 silver = 15713,
@@ -247,6 +401,28 @@ maps.Races = {
         },
         [8] = {
             id = 415624,
+            times = {
+                normal = {
+                    silver = 56,
+                    gold = 53
+                },
+                advanced = {
+                    silver = 58,
+                    gold = 53
+                },
+                reverse = {
+                    silver = 61,
+                    gold = 56
+                },
+                challenge = {
+                    silver = 63,
+                    gold = 60
+                },
+                challengeReverse = {
+                    silver = 63,
+                    gold = 60
+                }
+            },
             normal = {
                 bronze = 15742,
                 silver = 15743,
@@ -280,9 +456,32 @@ maps.Races = {
             zone = 2022
         }
     },
+    ---@type Race[]
     [2023] = { -- Om nom nom Plains
         [1] = {
             id = 415652,
+            times = {
+                normal = {
+                    silver = 51,
+                    gold = 48
+                },
+                advanced = {
+                    silver = 46,
+                    gold = 41
+                },
+                reverse = {
+                    silver = 52,
+                    gold = 47
+                },
+                challenge = {
+                    silver = 53,
+                    gold = 50
+                },
+                challengeReverse = {
+                    silver = 53,
+                    gold = 50
+                }
+            },
             normal = {
                 bronze = 15763,
                 silver = 15764,
@@ -317,6 +516,28 @@ maps.Races = {
         },
         [2] = {
             id = 415650,
+            times = {
+                normal = {
+                    silver = 52,
+                    gold = 44
+                },
+                advanced = {
+                    silver = 46,
+                    gold = 41
+                },
+                reverse = {
+                    silver = 50,
+                    gold = 45
+                },
+                challenge = {
+                    silver = 54,
+                    gold = 51
+                },
+                challengeReverse = {
+                    silver = 53,
+                    gold = 50
+                }
+            },
             normal = {
                 bronze = 15757,
                 silver = 15758,
@@ -351,6 +572,16 @@ maps.Races = {
         },
         [3] = {
             id = 415656,
+            times = {
+                normal = {
+                    silver = 28,
+                    gold = 25
+                },
+                challenge = {
+                    silver = 27,
+                    gold = 24
+                }
+            },
             normal = {
                 bronze = 15782,
                 silver = 15783,
@@ -385,6 +616,28 @@ maps.Races = {
         },
         [4] = {
             id = 415653,
+            times = {
+                normal = {
+                    silver = 52,
+                    gold = 49
+                },
+                advanced = {
+                    silver = 52,
+                    gold = 47
+                },
+                reverse = {
+                    silver = 51,
+                    gold = 46
+                },
+                challenge = {
+                    silver = 53,
+                    gold = 50
+                },
+                challengeReverse = {
+                    silver = 54,
+                    gold = 51
+                }
+            },
             normal = {
                 bronze = 15769,
                 silver = 15770,
@@ -419,6 +672,16 @@ maps.Races = {
         },
         [5] = {
             id = 415657,
+            times = {
+                normal = {
+                    silver = 29,
+                    gold = 26
+                },
+                challenge = {
+                    silver = 30,
+                    gold = 27
+                }
+            },
             normal = {
                 bronze = 15785,
                 silver = 15786,
@@ -453,6 +716,28 @@ maps.Races = {
         },
         [6] = {
             id = 415658,
+            times = {
+                normal = {
+                    silver = 51,
+                    gold = 48
+                },
+                advanced = {
+                    silver = 48,
+                    gold = 43
+                },
+                reverse = {
+                    silver = 49,
+                    gold = 44
+                },
+                challenge = {
+                    silver = 55,
+                    gold = 52
+                },
+                challengeReverse = {
+                    silver = 55,
+                    gold = 52
+                }
+            },
             normal = {
                 bronze = 16302,
                 silver = 16303,
@@ -487,6 +772,28 @@ maps.Races = {
         },
         [7] = {
             id = 415654,
+            times = {
+                normal = {
+                    silver = 66,
+                    gold = 63
+                },
+                advanced = {
+                    silver = 60,
+                    gold = 55
+                },
+                reverse = {
+                    silver = 62,
+                    gold = 57
+                },
+                challenge = {
+                    silver = 69,
+                    gold = 66
+                },
+                challengeReverse = {
+                    silver = 69,
+                    gold = 66
+                }
+            },
             normal = {
                 bronze = 15775,
                 silver = 15776,
@@ -520,9 +827,32 @@ maps.Races = {
             zone = 2023
         }
     },
+    ---@type Race[]
     [2024] = { -- Azure Span
         [1] = {
             id = 415662,
+            times = {
+                normal = {
+                    silver = 78,
+                    gold = 75
+                },
+                advanced = {
+                    silver = 75,
+                    gold = 70
+                },
+                reverse = {
+                    silver = 72,
+                    gold = 67
+                },
+                challenge = {
+                    silver = 81,
+                    gold = 78
+                },
+                challengeReverse = {
+                    silver = 82,
+                    gold = 79
+                }
+            },
             normal = {
                 bronze = 15835,
                 silver = 15836,
@@ -557,6 +887,28 @@ maps.Races = {
         },
         [2] = {
             id = 415660,
+            times = {
+                normal = {
+                    silver = 61,
+                    gold = 58
+                },
+                advanced = {
+                    silver = 61,
+                    gold = 56
+                },
+                reverse = {
+                    silver = 58,
+                    gold = 53
+                },
+                challenge = {
+                    silver = 58,
+                    gold = 55
+                },
+                challengeReverse = {
+                    silver = 58,
+                    gold = 55
+                }
+            },
             normal = {
                 bronze = 15799,
                 silver = 15800,
@@ -591,6 +943,28 @@ maps.Races = {
         },
         [3] = {
             id = 415663,
+            times = {
+                normal = {
+                    silver = 79,
+                    gold = 76
+                },
+                advanced = {
+                    silver = 77,
+                    gold = 72
+                },
+                reverse = {
+                    silver = 74,
+                    gold = 69
+                },
+                challenge = {
+                    silver = 88,
+                    gold = 85
+                },
+                challengeReverse = {
+                    silver = 86,
+                    gold = 83
+                }
+            },
             normal = {
                 bronze = 15841,
                 silver = 15842,
@@ -625,6 +999,28 @@ maps.Races = {
         },
         [4] = {
             id = 415659,
+            times = {
+                normal = {
+                    silver = 66,
+                    gold = 63
+                },
+                advanced = {
+                    silver = 63,
+                    gold = 58
+                },
+                reverse = {
+                    silver = 65,
+                    gold = 60
+                },
+                challenge = {
+                    silver = 70,
+                    gold = 67
+                },
+                challengeReverse = {
+                    silver = 72,
+                    gold = 69
+                }
+            },
             normal = {
                 bronze = 15788,
                 silver = 15789,
@@ -659,6 +1055,28 @@ maps.Races = {
         },
         [5] = {
             id = 415664,
+            times = {
+                normal = {
+                    silver = 94,
+                    gold = 91
+                },
+                advanced = {
+                    silver = 86,
+                    gold = 81
+                },
+                reverse = {
+                    silver = 81,
+                    gold = 76
+                },
+                challenge = {
+                    silver = 93,
+                    gold = 90
+                },
+                challengeReverse = {
+                    silver = 95,
+                    gold = 92
+                }
+            },
             normal = {
                 bronze = 15847,
                 silver = 15848,
@@ -693,6 +1111,28 @@ maps.Races = {
         },
         [6] = {
             id = 415661,
+            times = {
+                normal = {
+                    silver = 61,
+                    gold = 58
+                },
+                advanced = {
+                    silver = 61,
+                    gold = 56
+                },
+                reverse = {
+                    silver = 61,
+                    gold = 56
+                },
+                challenge = {
+                    silver = 66,
+                    gold = 63
+                },
+                challengeReverse = {
+                    silver = 67,
+                    gold = 64
+                }
+            },
             normal = {
                 bronze = 15818,
                 silver = 15819,
@@ -726,9 +1166,32 @@ maps.Races = {
             zone = 2024
         }
     },
+    ---@type Race[]
     [2025] = { -- Thaldraszus
         [1] = {
             id = 415665,
+            times = {
+                normal = {
+                    silver = 52,
+                    gold = 49
+                },
+                advanced = {
+                    silver = 45,
+                    gold = 40
+                },
+                reverse = {
+                    silver = 46,
+                    gold = 41
+                },
+                challenge = {
+                    silver = 50,
+                    gold = 47
+                },
+                challengeReverse = {
+                    silver = 49,
+                    gold = 46
+                }
+            },
             normal = {
                 bronze = 15827,
                 silver = 15828,
@@ -763,6 +1226,28 @@ maps.Races = {
         },
         [2] = {
             id = 415668,
+            times = {
+                normal = {
+                    silver = 72,
+                    gold = 69
+                },
+                advanced = {
+                    silver = 71,
+                    gold = 66
+                },
+                reverse = {
+                    silver = 74,
+                    gold = 69
+                },
+                challenge = {
+                    silver = 84,
+                    gold = 81
+                },
+                challengeReverse = {
+                    silver = 83,
+                    gold = 80
+                }
+            },
             normal = {
                 bronze = 15891,
                 silver = 15892,
@@ -797,6 +1282,28 @@ maps.Races = {
         },
         [3] = {
             id = 415670,
+            times = {
+                normal = {
+                    silver = 64,
+                    gold = 61
+                },
+                advanced = {
+                    silver = 59,
+                    gold = 54
+                },
+                reverse = {
+                    silver = 62,
+                    gold = 57
+                },
+                challenge = {
+                    silver = 63,
+                    gold = 60
+                },
+                challengeReverse = {
+                    silver = 67,
+                    gold = 64
+                }
+            },
             normal = {
                 bronze = 15903,
                 silver = 15904,
@@ -831,6 +1338,28 @@ maps.Races = {
         },
         [4] = {
             id = 415666,
+            times = {
+                normal = {
+                    silver = 84,
+                    gold = 81
+                },
+                advanced = {
+                    silver = 80,
+                    gold = 75
+                },
+                reverse = {
+                    silver = 64,
+                    gold = 59
+                },
+                challenge = {
+                    silver = 61,
+                    gold = 58
+                },
+                challengeReverse = {
+                    silver = 66,
+                    gold = 63
+                }
+            },
             normal = {
                 bronze = 15855,
                 silver = 15856,
@@ -865,6 +1394,28 @@ maps.Races = {
         },
         [5] = {
             id = 415669,
+            times = {
+                normal = {
+                    silver = 57,
+                    gold = 54
+                },
+                advanced = {
+                    silver = 57,
+                    gold = 52
+                },
+                reverse = {
+                    silver = 58,
+                    gold = 53
+                },
+                challenge = {
+                    silver = 68,
+                    gold = 65
+                },
+                challengeReverse = {
+                    silver = 68,
+                    gold = 65
+                }
+            },
             normal = {
                 bronze = 15897,
                 silver = 15898,
@@ -899,6 +1450,28 @@ maps.Races = {
         },
         [6] = {
             id = 415671,
+            times = {
+                normal = {
+                    silver = 53,
+                    gold = 50
+                },
+                advanced = {
+                    silver = 50,
+                    gold = 45
+                },
+                reverse = {
+                    silver = 52,
+                    gold = 47
+                },
+                challenge = {
+                    silver = 59,
+                    gold = 56
+                },
+                challengeReverse = {
+                    silver = 57,
+                    gold = 54
+                }
+            },
             normal = {
                 bronze = 15909,
                 silver = 15910,
@@ -932,9 +1505,32 @@ maps.Races = {
             zone = 2025
         }
     },
+    ---@type Race[]
     [2133] = { -- Zaralek Cavern
         [1] = {
             id = 415795,
+            times = {
+                normal = {
+                    silver = 68,
+                    gold = 63
+                },
+                advanced = {
+                    silver = 60,
+                    gold = 63
+                },
+                reverse = {
+                    silver = 58,
+                    gold = 53
+                },
+                challenge = {
+                    silver = 60,
+                    gold = 57
+                },
+                challengeReverse = {
+                    silver = 61,
+                    gold = 58
+                }
+            },
             normal = {
                 bronze = 17429,
                 silver = 17430,
@@ -969,6 +1565,28 @@ maps.Races = {
         },
         [2] = {
             id = 415797,
+            times = {
+                normal = {
+                    silver = 72,
+                    gold = 69
+                },
+                advanced = {
+                    silver = 69,
+                    gold = 64
+                },
+                reverse = {
+                    silver = 69,
+                    gold = 64
+                },
+                challenge = {
+                    silver = 72,
+                    gold = 69
+                },
+                challengeReverse = {
+                    silver = 74,
+                    gold = 71
+                }
+            },
             normal = {
                 bronze = 17447,
                 silver = 17448,
@@ -1003,6 +1621,28 @@ maps.Races = {
         },
         [3] = {
             id = 415799,
+            times = {
+                normal = {
+                    silver = 60,
+                    gold = 55
+                },
+                advanced = {
+                    silver = 55,
+                    gold = 50
+                },
+                reverse = {
+                    silver = 53,
+                    gold = 48
+                },
+                challenge = {
+                    silver = 56,
+                    gold = 53
+                },
+                challengeReverse = {
+                    silver = 55,
+                    gold = 52
+                }
+            },
             normal = {
                 bronze = 17465,
                 silver = 17466,
@@ -1037,6 +1677,28 @@ maps.Races = {
         },
         [4] = {
             id = 415796,
+            times = {
+                normal = {
+                    silver = 80,
+                    gold = 75
+                },
+                advanced = {
+                    silver = 73,
+                    gold = 68
+                },
+                reverse = {
+                    silver = 73,
+                    gold = 68
+                },
+                challenge = {
+                    silver = 75,
+                    gold = 72
+                },
+                challengeReverse = {
+                    silver = 75,
+                    gold = 72
+                }
+            },
             normal = {
                 bronze = 17438,
                 silver = 17439,
@@ -1071,6 +1733,28 @@ maps.Races = {
         },
         [5] = {
             id = 415798,
+            times = {
+                normal = {
+                    silver = 80,
+                    gold = 75
+                },
+                advanced = {
+                    silver = 75,
+                    gold = 70
+                },
+                reverse = {
+                    silver = 75,
+                    gold = 70
+                },
+                challenge = {
+                    silver = 82,
+                    gold = 79
+                },
+                challengeReverse = {
+                    silver = 78,
+                    gold = 75
+                }
+            },
             normal = {
                 bronze = 17456,
                 silver = 17457,
@@ -1105,6 +1789,28 @@ maps.Races = {
         },
         [6] = {
             id = 415800,
+            times = {
+                normal = {
+                    silver = 67,
+                    gold = 64
+                },
+                advanced = {
+                    silver = 63,
+                    gold = 58
+                },
+                reverse = {
+                    silver = 62,
+                    gold = 57
+                },
+                challenge = {
+                    silver = 70,
+                    gold = 67
+                },
+                challengeReverse = {
+                    silver = 68,
+                    gold = 65
+                }
+            },
             normal = {
                 bronze = 17474,
                 silver = 17475,
@@ -1138,9 +1844,32 @@ maps.Races = {
             zone = 2133
         }
     },
+    ---@type Race[]
     [2151] = { -- The Forbidden Reach
         [1] = {
             id = 415789,
+            times = {
+                normal = {
+                    silver = 45,
+                    gold = 43
+                },
+                advanced = {
+                    silver = 47,
+                    gold = 42
+                },
+                reverse = {
+                    silver = 47,
+                    gold = 42
+                },
+                challenge = {
+                    silver = 48,
+                    gold = 45
+                },
+                challengeReverse = {
+                    silver = 47,
+                    gold = 44
+                }
+            },
             normal = {
                 bronze = 17214,
                 silver = 17215,
@@ -1175,6 +1904,28 @@ maps.Races = {
         },
         [2] = {
             id = 415791,
+            times = {
+                normal = {
+                    silver = 56,
+                    gold = 53
+                },
+                advanced = {
+                    silver = 55,
+                    gold = 50
+                },
+                reverse = {
+                    silver = 55,
+                    gold = 50
+                },
+                challenge = {
+                    silver = 56,
+                    gold = 53
+                },
+                challengeReverse = {
+                    silver = 55,
+                    gold = 52
+                }
+            },
             normal = {
                 bronze = 17243,
                 silver = 17244,
@@ -1209,6 +1960,28 @@ maps.Races = {
         },
         [3] = {
             id = 415793,
+            times = {
+                normal = {
+                    silver = 61,
+                    gold = 58
+                },
+                advanced = {
+                    silver = 57,
+                    gold = 52
+                },
+                reverse = {
+                    silver = 54,
+                    gold = 49
+                },
+                challenge = {
+                    silver = 58,
+                    gold = 55
+                },
+                challengeReverse = {
+                    silver = 56,
+                    gold = 53
+                }
+            },
             normal = {
                 bronze = 17261,
                 silver = 17262,
@@ -1243,6 +2016,28 @@ maps.Races = {
         },
         [4] = {
             id = 415790,
+            times = {
+                normal = {
+                    silver = 55,
+                    gold = 52
+                },
+                advanced = {
+                    silver = 54,
+                    gold = 49
+                },
+                reverse = {
+                    silver = 57,
+                    gold = 52
+                },
+                challenge = {
+                    silver = 53,
+                    gold = 50
+                },
+                challengeReverse = {
+                    silver = 53,
+                    gold = 50
+                }
+            },
             normal = {
                 bronze = 17223,
                 silver = 17224,
@@ -1277,6 +2072,28 @@ maps.Races = {
         },
         [5] = {
             id = 415792,
+            times = {
+                normal = {
+                    silver = 73,
+                    gold = 70
+                },
+                advanced = {
+                    silver = 73,
+                    gold = 68
+                },
+                reverse = {
+                    silver = 68,
+                    gold = 63
+                },
+                challenge = {
+                    silver = 73,
+                    gold = 70
+                },
+                challengeReverse = {
+                    silver = 71,
+                    gold = 68
+                }
+            },
             normal = {
                 bronze = 17252,
                 silver = 17253,
@@ -1311,6 +2128,28 @@ maps.Races = {
         },
         [6] = {
             id = 415794,
+            times = {
+                normal = {
+                    silver = 62,
+                    gold = 59
+                },
+                advanced = {
+                    silver = 61,
+                    gold = 56
+                },
+                reverse = {
+                    silver = 61,
+                    gold = 57
+                },
+                challenge = {
+                    silver = 63,
+                    gold = 60
+                },
+                challengeReverse = {
+                    silver = 63,
+                    gold = 60
+                }
+            },
             normal = {
                 bronze = 17270,
                 silver = 17271,
@@ -1344,9 +2183,32 @@ maps.Races = {
             zone = 2151
         }
     },
+    ---@type Race[]
     [2200] = { -- Emerald Dream
         [1] = {
             id = 426030,
+            times = {
+                normal = {
+                    silver = 110,
+                    gold = 105
+                },
+                advanced = {
+                    silver = 96,
+                    gold = 93
+                },
+                reverse = {
+                    silver = 99,
+                    gold = 96
+                },
+                challenge = {
+                    silver = 108,
+                    gold = 105
+                },
+                challengeReverse = {
+                    silver = 108,
+                    gold = 105
+                }
+            },
             normal = {
                 bronze = 19047,
                 silver = 19048,
@@ -1381,6 +2243,28 @@ maps.Races = {
         },
         [2] = {
             id = 426031,
+            times = {
+                normal = {
+                    silver = 89,
+                    gold = 84
+                },
+                advanced = {
+                    silver = 73,
+                    gold = 70
+                },
+                reverse = {
+                    silver = 73,
+                    gold = 70
+                },
+                challenge = {
+                    silver = 76,
+                    gold = 73
+                },
+                challengeReverse = {
+                    silver = 76,
+                    gold = 73
+                }
+            },
             normal = {
                 bronze = 19062,
                 silver = 19063,
@@ -1415,6 +2299,28 @@ maps.Races = {
         },
         [3] = {
             id = 426029,
+            times = {
+                normal = {
+                    silver = 78,
+                    gold = 73
+                },
+                advanced = {
+                    silver = 66,
+                    gold = 63
+                },
+                reverse = {
+                    silver = 65,
+                    gold = 62
+                },
+                challenge = {
+                    silver = 73,
+                    gold = 70
+                },
+                challengeReverse = {
+                    silver = 73,
+                    gold = 70
+                }
+            },
             normal = {
                 bronze = 19032,
                 silver = 19033,
@@ -1449,6 +2355,28 @@ maps.Races = {
         },
         [4] = {
             id = 426027,
+            times = {
+                normal = {
+                    silver = 85,
+                    gold = 80
+                },
+                advanced = {
+                    silver = 76,
+                    gold = 73
+                },
+                reverse = {
+                    silver = 82,
+                    gold = 73
+                },
+                challenge = {
+                    silver = 82,
+                    gold = 79
+                },
+                challengeReverse = {
+                    silver = 83,
+                    gold = 80
+                }
+            },
             normal = {
                 bronze = 18978,
                 silver = 18979,
@@ -1483,6 +2411,28 @@ maps.Races = {
         },
         [5] = {
             id = 426028,
+            times = {
+                normal = {
+                    silver = 83,
+                    gold = 78
+                },
+                advanced = {
+                    silver = 67,
+                    gold = 64
+                },
+                reverse = {
+                    silver = 67,
+                    gold = 64
+                },
+                challenge = {
+                    silver = 76,
+                    gold = 73
+                },
+                challengeReverse = {
+                    silver = 76,
+                    gold = 73
+                }
+            },
             normal = {
                 bronze = 18993,
                 silver = 18994,
@@ -1517,6 +2467,28 @@ maps.Races = {
         },
         [6] = {
             id = 426026,
+            times = {
+                normal = {
+                    silver = 103,
+                    gold = 98
+                },
+                advanced = {
+                    silver = 90,
+                    gold = 87
+                },
+                reverse = {
+                    silver = 90,
+                    gold = 87
+                },
+                challenge = {
+                    silver = 98,
+                    gold = 95
+                },
+                challengeReverse = {
+                    silver = 100,
+                    gold = 97
+                }
+            },
             normal = {
                 bronze = 18943,
                 silver = 18944,

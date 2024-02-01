@@ -7,20 +7,12 @@ local database = addon:NewModule('Database')
 ---@class Enums: AceModule
 local enums = addon:GetModule('Enums')
 
----@class RaceDetails
----@field best integer?
----@field gold integer?
-local raceDetailsProto = {
-    best = nil,
-    gold = nil
-}
-
 ---@class RaceStats
----@field normal RaceDetails?
----@field advanced RaceDetails?
----@field reverse RaceDetails?
----@field challenge RaceDetails?
----@field challengeReverse RaceDetails?
+---@field normal integer?
+---@field advanced integer?
+---@field reverse integer?
+---@field challenge integer?
+---@field challengeReverse integer?
 local raceStatsProto = {
     normal = nil,
     advanced = nil,
@@ -107,16 +99,24 @@ function database:SaveRaceTimes(raceId, raceTimes)
         return
     end
 
-    if raceTimes.normal.best < savedTimes.normal.best then
-        database.internal.global.Races[raceId].normal.best = raceTimes.normal.best
+    if raceTimes.normal < savedTimes.normal then
+        database.internal.global.Races[raceId].normal = raceTimes.normal
     end
 
-    if raceTimes.advanced.best < savedTimes.advanced.best then
-        database.internal.global.Races[raceId].advanced.best = raceTimes.advanced.best
+    if raceTimes.advanced < savedTimes.advanced then
+        database.internal.global.Races[raceId].advanced = raceTimes.advanced
     end
 
-    if raceTimes.reverse.best < savedTimes.reverse.best then
-        database.internal.global.Races[raceId].reverse.best = raceTimes.reverse.best
+    if raceTimes.reverse < savedTimes.reverse then
+        database.internal.global.Races[raceId].reverse = raceTimes.reverse
+    end
+
+    if raceTimes.challenge < savedTimes.challenge then
+        database.internal.global.Races[raceId].challenge = raceTimes.challenge
+    end
+
+    if raceTimes.challengeReverse < savedTimes.challengeReverse then
+        database.internal.global.Races[raceId].challengeReverse = raceTimes.challengeReverse
     end
 end
 

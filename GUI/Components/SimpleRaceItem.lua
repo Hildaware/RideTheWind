@@ -38,7 +38,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Normal:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.normal == nil then return end
-        if raceDetails.normal.gold == nil or raceDetails.normal.gold == 0 then return end
+        if raceDetails.normal == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.normal)
@@ -54,7 +54,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Advanced:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.advanced == nil then return end
-        if raceDetails.advanced.gold == nil or raceDetails.advanced.gold == 0 then return end
+        if raceDetails.advanced == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.advanced)
@@ -70,7 +70,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Reverse:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.reverse == nil then return end
-        if raceDetails.reverse.gold == nil or raceDetails.reverse.gold == 0 then return end
+        if raceDetails.reverse == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.reverse)
@@ -86,7 +86,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.Challenge:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.challenge == nil then return end
-        if raceDetails.challenge.gold == nil or raceDetails.challenge.gold == 0 then return end
+        if raceDetails.challenge == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.challenge)
@@ -102,7 +102,7 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
     frame.ChallengeReverse:SetCallback('OnEnter', function(self)
         if raceDetails == nil then return end
         if raceDetails.challengeReverse == nil then return end
-        if raceDetails.challengeReverse.gold == nil or raceDetails.challengeReverse.gold == 0 then return end
+        if raceDetails.challengeReverse == 0 then return end
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
         local tooltip = utils:BuildRaceTooltip(raceDetails.challengeReverse)

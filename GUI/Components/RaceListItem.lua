@@ -65,7 +65,7 @@ function item.Create(raceInfo, raceDetails)
 end
 
 ---@param racePlace integer
----@param raceDetails RaceDetails?
+---@param raceDetails integer?
 ---@param overrideWidth integer?
 ---@return AceGUISimpleGroup
 function item:CreateScore(racePlace, raceDetails, overrideWidth)
@@ -87,8 +87,8 @@ function item:CreateScore(racePlace, raceDetails, overrideWidth)
     place:SetFullWidth(true)
     place:SetJustifyH('CENTER')
     place:SetFontObject('GameFontNormal')
-    if raceDetails and raceDetails.best ~= nil and raceDetails.best > 0 then
-        local best = (raceDetails.best and tostring(raceDetails.best)) or 'No Attempts'
+    if raceDetails and raceDetails > 0 then
+        local best = (raceDetails and tostring(raceDetails)) or 'No Attempts'
         local bestStr = '|CFFffd100' .. best .. '|R'
         place:SetText(bestStr)
     else

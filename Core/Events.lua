@@ -12,7 +12,7 @@ function events:OnInitialize()
     events:RegisterEvent('VARIABLES_LOADED')
     events:RegisterEvent('ZONE_CHANGED_NEW_AREA')
     events:RegisterEvent('ACHIEVEMENT_EARNED')
-    -- events:RegisterEvent('TRACKED_ACHIEVEMENT_UPDATE')
+    events:RegisterEvent('TRACKED_ACHIEVEMENT_UPDATE')
 end
 
 events:Enable()
