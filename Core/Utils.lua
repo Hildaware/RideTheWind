@@ -1,5 +1,6 @@
 local addonName = ...
 local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
+local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 ---@class Utils: AceModule
 local utils = addon:NewModule('Utils')
@@ -45,12 +46,6 @@ end
 ---@param tooltipText string
 ---@return RaceStats
 function utils.ParseRaceTimeTooltip(tooltipText)
-    -- |Cffffffff |R\r\n|CFFffd100Normal|R\r\nBronze (56.352 sec) |A:challenges-medal-small-bronze:0:0:0:0|a\r\n|CFF808080Gold time: 50 sec|R\r\n\r\n
-    -- |CFFffd100Advanced|R\r\nNo Attempts\r\n|CFF808080Gold time: 44 sec|R\r\n\r\n
-    -- |CFFffd100Reverse|R\r\nNo Attempts\r\n|CFF808080Gold time: 45 sec|R\r\n\r\n
-    -- |CFFffd100Challenge|R\r\nNo Attempts\r\n|CFF808080Gold time: 50 sec|R\r\n\r\n
-    -- |CFFffd100Challenge Reverse|R\r\nNo Attempts\r\n|CFF808080Gold time: 51 sec|R \r\n
-
     local normal = utils:ParseRaceTooltipChunk(tooltipText)
     local normalBest = utils:ParseNumbersFromString(normal.best)
 
@@ -77,21 +72,27 @@ end
 
 ---@param str string
 ---@param start integer?
----@return { best: string, endIndex: integer  }
+---@return { best: string, endIndex: integer?  }
 function utils:ParseRaceTooltipChunk(str, start)
     local _, o = string.find(str, '|CFFffd100', start or 0)
     local x, w = string.find(str, '|CFFffd100', o)
     if w == nil then
-        return { best = '', gold = '', endIndex = nil }
+        x, w = string.find(str, '|R \r\n', o)
     end
 
-    local chunk = string.sub(str, o + 1, w)
+    if w == nil then
+        return { best = '', endIndex = nil }
+    end
 
-    local _, b = string.find(chunk, '|R\r\n')         -- Beginning of time
-    local t, _ = string.find(chunk, '\r\n|CFF808080') -- End time / Beginning Gold
+    local chunk = string.sub(str, o + 1, w):gsub('\r\n', '')
 
-    local bestTime = string.sub(chunk, b + 1, t - 1)
-    return { best = bestTime, endIndex = x }
+    -- I sure hope this is the same in other languages!
+    local timeStr = string.match(chunk, '%((.*)%)')
+    if timeStr == nil then
+        return { best = '', endIndex = x }
+    end
+
+    return { best = timeStr, endIndex = x }
 end
 
 ---@param str string
@@ -114,31 +115,6 @@ function utils:BuildRaceTooltip(raceDetails)
 end
 
 --#endregion
-
-function utils:CreateBorder(self)
-    if not self.borders then
-        self.borders = {}
-        for i = 1, 4 do
-            self.borders[i] = self:CreateLine(nil, 'BACKGROUND', nil, 0)
-            local l = self.borders[i]
-            l:SetThickness(1)
-            l:SetColorTexture(0, 0, 0, 1)
-            if i == 1 then
-                l:SetStartPoint('TOPLEFT')
-                l:SetEndPoint('TOPRIGHT')
-            elseif i == 2 then
-                l:SetStartPoint('TOPRIGHT')
-                l:SetEndPoint('BOTTOMRIGHT')
-            elseif i == 3 then
-                l:SetStartPoint('BOTTOMRIGHT')
-                l:SetEndPoint('BOTTOMLEFT')
-            else
-                l:SetStartPoint('BOTTOMLEFT')
-                l:SetEndPoint('TOPLEFT')
-            end
-        end
-    end
-end
 
 function utils.GetTableValue(table, value)
     for _, val in pairs(table) do
