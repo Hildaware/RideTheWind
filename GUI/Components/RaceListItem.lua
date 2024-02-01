@@ -12,6 +12,9 @@ local utils = addon:GetModule('Utils')
 ---@class Resolver: AceModule
 local resolver = addon:GetModule('Resolver')
 
+---@class Maps: AceModule
+local maps = addon:GetModule('Maps')
+
 ---@param raceInfo Race
 ---@param raceDetails RaceStats
 ---@return AceGUISimpleGroup
@@ -42,23 +45,24 @@ function item.Create(raceInfo, raceDetails)
     frame:AddChild(name)
 
     local normalPlace = utils.GetRacePlace(raceInfo.normal)
-    local normal = item:CreateScore(normalPlace, raceDetails and raceDetails.normal)
+    local normal = item:CreateScore(normalPlace, raceDetails and raceDetails.normal, raceInfo.times.normal)
     frame:AddChild(normal)
 
     local advancedPlace = utils.GetRacePlace(raceInfo.advanced)
-    local advanced = item:CreateScore(advancedPlace, raceDetails and raceDetails.advanced)
+    local advanced = item:CreateScore(advancedPlace, raceDetails and raceDetails.advanced, raceInfo.times.advanced)
     frame:AddChild(advanced)
 
     local reversePlace = utils.GetRacePlace(raceInfo.reverse)
-    local reverse = item:CreateScore(reversePlace, raceDetails and raceDetails.reverse)
+    local reverse = item:CreateScore(reversePlace, raceDetails and raceDetails.reverse, raceInfo.times.reverse)
     frame:AddChild(reverse)
 
     local challengePlace = utils.GetRacePlace(raceInfo.challenge)
-    local challenge = item:CreateScore(challengePlace, raceDetails and raceDetails.challenge)
+    local challenge = item:CreateScore(challengePlace, raceDetails and raceDetails.challenge, raceInfo.times.challenge)
     frame:AddChild(challenge)
 
     local challengeReversePlace = utils.GetRacePlace(raceInfo.challengeReverse)
-    local challengeReverse = item:CreateScore(challengeReversePlace, raceDetails and raceDetails.challengeReverse, 0.15)
+    local challengeReverse = item:CreateScore(challengeReversePlace, raceDetails and raceDetails.challengeReverse,
+        raceInfo.times.challengeReverse, 0.15)
     frame:AddChild(challengeReverse)
 
     return frame
@@ -66,20 +70,41 @@ end
 
 ---@param racePlace integer
 ---@param raceDetails integer?
+---@param scoreTargets RaceTimes?
 ---@param overrideWidth integer?
 ---@return AceGUISimpleGroup
-function item:CreateScore(racePlace, raceDetails, overrideWidth)
+function item:CreateScore(racePlace, raceDetails, scoreTargets, overrideWidth)
     ---@class AceGUISimpleGroup
     local group = gui:Create('SimpleGroup')
     group:SetLayout('List')
     group:SetRelativeWidth(overrideWidth or 0.10)
 
-    ---@type AceGUILabel
-    local widget = gui:Create('Label')
+    ---@type AceGUIInteractiveLabel
+    local widget = gui:Create('InteractiveLabel')
     widget:SetFullWidth(true)
     widget:SetJustifyH('CENTER')
     widget:SetFontObject('GameFontNormalLarge')
     widget:SetText(utils.GetPositionIcon(racePlace))
+    widget:SetCallback('OnEnter', function(self)
+        if scoreTargets == nil then return end
+
+        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+        if scoreTargets and (scoreTargets.silver or scoreTargets.gold) then
+            GameTooltip:AddLine('Target Times')
+            GameTooltip:AddLine(" ")
+            if scoreTargets.silver then
+                GameTooltip:AddLine('|CFFA1A09DSiver: ' .. tostring(scoreTargets.silver) .. 'sec|R')
+            end
+            if scoreTargets.gold then
+                GameTooltip:AddLine('|CFFCA9A2DGold: ' .. tostring(scoreTargets.gold) .. 'sec|R')
+            end
+        end
+        GameTooltip:Show()
+    end)
+    widget:SetCallback('OnLeave', function()
+        GameTooltip:Hide()
+    end)
+
     group:AddChild(widget)
 
     ---@type AceGUILabel
@@ -88,9 +113,15 @@ function item:CreateScore(racePlace, raceDetails, overrideWidth)
     place:SetJustifyH('CENTER')
     place:SetFontObject('GameFontNormal')
     if raceDetails and raceDetails > 0 then
-        local best = (raceDetails and tostring(raceDetails)) or 'No Attempts'
-        local bestStr = '|CFFffd100' .. best .. '|R'
-        place:SetText(bestStr)
+        local colorCode = maps.ColorCodes[3]
+        if raceDetails > (scoreTargets and scoreTargets.silver) then   -- Bronze
+            colorCode = maps.ColorCodes[3]
+        elseif raceDetails > (scoreTargets and scoreTargets.gold) then -- Silver
+            colorCode = maps.ColorCodes[2]
+        else                                                           -- Gold
+            colorCode = maps.ColorCodes[1]
+        end
+        place:SetText(colorCode .. raceDetails .. '|R')
     else
         place:SetText(' ')
     end

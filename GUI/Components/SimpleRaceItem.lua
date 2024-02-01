@@ -13,6 +13,9 @@ local utils = addon:GetModule('Utils')
 ---@class Database: AceModule
 local database = addon:GetModule('Database')
 
+---@class Maps: AceModule
+local maps = addon:GetModule('Maps')
+
 ---@class AceGUISimpleGroup
 ---@field Name AceGUIInteractiveLabel
 ---@field Normal AceGUIInteractiveLabel
@@ -33,83 +36,62 @@ function simpleRaceItem.Build(frame, raceInfo, raceDetails)
         C_SuperTrack.SetSuperTrackedUserWaypoint(true)
     end)
 
-    local normalPlace = utils.GetRacePlace(raceInfo.normal)
-    frame.Normal:SetText(utils.GetPositionIcon(normalPlace))
-    frame.Normal:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.normal == nil then return end
-        if raceDetails.normal == 0 then return end
+    simpleRaceItem:UpdateScore(raceInfo.normal, raceDetails and raceDetails.normal,
+        raceInfo.times.normal, frame.Normal)
+
+    simpleRaceItem:UpdateScore(raceInfo.advanced, raceDetails and raceDetails.advanced,
+        raceInfo.times.advanced, frame.Advanced)
+
+    simpleRaceItem:UpdateScore(raceInfo.reverse, raceDetails and raceDetails.reverse,
+        raceInfo.times.reverse, frame.Reverse)
+
+    simpleRaceItem:UpdateScore(raceInfo.challenge, raceDetails and raceDetails.challenge,
+        raceInfo.times.challenge, frame.Challenge)
+
+    simpleRaceItem:UpdateScore(raceInfo.challengeReverse, raceDetails and raceDetails.challengeReverse,
+        raceInfo.times.challengeReverse, frame.ChallengeReverse)
+end
+
+---@param raceInfo RaceIDs
+---@param score integer?
+---@param scoreTargets RaceTimes?
+---@param frame AceGUIInteractiveLabel
+function simpleRaceItem:UpdateScore(raceInfo, score, scoreTargets, frame)
+    local normalPlace = utils.GetRacePlace(raceInfo)
+    frame:SetText(utils.GetPositionIcon(normalPlace))
+    frame:SetCallback('OnEnter', function(self)
+        if score == nil and scoreTargets == nil then return end
+
         GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
 
-        local tooltip = utils:BuildRaceTooltip(raceDetails.normal)
-        GameTooltip:SetText(tooltip)
+        if score and score > 0 then
+            local colorCode = maps.ColorCodes[3]
+            if score > (scoreTargets and scoreTargets.silver) then   -- Bronze
+                colorCode = maps.ColorCodes[3]
+            elseif score > (scoreTargets and scoreTargets.gold) then -- Silver
+                colorCode = maps.ColorCodes[2]
+            else                                                     -- Gold
+                colorCode = maps.ColorCodes[1]
+            end
+            GameTooltip:AddLine('|CFFffffffBest:|R ' .. colorCode .. tostring(score) .. 'sec|R')
+        else
+            GameTooltip:AddLine('|CFFffd100Best:|R |CFFffffffNo Attempts|R')
+        end
+
+        if scoreTargets and (scoreTargets.silver or scoreTargets.gold) then
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine('Target Times')
+            if scoreTargets.silver then
+                GameTooltip:AddLine(maps.ColorCodes[2] .. 'Siver: ' .. tostring(scoreTargets.silver) .. 'sec|R')
+            end
+            if scoreTargets.gold then
+                GameTooltip:AddLine(maps.ColorCodes[1] .. 'Gold: ' .. tostring(scoreTargets.gold) .. 'sec|R')
+            end
+        end
+
         GameTooltip:Show()
     end)
-    frame.Normal:SetCallback('OnLeave', function()
-        GameTooltip:Hide()
-    end)
-
-    local advancedPlace = utils.GetRacePlace(raceInfo.advanced)
-    frame.Advanced:SetText(utils.GetPositionIcon(advancedPlace))
-    frame.Advanced:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.advanced == nil then return end
-        if raceDetails.advanced == 0 then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-
-        local tooltip = utils:BuildRaceTooltip(raceDetails.advanced)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    frame.Advanced:SetCallback('OnLeave', function()
-        GameTooltip:Hide()
-    end)
-
-    local reversePlace = utils.GetRacePlace(raceInfo.reverse)
-    frame.Reverse:SetText(utils.GetPositionIcon(reversePlace))
-    frame.Reverse:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.reverse == nil then return end
-        if raceDetails.reverse == 0 then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-
-        local tooltip = utils:BuildRaceTooltip(raceDetails.reverse)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    frame.Reverse:SetCallback('OnLeave', function()
-        GameTooltip:Hide()
-    end)
-
-    local challengePlace = utils.GetRacePlace(raceInfo.challenge)
-    frame.Challenge:SetText(utils.GetPositionIcon(challengePlace))
-    frame.Challenge:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.challenge == nil then return end
-        if raceDetails.challenge == 0 then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-
-        local tooltip = utils:BuildRaceTooltip(raceDetails.challenge)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    frame.Challenge:SetCallback('OnLeave', function()
-        GameTooltip:Hide()
-    end)
-
-    local challengeRevPlace = utils.GetRacePlace(raceInfo.challengeReverse)
-    frame.ChallengeReverse:SetText(utils.GetPositionIcon(challengeRevPlace))
-    frame.ChallengeReverse:SetCallback('OnEnter', function(self)
-        if raceDetails == nil then return end
-        if raceDetails.challengeReverse == nil then return end
-        if raceDetails.challengeReverse == 0 then return end
-        GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
-
-        local tooltip = utils:BuildRaceTooltip(raceDetails.challengeReverse)
-        GameTooltip:SetText(tooltip)
-        GameTooltip:Show()
-    end)
-    frame.ChallengeReverse:SetCallback('OnLeave', function()
+    frame:SetCallback('OnLeave', function()
         GameTooltip:Hide()
     end)
 end

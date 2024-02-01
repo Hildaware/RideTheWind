@@ -2524,4 +2524,10 @@ maps.Races = {
     }
 }
 
+maps.ColorCodes = {
+    [3] = '|CFFA16B43',
+    [2] = '|CFFA1A09D',
+    [1] = '|CFFCA9A2D'
+}
+
 maps:Enable()

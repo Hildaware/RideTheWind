@@ -96,27 +96,43 @@ function database:SaveRaceTimes(raceId, raceTimes)
     local savedTimes = database.internal.global.Races[raceId]
     if savedTimes == nil then
         database.internal.global.Races[raceId] = raceTimes
+
+        ---@class ZoneView: AceModule
+        local zoneView = addon:GetModule('ZoneView')
+        zoneView:Update()
         return
     end
 
+    local shouldUpdateView = false
     if raceTimes.normal < savedTimes.normal then
         database.internal.global.Races[raceId].normal = raceTimes.normal
+        shouldUpdateView = true
     end
 
     if raceTimes.advanced < savedTimes.advanced then
         database.internal.global.Races[raceId].advanced = raceTimes.advanced
+        shouldUpdateView = true
     end
 
     if raceTimes.reverse < savedTimes.reverse then
         database.internal.global.Races[raceId].reverse = raceTimes.reverse
+        shouldUpdateView = true
     end
 
     if raceTimes.challenge < savedTimes.challenge then
         database.internal.global.Races[raceId].challenge = raceTimes.challenge
+        shouldUpdateView = true
     end
 
     if raceTimes.challengeReverse < savedTimes.challengeReverse then
         database.internal.global.Races[raceId].challengeReverse = raceTimes.challengeReverse
+        shouldUpdateView = true
+    end
+
+    if shouldUpdateView then
+        ---@class ZoneView: AceModule
+        local zoneView = addon:GetModule('ZoneView')
+        zoneView:Update()
     end
 end
 

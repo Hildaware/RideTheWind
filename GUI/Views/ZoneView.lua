@@ -21,6 +21,9 @@ local database = addon:GetModule('Database')
 ---@class Resolver: AceModule
 local resolver = addon:GetModule('Resolver')
 
+---@class Session: AceModule
+local session = addon:GetModule('Session')
+
 ---@class SimpleRaceItem: AceModule
 local simpleRaceItem = addon:GetModule('SimpleRaceItem')
 
