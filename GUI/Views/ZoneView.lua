@@ -52,6 +52,7 @@ function zoneView:Create()
     ---@field frame Frame
     ---@field title Frame
     ---@field titletext FontString
+    ---@field closebutton Button
     ---@field localstatus table
     local view = gui:Create('Window')
     view:SetWidth(240)
@@ -62,6 +63,18 @@ function zoneView:Create()
     view.titletext:SetFont(font.path, 16, 'OUTLINE')
     view.title:HookScript('OnMouseUp', function()
         database:SaveZoneViewPosition(view.localstatus.left, view.localstatus.top)
+    end)
+
+    view.closebutton:HookScript('OnClick', function()
+        session.zoneView.hide = true
+    end)
+    view.closebutton:HookScript('OnEnter', function(self)
+        GameTooltip:SetOwner(self, 'ANCHOR_TOP')
+        GameTooltip:SetText('Closing the window will Hide this window for the current session.')
+        GameTooltip:Show()
+    end)
+    view.closebutton:HookScript('OnLeave', function()
+        GameTooltip:Hide()
     end)
 
     local bgColor = database:GetZoneViewColor()
@@ -152,8 +165,6 @@ function zoneView:Update()
 
     zoneView:UpdateRaces(raceData)
 
-    if database:GetZoneViewEnabled() ~= true then return end
-
     if self.data == nil then return end
 
     self.data.view:SetTitle(resolver.GetMapName(self.data.races[1].zone))
@@ -175,7 +186,9 @@ function zoneView:Update()
         self.data.view:SetHeight(calculatedHeight + 70)
     end
 
-    self.data.view.frame:Show()
+    if self:ShouldShowView() then
+        self.data.view.frame:Show()
+    end
 end
 
 ---@param label string
@@ -227,6 +240,8 @@ function zoneView:UpdateRaces(raceData)
 end
 
 function zoneView:Show()
+    database:SetZoneViewEnabled(true)
+    session.zoneView.hide = false
     self.data.view:Show()
 end
 
@@ -245,6 +260,13 @@ function zoneView:Toggle()
     else
         zoneView:Show()
     end
+end
+
+---@return boolean
+function zoneView:ShouldShowView()
+    if database:GetZoneViewEnabled() ~= true then return false end
+    if session.zoneView.hide == true then return false end
+    return true
 end
 
 function events:ACHIEVEMENT_EARNED()

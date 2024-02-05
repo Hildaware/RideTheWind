@@ -6,6 +6,9 @@ local session = addon:NewModule('Session')
 
 function session:OnInitialize()
     self.raceIDs = {}
+    self.zoneView = {
+        hide = false
+    }
 end
 
 session:Enable()

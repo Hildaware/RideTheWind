@@ -27,6 +27,7 @@ function addon:OnCompartmentClick(_, _, _, button)
     if button == 'RightButton' then
         ---@class ZoneView
         local zoneView = addon:GetModule('ZoneView')
+        session.zoneView.hide = false
         zoneView:Toggle()
     else
         if IsShiftKeyDown() then

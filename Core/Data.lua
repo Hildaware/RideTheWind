@@ -41,8 +41,8 @@ local defaults = {
                     Y = 500
                 },
                 Font = {
-                    Name = 'Friz Quadrata TT',
-                    Path = 'Fonts\\FRIZQT__.TTF'
+                    Name = 'Accidental Presidency',
+                    Path = 'Interface\\AddOns\\RideTheWind\\Fonts\\AccidentalPresidency.ttf'
                 }
             }
         }
