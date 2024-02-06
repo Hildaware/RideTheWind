@@ -1,5 +1,5 @@
 ---@diagnostic disable: assign-type-mismatch
-local addonName = ... ---@type string
+local addonName = ...
 local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
 local gui = LibStub('AceGUI-3.0')
 

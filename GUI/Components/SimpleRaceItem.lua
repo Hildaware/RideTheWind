@@ -187,3 +187,5 @@ function simpleRaceItem:Create()
 
     return frame
 end
+
+simpleRaceItem:Enable()
