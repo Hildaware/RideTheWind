@@ -103,4 +103,12 @@ function events:PLAYER_LOGIN()
     end
 
     session.raceIDs = buffIDs
+
+    ---@class RiderView: AceModule
+    local riderView = addon:GetModule('RiderView')
+
+    if UnitPowerBarID(631) then
+        riderView.data.enabled = true
+        riderView.data.speed.updateHandler = riderView:GetUpdateHandler()
+    end
 end

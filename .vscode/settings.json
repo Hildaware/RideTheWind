@@ -301,7 +301,9 @@
         "GameFontHighlightLarge",
         "AddonCompartmentFrame",
         "GDAPI_REALMTYPE_NORMAL",
-        "BONUS_ROLL_REWARD_MONEY"
+        "BONUS_ROLL_REWARD_MONEY",
+        "enabled",
+        "GameFontNormalLarge"
     ],
     "Lua.diagnostics.disable": [
         "inject-field",
