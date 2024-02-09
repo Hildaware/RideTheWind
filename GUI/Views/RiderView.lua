@@ -28,9 +28,12 @@ local ascentDuration = 3.5
 ---@field smoothAccel integer
 ---@field lastAccel integer
 ---@field pollingRate integer
+---@field momentum boolean
 
 ---@class Vigor
 ---@field vigorCount integer
+---@field thrillInstance number?
+---@field skimInstance number?
 
 ---@class (exact) RiderViewData
 ---@field view Frame
@@ -55,7 +58,8 @@ function riderView:OnInitialize()
             smoothSpeed = 0,
             smoothAccel = 0,
             lastAccel = 0,
-            pollingRate = 1 / 10
+            pollingRate = 1 / 10,
+            momentum = false
         },
         vigor = {
             vigorCount = 3
@@ -89,10 +93,6 @@ local function CreateSpeedBar(parent)
 
     parent.Speed = speed.bar
 
-    local border = speed:CreateTexture(nil, 'BORDER')
-    border:SetAllPoints(speed)
-    border:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\speed_border')
-
     -- text
     speed.text = speed.bar:CreateFontString(nil, 'OVERLAY', 'GameFontNormalHuge3Outline')
     speed.text:SetPoint('CENTER', speed, 'CENTER', 0, -24)
@@ -125,11 +125,23 @@ local function CreateVigorBar(parent)
     vigor.bar:SetMinMaxSmoothedValue(-8, 108)
     vigor.bar:SetSmoothedValue(0)
 
-    parent.Vigor = vigor.bar
+    local glow = vigor.bar:CreateTexture(nil, 'BORDER')
+    glow:SetDrawLayer('OVERLAY', 0)
+    glow:SetAllPoints(vigor.bar)
+    glow:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_glow')
+    glow:SetVertexColor(0, 0, 1, 0.75)
+    glow:Hide()
+    parent.Glow = glow
 
-    local border = vigor:CreateTexture(nil, 'BORDER')
-    border:SetAllPoints(vigor)
-    border:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_border')
+    local thrillGlow = vigor.bar:CreateTexture(nil, 'BORDER')
+    thrillGlow:SetDrawLayer('OVERLAY', 1)
+    thrillGlow:SetAllPoints(vigor.bar)
+    thrillGlow:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_glow')
+    thrillGlow:SetVertexColor(1, 0, 0, 0.75)
+    thrillGlow:Hide()
+    parent.Momentum = thrillGlow
+
+    parent.Vigor = vigor.bar
 
     local ticks = vigor.bar:CreateTexture(nil, 'BORDER')
     ticks:SetDrawLayer('OVERLAY')
@@ -146,24 +158,47 @@ function riderView:Create()
     ---@field SpeedText FontString
     ---@field Vigor StatusBar
     ---@field VigorTicks Texture
+    ---@field Glow Texture
+    ---@field Momentum Texture
     local w = CreateFrame('Frame', nil, UIParent)
     w:SetWidth(512)
     w:SetHeight(256)
     w:SetScale(0.60)
     w:SetPoint('CENTER', 0, -500)
 
-    -- Speed
-    CreateSpeedBar(w)
-
     -- Vigor
     CreateVigorBar(w)
+
+    -- Speedometer
+    local speedo = CreateFrame('Frame', nil, w)
+    speedo:SetPoint('CENTER', w, 'CENTER')
+    speedo:SetWidth(512)
+    speedo:SetHeight(256)
+
+    local bg = speedo:CreateTexture(nil, 'BACKGROUND')
+    bg:SetAllPoints(speedo)
+    bg:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\speedo_bg')
+
+    speedo.text = speedo:CreateFontString(nil, 'OVERLAY', 'GameFontNormalHuge3Outline')
+    speedo.text:SetPoint('CENTER', speedo, 'CENTER', 0, -70)
+    speedo.text:SetTextColor(1, 1, 1, 1)
+    speedo.text:SetWidth(100)
+    speedo.text:SetJustifyH('CENTER')
+    speedo.text:SetText('')
+
+    w.Speedometer = speedo.text
+
+    -- Speed
+    CreateSpeedBar(w)
 
     self.data.view = w
 
     self.data.view.Speed = w.Speed
-    self.data.view.SpeedText = w.Text
+    self.data.view.SpeedText = w.Speedometer
     self.data.view.Vigor = w.Vigor
     self.data.view.VigorTicks = w.VigorTicks
+    self.data.view.Glow = w.Glow
+    self.data.view.Momentum = w.Momentum
 
     self.data.view:Hide()
 end
@@ -190,11 +225,32 @@ function riderView:Update()
     else
         self.data.view.SpeedText:SetText('')
     end
+
+    if self.data.speed.momentum then
+        self.data.view.Momentum:Show()
+    else
+        self.data.view.Momentum:Hide()
+    end
 end
 
 function riderView:UpdateVigorTicks(ticks)
     self.data.vigor.vigorCount = ticks
     self.data.view.VigorTicks:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_' .. ticks)
+end
+
+local thrillOfTheSkiesID = 377234
+function riderView:ToggleGlow(value, spellID, instanceID)
+    if value then
+        if spellID == thrillOfTheSkiesID then
+            self.data.vigor.thrillInstance = instanceID
+        end
+        self.data.view.Glow:Show()
+    else
+        if spellID == thrillOfTheSkiesID and self.data.vigor.thrillInstance ~= nil then
+            self.data.vigor.thrillInstance = nil
+            self.data.view.Glow:Hide()
+        end
+    end
 end
 
 -- Speed check
@@ -234,12 +290,13 @@ function riderView:SpeedTest()
     end
 
     speed.lastAccel = speed.smoothAccel
+    speed.momentum = isBoosting
 
     self:Update()
 end
 
-function events:UNIT_SPELLCAST_SUCCEEDED(_, _, spellID)
-    if spellID == ascentSpellID then
+function events:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellID)
+    if tonumber(spellID) == ascentSpellID then
         riderView.data.speed.ascentStart = GetTime()
     end
 end

@@ -70,22 +70,36 @@ function addon.OnUpdate()
 
 end
 
+local thrillOfTheSkiesID = 377234
 function events:UNIT_AURA(_, unitTarget, updateInfo)
     if unitTarget == 'player' then
-        if updateInfo.addedAuras == nil then return end
-        for _, aura in pairs(updateInfo.addedAuras) do
-            if tContains(session.raceIDs, aura.spellId) then
-                local instanceId = aura.auraInstanceID
-                local ttData = C_TooltipInfo.GetUnitBuffByAuraInstanceID('player', instanceId, 'HELPFUL')
-                if ttData and ttData.lines then
-                    for _, line in ipairs(ttData.lines) do
-                        if line.leftText then
-                            if line.leftText:len() > 100 then
-                                local raceTimes = utils.ParseRaceTimeTooltip(line.leftText)
-                                data:SaveRaceTimes(aura.spellId, raceTimes)
+        ---@class RiderView: AceModule
+        local riderView = addon:GetModule('RiderView')
+
+        if updateInfo.addedAuras ~= nil then
+            for _, aura in pairs(updateInfo.addedAuras) do
+                if tContains(session.raceIDs, aura.spellId) then
+                    local instanceId = aura.auraInstanceID
+                    local ttData = C_TooltipInfo.GetUnitBuffByAuraInstanceID('player', instanceId, 'HELPFUL')
+                    if ttData and ttData.lines then
+                        for _, line in ipairs(ttData.lines) do
+                            if line.leftText then
+                                if line.leftText:len() > 100 then
+                                    local raceTimes = utils.ParseRaceTimeTooltip(line.leftText)
+                                    data:SaveRaceTimes(aura.spellId, raceTimes)
+                                end
                             end
                         end
                     end
+                elseif aura.spellId == thrillOfTheSkiesID then
+                    riderView:ToggleGlow(true, aura.spellId, aura.auraInstanceID)
+                end
+            end
+        end
+        if updateInfo.removedAuraInstanceIDs ~= nil then
+            for _, auraID in pairs(updateInfo.removedAuraInstanceIDs) do
+                if auraID == riderView.data.vigor.thrillInstance then
+                    riderView:ToggleGlow(false, thrillOfTheSkiesID, auraID)
                 end
             end
         end
