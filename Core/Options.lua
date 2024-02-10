@@ -63,6 +63,58 @@ local settings = {
                     end
                 }
             }
+        },
+        headsUp = {
+            name = 'Heads-Up Display',
+            type = 'group',
+            args = {
+                enabled = {
+                    name = 'Enable',
+                    desc = 'Enable the Heads-Up Display',
+                    type = 'toggle',
+                    get = function() return database:GetHeadsUpViewEnabled() end,
+                    set = function(_, val) database:SetHeadsUpViewEnabled(val) end
+                },
+                locked = {
+                    name = 'Locked',
+                    desc = 'Lock the Heads-Up Display',
+                    type = 'toggle',
+                    get = function() return database:GetHeadsUpViewLocked() end,
+                    set = function(_, val) database:SetHeadsUpViewLocked(val) end
+                },
+                position = {
+                    name = 'Position',
+                    desc = 'The position of the Heads-Up Display',
+                    type = 'group',
+                    args = {
+                        x = {
+                            name = 'X',
+                            type = 'range',
+                            min = 0,
+                            max = 6000,
+                            step = 1,
+                            get = function() return database:GetHeadsUpViewPosition().X end,
+                            set = function(_, val) database:SetHeadsUpViewPositionX(val) end
+                        },
+                        y = {
+                            name = 'Y',
+                            type = 'range',
+                            min = 0,
+                            max = 6000,
+                            step = 1,
+                            get = function() return database:GetHeadsUpViewPosition().Y end,
+                            set = function(_, val) database:SetHeadsUpViewPositionY(val) end
+                        }
+                    }
+                },
+                showDefault = {
+                    name = 'Show Default Display',
+                    desc = 'Show the default Dragonriding display',
+                    type = 'toggle',
+                    get = function() return database:GetDefaultDisplayEnabled() end,
+                    set = function(_, val) database:SetDefaultDisplayEnabled(val) end
+                }
+            }
         }
     }
 

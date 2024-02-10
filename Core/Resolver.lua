@@ -54,4 +54,17 @@ function resolver.GetAchievementInfo(identifiers)
     return 0
 end
 
+---@param value boolean
+function resolver.ToggleDefaultHeadsUpDisplay(value)
+    if _G['UIWidgetPowerBarContainerFrame'] then
+        if value and not _G['UIWidgetPowerBarContainerFrame']:IsShown() then
+            _G['UIWidgetPowerBarContainerFrame']:Show()
+            return
+        end
+        if not value then
+            _G['UIWidgetPowerBarContainerFrame']:Hide()
+        end
+    end
+end
+
 resolver:Enable()

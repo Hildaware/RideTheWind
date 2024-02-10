@@ -7,6 +7,9 @@ local database = addon:NewModule('Database')
 ---@class Enums: AceModule
 local enums = addon:GetModule('Enums')
 
+---@class Resolver: AceModule
+local resolver = addon:GetModule('Resolver')
+
 ---@class RaceStats
 ---@field normal integer?
 ---@field advanced integer?
@@ -37,13 +40,22 @@ local defaults = {
                     A = 0.25
                 },
                 Position = {
-                    X = 500,
+                    X = 800,
                     Y = 500
                 },
                 Font = {
                     Name = 'Accidental Presidency',
                     Path = 'Interface\\AddOns\\RideTheWind\\Fonts\\AccidentalPresidency.ttf'
                 }
+            },
+            HeadsUpView = {
+                Enabled = true,
+                DefaultEnabled = false,
+                Locked = true,
+                Position = {
+                    X = 500,
+                    Y = 500
+                },
             }
         }
     }
@@ -63,6 +75,8 @@ function database:GetRaceDetailsById(id)
     return self.internal.global.Races[id]
 end
 
+--#region ZoneView
+
 ---@return { X: integer, Y: integer }
 function database:GetZoneViewPosition()
     return self.internal.global.Views.ZoneView.Position
@@ -79,12 +93,35 @@ function database:GetZoneViewColor()
     return { r = color.R, g = color.G, b = color.B, a = color.A }
 end
 
----comment
 ---@return { name: string, path: string }
 function database:GetZoneViewFont()
     local font = self.internal.global.Views.ZoneView.Font
     return { name = font.Name, path = font.Path }
 end
+
+--#endregion
+
+--#region HeadsUpView
+---@return boolean
+
+function database:GetHeadsUpViewEnabled()
+    return self.internal.global.Views.HeadsUpView.Enabled
+end
+
+function database:GetDefaultDisplayEnabled()
+    return self.internal.global.Views.HeadsUpView.DefaultEnabled
+end
+
+function database:GetHeadsUpViewLocked()
+    return self.internal.global.Views.HeadsUpView.Locked
+end
+
+---@return { X: integer, Y: integer }
+function database:GetHeadsUpViewPosition()
+    return self.internal.global.Views.HeadsUpView.Position
+end
+
+--#endregion
 
 --#endregion
 
@@ -136,6 +173,8 @@ function database:SaveRaceTimes(raceId, raceTimes)
     end
 end
 
+--#region ZoneView
+
 ---@param x integer
 ---@param y integer
 function database:SaveZoneViewPosition(x, y)
@@ -183,6 +222,58 @@ function database:SetZoneViewFont(name, path)
     local zoneView = addon:GetModule('ZoneView')
     zoneView:UpdateFont(path)
 end
+
+--#endregion
+
+--#region HeadsUpView
+
+---@param value boolean
+function database:SetHeadsUpViewEnabled(value)
+    database.internal.global.Views.HeadsUpView.Enabled = value
+
+    ---@class RiderView
+    local view = addon:GetModule('RiderView')
+    if not value then
+        view.data.view:Hide()
+    else
+        view.data.view:Show()
+    end
+end
+
+---@param value boolean
+function database:SetDefaultDisplayEnabled(value)
+    database.internal.global.Views.HeadsUpView.DefaultEnabled = value
+
+    resolver.ToggleDefaultHeadsUpDisplay(value)
+end
+
+---@param value boolean
+function database:SetHeadsUpViewLocked(value)
+    database.internal.global.Views.HeadsUpView.Locked = value
+    ---@class RiderView: AceModule
+    local riderView = addon:GetModule('RiderView')
+    riderView:UpdateMovable(value)
+end
+
+---@param x integer
+---@param y integer
+function database:SetHeadsUpViewPosition(x, y)
+    database.internal.global.Views.HeadsUpView.Position.X = x
+    database.internal.global.Views.HeadsUpView.Position.Y = y
+end
+
+---@param x integer
+function database:SetHeadsUpViewPositionX(x)
+    database.internal.global.Views.HeadsUpView.Position.X = x
+    -- Update
+end
+
+---@param y integer
+function database:SetHeadsUpViewPositionY(y)
+    database.internal.global.Views.HeadsUpView.Position.Y = y
+end
+
+--#endregion
 
 --#endregion
 

@@ -11,6 +11,9 @@ local events = addon:GetModule('Events')
 ---@class Utils: AceModule
 local utils = addon:GetModule('Utils')
 
+---@class Database: AceModule
+local database = addon:GetModule('Database')
+
 -- TODO: Package these
 local vigorWidgetID = 4460
 local ascentSpellID = 372610
@@ -151,8 +154,10 @@ local function CreateVigorBar(parent)
     parent.VigorTicks = ticks
 end
 
--- No AceGUI here
 function riderView:Create()
+    local position = database:GetHeadsUpViewPosition()
+    local isLocked = database:GetHeadsUpViewLocked()
+
     ---@class Frame
     ---@field Speed StatusBar
     ---@field SpeedText FontString
@@ -164,7 +169,22 @@ function riderView:Create()
     w:SetWidth(512)
     w:SetHeight(256)
     w:SetScale(0.60)
-    w:SetPoint('CENTER', 0, -500)
+    w:SetPoint('TOPLEFT', UIParent, 'BOTTOMLEFT', position.X, position.Y)
+    w:SetMovable(not isLocked)
+    w:EnableMouse(not isLocked)
+
+    w:RegisterForDrag('LeftButton')
+    w:SetScript('OnDragStart', function(self, button)
+        if self:IsMovable() then
+            self:StartMoving()
+        end
+    end)
+    w:SetScript('OnDragStop', function(self)
+        self:StopMovingOrSizing()
+        local x = self:GetLeft()
+        local y = self:GetTop()
+        database:SetHeadsUpViewPosition(x, y)
+    end)
 
     -- Vigor
     CreateVigorBar(w)
@@ -238,6 +258,11 @@ function riderView:UpdateVigorTicks(ticks)
     self.data.view.VigorTicks:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_' .. ticks)
 end
 
+function riderView:UpdateMovable(value)
+    self.data.view:EnableMouse(not value)
+    self.data.view:SetMovable(not value)
+end
+
 local thrillOfTheSkiesID = 377234
 function riderView:ToggleGlow(value, spellID, instanceID)
     if value then
@@ -255,6 +280,7 @@ end
 
 -- Speed check
 function riderView:SpeedTest()
+    if not database:GetHeadsUpViewEnabled() then return end
     local time = GetTime()
     local speed = self.data.speed
 
@@ -296,12 +322,14 @@ function riderView:SpeedTest()
 end
 
 function events:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellID)
+    if not database:GetHeadsUpViewEnabled() then return end
     if tonumber(spellID) == ascentSpellID then
         riderView.data.speed.ascentStart = GetTime()
     end
 end
 
 function events:UNIT_POWER_BAR_SHOW()
+    if not database:GetHeadsUpViewEnabled() then return end
     if UnitPowerBarID(631) then
         riderView.data.enabled = true
         riderView.data.speed.updateHandler = riderView:GetUpdateHandler()
@@ -309,6 +337,7 @@ function events:UNIT_POWER_BAR_SHOW()
 end
 
 function events:UNIT_POWER_BAR_HIDE()
+    if not database:GetHeadsUpViewEnabled() then return end
     if UnitPowerBarID(631) == 0 then
         riderView.data.enabled = false
 
@@ -322,6 +351,7 @@ function events:UNIT_POWER_BAR_HIDE()
 end
 
 function events:UPDATE_UI_WIDGET(_, widgetInfo)
+    if not database:GetHeadsUpViewEnabled() then return end
     if widgetInfo and widgetInfo.widgetID ~= vigorWidgetID then return end
 
     local widgetData = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(vigorWidgetID)

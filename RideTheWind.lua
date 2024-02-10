@@ -23,6 +23,9 @@ local options = addon:GetModule('Options')
 ---@class Maps: AceModule
 local maps = addon:GetModule('Maps')
 
+---@class Resolver: AceModule
+local resolver = addon:GetModule('Resolver')
+
 function addon:OnCompartmentClick(_, _, _, button)
     if button == 'RightButton' then
         ---@class ZoneView
@@ -92,10 +95,13 @@ function events:UNIT_AURA(_, unitTarget, updateInfo)
                         end
                     end
                 elseif aura.spellId == thrillOfTheSkiesID then
+                    if not data:GetHeadsUpViewEnabled() then return end
                     riderView:ToggleGlow(true, aura.spellId, aura.auraInstanceID)
                 end
             end
         end
+
+        if not data:GetHeadsUpViewEnabled() then return end
         if updateInfo.removedAuraInstanceIDs ~= nil then
             for _, auraID in pairs(updateInfo.removedAuraInstanceIDs) do
                 if auraID == riderView.data.vigor.thrillInstance then
@@ -118,10 +124,16 @@ function events:PLAYER_LOGIN()
 
     session.raceIDs = buffIDs
 
-    ---@class RiderView: AceModule
-    local riderView = addon:GetModule('RiderView')
+    if not data:GetDefaultDisplayEnabled() then
+        resolver.ToggleDefaultHeadsUpDisplay(false)
+    else
+        resolver.ToggleDefaultHeadsUpDisplay(true)
+    end
 
-    if UnitPowerBarID(631) then
+    if data:GetHeadsUpViewEnabled() and UnitPowerBarID(631) then
+        ---@class RiderView: AceModule
+        local riderView = addon:GetModule('RiderView')
+
         riderView.data.enabled = true
         riderView.data.speed.updateHandler = riderView:GetUpdateHandler()
     end

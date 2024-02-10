@@ -2,9 +2,9 @@
     <Include file = 'Init.lua' />
     <Include file = 'DataTypes.lua' />
     <Include file = 'Enums.lua' />
+    <Include file = 'Resolver.lua' />
     <Include file = 'Data.lua' />
     <Include file = 'Session.lua' />
-    <Include file = 'Resolver.lua' />
     <Include file = 'Utils.lua' />
     <Include file = 'Maps.lua' />
     <Include file = 'Events.lua' />
