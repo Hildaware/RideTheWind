@@ -56,6 +56,7 @@ local defaults = {
                     X = 500,
                     Y = 500
                 },
+                Scale = 1.0
             }
         }
     }
@@ -119,6 +120,11 @@ end
 ---@return { X: integer, Y: integer }
 function database:GetHeadsUpViewPosition()
     return self.internal.global.Views.HeadsUpView.Position
+end
+
+---@return number
+function database:GetHeadsUpViewScale()
+    return self.internal.global.Views.HeadsUpView.Scale
 end
 
 --#endregion
@@ -277,6 +283,14 @@ function database:SetHeadsUpViewPositionY(y)
     ---@class HeadsUpView: AceModule
     local view = addon:GetModule('HeadsUpView')
     view:UpdatePosition(database.internal.global.Views.HeadsUpView.Position.X, y)
+end
+
+---@param scale number
+function database:SetHeadsUpViewScale(scale)
+    database.internal.global.Views.HeadsUpView.Scale = scale
+    ---@class HeadsUpView: AceModule
+    local view = addon:GetModule('HeadsUpView')
+    view:UpdateScale(scale)
 end
 
 --#endregion

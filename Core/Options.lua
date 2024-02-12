@@ -127,6 +127,22 @@ local settings = {
                     step = 1,
                     get = function() return database:GetHeadsUpViewPosition().Y end,
                     set = function(_, val) database:SetHeadsUpViewPositionY(val) end
+                },
+                styling = {
+                    name = 'Styling',
+                    type = 'header',
+                    order = 7
+                },
+                scale = {
+                    name = 'Scale',
+                    desc = 'Set the scaling of the heads up display',
+                    type = 'range',
+                    order = 8,
+                    min = 0.5,
+                    max = 4.0,
+                    step = 0.1,
+                    get = function() return database:GetHeadsUpViewScale() end,
+                    set = function(_, val) database:SetHeadsUpViewScale(val) end
                 }
             }
         }

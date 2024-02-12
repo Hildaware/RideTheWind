@@ -216,6 +216,7 @@ end
 
 function headsUpView:Create()
     local position = database:GetHeadsUpViewPosition()
+    local scale = database:GetHeadsUpViewScale()
     local isLocked = database:GetHeadsUpViewLocked()
 
     ---@class Frame
@@ -230,7 +231,7 @@ function headsUpView:Create()
     local w = CreateFrame('Frame', nil, UIParent)
     w:SetWidth(512)
     w:SetHeight(256)
-    w:SetScale(0.60)
+    w:SetScale(0.60 * scale)
     w:SetPoint('TOPLEFT', UIParent, 'BOTTOMLEFT', position.X, position.Y)
     w:SetMovable(not isLocked)
     w:EnableMouse(not isLocked)
@@ -469,6 +470,11 @@ end
 function headsUpView:UpdateMovable(value)
     self.data.view:EnableMouse(not value)
     self.data.view:SetMovable(not value)
+end
+
+---@param value number
+function headsUpView:UpdateScale(value)
+    self.data.view:SetScale(0.60 * value)
 end
 
 ---@param x integer
