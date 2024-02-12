@@ -42,10 +42,20 @@ local database = addon:GetModule('Database')
 ---@field widgetID integer
 ---@field thrillSpellID integer
 
+---@class SpellCooldown
+---@field id integer
+---@field cooldown integer
+---@field currentCooldown integer?
+
+---@class Cooldowns
+---@field whirlingSurge SpellCooldown
+---@field secondWind SpellCooldown
+
 ---@class (exact) HeadsUpViewData
 ---@field view Frame
 ---@field speed Speed
 ---@field vigor Vigor
+---@field cooldowns Cooldowns
 ---@field enabled boolean
 ---@field shouldShow boolean
 local viewPrototype = {}
@@ -81,6 +91,21 @@ function headsUpView:OnInitialize()
             thrillInstance = nil,
             widgetID = 4460,
             thrillSpellID = 377234
+        },
+        cooldowns = {
+            whirlingSurge = {
+                id = 361584,
+                cooldown = 30.0,
+                currentCooldown = nil
+            },
+            secondWind = {
+                id = 425782,
+                cooldown = 540.0,
+                currentCooldown = nil,
+                charges = 3,
+                currentCharges = nil,
+                usedCharge = false
+            },
         }
     }
 
@@ -92,6 +117,7 @@ local function CreateSpeedBar(parent)
     speed:SetPoint('CENTER', parent, 'CENTER')
     speed:SetWidth(512)
     speed:SetHeight(256)
+    speed:SetFrameLevel(4)
 
     local bg = speed:CreateTexture(nil, 'BACKGROUND')
     bg:SetAllPoints(speed)
@@ -108,7 +134,7 @@ local function CreateSpeedBar(parent)
     speed.bar:SetStatusBarColor(1, 0, 0)
 
     Mixin(speed.bar, SmoothStatusBarMixin)
-    speed.bar:SetMinMaxSmoothedValue(20, 100)
+    speed.bar:SetMinMaxSmoothedValue(0, 100)
     speed.bar:SetSmoothedValue(0)
 
     parent.Speed = speed.bar
@@ -128,6 +154,7 @@ local function CreateVigorBar(parent)
     vigor:SetPoint('CENTER', parent, 'CENTER')
     vigor:SetWidth(512)
     vigor:SetHeight(256)
+    vigor:SetFrameLevel(3)
 
     local bg = vigor:CreateTexture(nil, 'BACKGROUND')
     bg:SetAllPoints(vigor)
@@ -139,7 +166,7 @@ local function CreateVigorBar(parent)
     vigor.bar:SetAllPoints(vigor)
     vigor.bar:SetStatusBarTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_bar')
     vigor.bar:GetStatusBarTexture():SetHorizTile(false)
-    vigor.bar:SetStatusBarColor(1, 0, 0)
+    vigor.bar:SetStatusBarColor(0.5, 1, 0.5, 0.75)
 
     Mixin(vigor.bar, SmoothStatusBarMixin)
     vigor.bar:SetMinMaxSmoothedValue(-16, 116)
@@ -171,6 +198,22 @@ local function CreateVigorBar(parent)
     parent.VigorTicks = ticks
 end
 
+local function CalculateSecondWindCooldown()
+    local current, max, startTime, _, _ = GetSpellCharges(headsUpView.data.cooldowns.secondWind.id)
+    headsUpView.data.cooldowns.secondWind.currentCharges = current
+
+    -- calc
+    local cdLeft = GetTime() - startTime
+    local currentChargeCD = (headsUpView.data.cooldowns.secondWind.cooldown / 3) - cdLeft
+
+    local missingCharges = max - (current + 1)
+    local missingChargeCD = (headsUpView.data.cooldowns.secondWind.cooldown / 3) * missingCharges
+
+    local currentCD = missingChargeCD + currentChargeCD
+
+    headsUpView.data.cooldowns.secondWind.currentCooldown = currentCD
+end
+
 function headsUpView:Create()
     local position = database:GetHeadsUpViewPosition()
     local isLocked = database:GetHeadsUpViewLocked()
@@ -182,6 +225,8 @@ function headsUpView:Create()
     ---@field VigorTicks Texture
     ---@field Glow Texture
     ---@field Momentum Texture
+    ---@field SecondWind Frame
+    ---@field WhirlingSurge Frame
     local w = CreateFrame('Frame', nil, UIParent)
     w:SetWidth(512)
     w:SetHeight(256)
@@ -202,15 +247,151 @@ function headsUpView:Create()
         local y = self:GetTop()
         database:SetHeadsUpViewPosition(x, y)
     end)
-
     -- Vigor
     CreateVigorBar(w)
 
-    -- Speedometer
+    --#region Second Wind
+
+    local sw = CreateFrame('Frame', nil, w)
+    sw:SetPoint('BOTTOMLEFT', w, 'BOTTOMLEFT', 72, 24)
+    sw:SetWidth(128)
+    sw:SetHeight(128)
+    sw:SetScale(0.9)
+    sw:SetFrameLevel(0)
+    sw:SetScript('OnShow', function()
+        local charges, max, startTime, _, _ = GetSpellCharges(self.data.cooldowns.secondWind.id)
+        self.data.cooldowns.secondWind.currentCharges = charges
+        if max > charges then
+            local cdLeft = GetTime() - startTime
+            local currentChargeCD = (self.data.cooldowns.secondWind.cooldown / 3) - cdLeft
+
+            local missingCharges = max - (charges + 1)
+            local missingChargeCD = (self.data.cooldowns.secondWind.cooldown / 3) * missingCharges
+
+            local currentCD = missingChargeCD + currentChargeCD
+
+            if cdLeft <= 0 or cdLeft > self.data.cooldowns.secondWind.cooldown then
+                return
+            end
+
+            self.data.cooldowns.secondWind.currentCooldown = currentCD
+        end
+    end)
+    sw:SetScript('OnUpdate', function(_, elapsed)
+        if self.data.cooldowns.secondWind.usedCharge then
+            CalculateSecondWindCooldown()
+            self.data.cooldowns.secondWind.usedCharge = false
+        end
+        local cooldown = self.data.cooldowns.secondWind.currentCooldown
+        local max = self.data.cooldowns.secondWind.cooldown
+        if cooldown then
+            self.data.cooldowns.secondWind.currentCooldown = cooldown - elapsed
+
+            if cooldown <= 0.0 then
+                self.data.cooldowns.secondWind.currentCooldown = nil
+                self.data.view.SecondWind.bar:SetSmoothedValue(0)
+                self.data.view.SecondWind:SetAlpha(0)
+                return
+            end
+
+            local num = self.data.cooldowns.secondWind.cooldown -
+                self.data.cooldowns.secondWind.currentCooldown
+            local perc = num / max * 100
+            self.data.view.SecondWind:SetAlpha(1)
+            self.data.view.SecondWind.bar:SetSmoothedValue(perc)
+        else
+            self.data.view.SecondWind:SetAlpha(0)
+        end
+    end)
+
+    local bg = sw:CreateTexture(nil, 'BACKGROUND')
+    bg:SetAllPoints(sw)
+    bg:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\second_wind_bg')
+
+    -- bar
+    ---@class StatusBar
+    sw.bar = CreateFrame('StatusBar', nil, sw)
+    sw.bar:SetAllPoints(sw)
+    sw.bar:SetFrameLevel(1)
+    sw.bar:SetStatusBarTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\second_wind_bar')
+    sw.bar:GetStatusBarTexture():SetHorizTile(false)
+    sw.bar:SetStatusBarColor(0.75, 0.5, 0.85, 0.75)
+
+    Mixin(sw.bar, SmoothStatusBarMixin)
+    sw.bar:SetMinMaxSmoothedValue(-15, 115)
+    sw.bar:SetSmoothedValue(0)
+
+    local ticks = sw.bar:CreateTexture(nil, 'BORDER')
+    ticks:SetDrawLayer('OVERLAY')
+    ticks:SetAllPoints(sw.bar)
+    ticks:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\second_wind_splits')
+
+    --#endregion
+
+    --#region Whirling Surge
+
+    local ws = CreateFrame('Frame', nil, w)
+    ws:SetPoint('BOTTOMRIGHT', w, 'BOTTOMRIGHT', -72, 24)
+    ws:SetWidth(128)
+    ws:SetHeight(128)
+    ws:SetScale(0.9)
+    ws:SetFrameLevel(0)
+    ws:SetScript('OnShow', function()
+        local startTime, _, _ = GetSpellCooldown(self.data.cooldowns.whirlingSurge.id)
+        local cdLeft = GetTime() - startTime
+        if cdLeft <= 0 or cdLeft > self.data.cooldowns.whirlingSurge.cooldown then
+            return
+        end
+        local currentCD = self.data.cooldowns.whirlingSurge.cooldown - cdLeft
+        self.data.cooldowns.whirlingSurge.currentCooldown = currentCD
+    end)
+    ws:SetScript('OnUpdate', function(_, elapsed)
+        local cooldown = self.data.cooldowns.whirlingSurge.currentCooldown
+        local max = self.data.cooldowns.whirlingSurge.cooldown
+        if cooldown then
+            self.data.cooldowns.whirlingSurge.currentCooldown = cooldown - elapsed
+
+            if cooldown <= 0.0 then
+                self.data.cooldowns.whirlingSurge.currentCooldown = nil
+                self.data.view.WhirlingSurge.bar:SetSmoothedValue(0)
+                self.data.view.WhirlingSurge:SetAlpha(0)
+                return
+            end
+
+            local perc = self.data.cooldowns.whirlingSurge.currentCooldown / max * 100
+            self.data.view.WhirlingSurge:SetAlpha(1)
+            self.data.view.WhirlingSurge.bar:SetSmoothedValue(perc)
+        else
+            self.data.view.WhirlingSurge:SetAlpha(0)
+        end
+    end)
+
+    local bg = ws:CreateTexture(nil, 'BACKGROUND')
+    bg:SetAllPoints(ws)
+    bg:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\whirling_surge_bg')
+
+    -- bar
+    ---@class StatusBar
+    ws.bar = CreateFrame('StatusBar', nil, ws)
+    ws.bar:SetAllPoints(ws)
+    ws.bar:SetFrameLevel(1)
+    ws.bar:SetStatusBarTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\whirling_surge_bar')
+    ws.bar:GetStatusBarTexture():SetHorizTile(false)
+    ws.bar:SetStatusBarColor(0.4, 0.65, 0.85, 0.75)
+
+    Mixin(ws.bar, SmoothStatusBarMixin)
+    ws.bar:SetMinMaxSmoothedValue(-25, 120)
+    ws.bar:SetSmoothedValue(0)
+
+    --#endregion
+
+    --#region Speedometer
+
     local speedo = CreateFrame('Frame', nil, w)
     speedo:SetPoint('CENTER', w, 'CENTER')
     speedo:SetWidth(512)
     speedo:SetHeight(256)
+    speedo:SetFrameLevel(2)
 
     local bg = speedo:CreateTexture(nil, 'BACKGROUND')
     bg:SetAllPoints(speedo)
@@ -225,6 +406,8 @@ function headsUpView:Create()
 
     w.Speedometer = speedo.text
 
+    --#endregion
+
     -- Speed
     CreateSpeedBar(w)
 
@@ -236,6 +419,8 @@ function headsUpView:Create()
     self.data.view.VigorTicks = w.VigorTicks
     self.data.view.Glow = w.Glow
     self.data.view.Momentum = w.Momentum
+    self.data.view.SecondWind = sw
+    self.data.view.WhirlingSurge = ws
 
     self.data.view:Hide()
 end
@@ -260,7 +445,7 @@ function headsUpView:Update()
     self.data.view.Speed:SetSmoothedValue(self.data.speed.smoothSpeed)
 
     local speedDiv = self.data.speed.smoothSpeed
-    local color = utils:GetSmudgeColorRGB({ r = 0, g = 0, b = 1 }, { r = 0, g = 1, b = 0 }, speedDiv / 100)
+    local color = utils:GetSmudgeColorRGB({ r = 0.6, g = 0.6, b = 1 }, { r = 0.4, g = 1, b = 0.4 }, speedDiv / 100)
     self.data.view.Speed:SetStatusBarColor(color.r, color.g, color.b, 0.75)
     if self.data.speed.smoothSpeed > 0 then
         local formatSpeed = string.format('%.0f%%', self.data.speed.smoothSpeed * 100 / 7)
@@ -348,6 +533,14 @@ function events:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellID)
     if tonumber(spellID) == headsUpView.data.speed.constants.ascentSpellID then
         headsUpView.data.speed.ascentStart = GetTime()
     end
+    if tonumber(spellID) == headsUpView.data.cooldowns.secondWind.id then
+        headsUpView.data.cooldowns.secondWind.usedCharge = true
+        -- charges 3
+    end
+    if tonumber(spellID) == headsUpView.data.cooldowns.whirlingSurge.id then
+        headsUpView.data.cooldowns.whirlingSurge.currentCooldown =
+            headsUpView.data.cooldowns.whirlingSurge.cooldown
+    end
 end
 
 function events:UNIT_POWER_BAR_SHOW()
@@ -386,7 +579,7 @@ function events:UPDATE_UI_WIDGET(_, widgetInfo)
 
     if widgetData.numFullFrames >= widgetData.numTotalFrames then
         headsUpView.data.view.Vigor:SetSmoothedValue(100)
-        headsUpView.data.view.Vigor:SetStatusBarColor(0, 1, 0, 1)
+        headsUpView.data.view.Vigor:SetStatusBarColor(0.5, 1, 0.5, 0.75)
         return
     end
 
