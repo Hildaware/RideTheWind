@@ -231,8 +231,8 @@ end
 function database:SetHeadsUpViewEnabled(value)
     database.internal.global.Views.HeadsUpView.Enabled = value
 
-    ---@class RiderView
-    local view = addon:GetModule('RiderView')
+    ---@class HeadsUpView
+    local view = addon:GetModule('HeadsUpView')
     if not value then
         view.data.view:Hide()
     else
@@ -250,9 +250,9 @@ end
 ---@param value boolean
 function database:SetHeadsUpViewLocked(value)
     database.internal.global.Views.HeadsUpView.Locked = value
-    ---@class RiderView: AceModule
-    local riderView = addon:GetModule('RiderView')
-    riderView:UpdateMovable(value)
+    ---@class HeadsUpView: AceModule
+    local view = addon:GetModule('HeadsUpView')
+    view:UpdateMovable(value)
 end
 
 ---@param x integer

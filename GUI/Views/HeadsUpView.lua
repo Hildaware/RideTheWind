@@ -2,8 +2,8 @@
 local addonName = ...
 local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
 
----@class RiderView: AceModule
-local riderView = addon:NewModule('RiderView')
+---@class HeadsUpView: AceModule
+local headsUpView = addon:NewModule('HeadsUpView')
 
 ---@class Events: AceModule
 local events = addon:GetModule('Events')
@@ -14,58 +14,73 @@ local utils = addon:GetModule('Utils')
 ---@class Database: AceModule
 local database = addon:GetModule('Database')
 
--- TODO: Package these
-local vigorWidgetID = 4460
-local ascentSpellID = 372610
-local ascentDuration = 3.5
+---@class SpeedData
+---@field updateHandler cbObject?
+---@field currentSamples integer
+---@field lastSpeedTime number
+---@field lastSpeed integer
+---@field lastAccel integer
+
+---@class SpeedConstants
+---@field updatePeriod integer
+---@field maxSampleSize integer
+---@field pollingRate integer
+---@field ascentSpellID integer
+---@field ascentDuration integer
 
 ---@class Speed
----@field updateHandler cbObject?
----@field lastSpeedTime number
----@field updatePeriod integer
+---@field constants SpeedConstants
+---@field data SpeedData
 ---@field ascentStart number
----@field maxSampleSize integer
----@field currentSamples integer
----@field lastSpeed integer
 ---@field smoothSpeed integer
 ---@field smoothAccel integer
----@field lastAccel integer
----@field pollingRate integer
 ---@field momentum boolean
 
 ---@class Vigor
 ---@field vigorCount integer
 ---@field thrillInstance number?
----@field skimInstance number?
+---@field widgetID integer
+---@field thrillSpellID integer
 
----@class (exact) RiderViewData
+---@class (exact) HeadsUpViewData
 ---@field view Frame
----@field enabled boolean
 ---@field speed Speed
 ---@field vigor Vigor
+---@field enabled boolean
+---@field shouldShow boolean
 local viewPrototype = {}
 
-function riderView:OnInitialize()
-    ---@type RiderViewData
+function headsUpView:OnInitialize()
+    ---@type HeadsUpViewData
     self.data = {
         view = {},
         enabled = false,
+        shouldShow = false,
         speed = {
-            updateHandler = nil,
-            lastSpeedTime = 0,
-            updatePeriod = 1 / 10,
+            constants = {
+                updatePeriod = 1 / 10,
+                maxSampleSize = 5,
+                pollingRate = 1 / 10,
+                ascentSpellID = 372610,
+                ascentDuration = 3.5
+            },
+            data = {
+                updateHandler = nil,
+                currentSamples = 0,
+                lastSpeedTime = 0,
+                lastSpeed = 0,
+                lastAccel = 0,
+            },
             ascentStart = 0,
-            maxSampleSize = 5,
-            currentSamples = 0,
-            lastSpeed = 0,
             smoothSpeed = 0,
             smoothAccel = 0,
-            lastAccel = 0,
-            pollingRate = 1 / 10,
             momentum = false
         },
         vigor = {
-            vigorCount = 3
+            vigorCount = 3,
+            thrillInstance = nil,
+            widgetID = 4460,
+            thrillSpellID = 377234
         }
     }
 
@@ -84,6 +99,8 @@ local function CreateSpeedBar(parent)
 
     -- bar
     ---@class StatusBar
+    ---@field SetMinMaxSmoothedValue function
+    ---@field SetSmoothedValue function
     speed.bar = CreateFrame('StatusBar', nil, speed)
     speed.bar:SetAllPoints(speed)
     speed.bar:SetStatusBarTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\speed_bar')
@@ -125,14 +142,14 @@ local function CreateVigorBar(parent)
     vigor.bar:SetStatusBarColor(1, 0, 0)
 
     Mixin(vigor.bar, SmoothStatusBarMixin)
-    vigor.bar:SetMinMaxSmoothedValue(-8, 108)
+    vigor.bar:SetMinMaxSmoothedValue(-16, 116)
     vigor.bar:SetSmoothedValue(0)
 
     local glow = vigor.bar:CreateTexture(nil, 'BORDER')
     glow:SetDrawLayer('OVERLAY', 0)
     glow:SetAllPoints(vigor.bar)
     glow:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_glow')
-    glow:SetVertexColor(0, 0, 1, 0.75)
+    glow:SetVertexColor(0.5, 0.5, 1, 0.75)
     glow:Hide()
     parent.Glow = glow
 
@@ -140,7 +157,7 @@ local function CreateVigorBar(parent)
     thrillGlow:SetDrawLayer('OVERLAY', 1)
     thrillGlow:SetAllPoints(vigor.bar)
     thrillGlow:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_glow')
-    thrillGlow:SetVertexColor(1, 0, 0, 0.75)
+    thrillGlow:SetVertexColor(1, 0.5, 0.5, 0.75)
     thrillGlow:Hide()
     parent.Momentum = thrillGlow
 
@@ -154,7 +171,7 @@ local function CreateVigorBar(parent)
     parent.VigorTicks = ticks
 end
 
-function riderView:Create()
+function headsUpView:Create()
     local position = database:GetHeadsUpViewPosition()
     local isLocked = database:GetHeadsUpViewLocked()
 
@@ -224,21 +241,27 @@ function riderView:Create()
 end
 
 ---@return cbObject
-function riderView:GetUpdateHandler()
-    return C_Timer.NewTicker(self.data.speed.pollingRate, function()
+function headsUpView:GetUpdateHandler()
+    return C_Timer.NewTicker(self.data.speed.constants.pollingRate, function()
         self:SpeedTest()
     end)
 end
 
-function riderView:Update()
+function headsUpView:Update()
+    if not self.data.enabled then
+        self.data.view:Hide()
+        return
+    end
+
     if not self.data.view:IsShown() then
         self.data.view:Show()
     end
 
     self.data.view.Speed:SetSmoothedValue(self.data.speed.smoothSpeed)
 
-    local speedDiv = self.data.speed.smoothSpeed * 0.01
-    self.data.view.Speed:SetStatusBarColor(0, speedDiv, 1 - speedDiv, 0.75)
+    local speedDiv = self.data.speed.smoothSpeed
+    local color = utils:GetSmudgeColorRGB({ r = 0, g = 0, b = 1 }, { r = 0, g = 1, b = 0 }, speedDiv / 100)
+    self.data.view.Speed:SetStatusBarColor(color.r, color.g, color.b, 0.75)
     if self.data.speed.smoothSpeed > 0 then
         local formatSpeed = string.format('%.0f%%', self.data.speed.smoothSpeed * 100 / 7)
         self.data.view.SpeedText:SetText(formatSpeed)
@@ -253,25 +276,24 @@ function riderView:Update()
     end
 end
 
-function riderView:UpdateVigorTicks(ticks)
+function headsUpView:UpdateVigorTicks(ticks)
     self.data.vigor.vigorCount = ticks
     self.data.view.VigorTicks:SetTexture('Interface\\Addons\\RideTheWind\\Media\\bars\\vigor_' .. ticks)
 end
 
-function riderView:UpdateMovable(value)
+function headsUpView:UpdateMovable(value)
     self.data.view:EnableMouse(not value)
     self.data.view:SetMovable(not value)
 end
 
-local thrillOfTheSkiesID = 377234
-function riderView:ToggleGlow(value, spellID, instanceID)
+function headsUpView:ToggleGlow(value, spellID, instanceID)
     if value then
-        if spellID == thrillOfTheSkiesID then
+        if spellID == self.data.vigor.thrillSpellID then
             self.data.vigor.thrillInstance = instanceID
         end
         self.data.view.Glow:Show()
     else
-        if spellID == thrillOfTheSkiesID and self.data.vigor.thrillInstance ~= nil then
+        if spellID == self.data.vigor.thrillSpellID and self.data.vigor.thrillInstance ~= nil then
             self.data.vigor.thrillInstance = nil
             self.data.view.Glow:Hide()
         end
@@ -279,34 +301,34 @@ function riderView:ToggleGlow(value, spellID, instanceID)
 end
 
 -- Speed check
-function riderView:SpeedTest()
+function headsUpView:SpeedTest()
     if not database:GetHeadsUpViewEnabled() then return end
     local time = GetTime()
     local speed = self.data.speed
 
-    local delta = time - speed.lastSpeedTime
-    if delta < speed.updatePeriod then
+    local delta = time - speed.data.lastSpeedTime
+    if delta < speed.constants.updatePeriod then
         return
     end
 
-    speed.lastSpeedTime = time
+    speed.data.lastSpeedTime                = time
 
     local isGliding, canGlide, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
-    local thrill = C_UnitAuras.GetPlayerAuraBySpellID(377234)
-    local isBoosting = thrill and time < speed.ascentStart + ascentDuration
+    local thrill                            = C_UnitAuras.GetPlayerAuraBySpellID(377234)
+    local isBoosting                        = thrill and time < speed.ascentStart + speed.constants.ascentDuration
 
     -- Smooth Speed
-    speed.currentSamples = math.min(speed.maxSampleSize, speed.currentSamples + 1)
-    local lastWeight = (speed.currentSamples - 1) / speed.currentSamples
-    local newWeight = 1 / speed.currentSamples
+    speed.data.currentSamples               = math.min(speed.constants.maxSampleSize, speed.data.currentSamples + 1)
+    local lastWeight                        = (speed.data.currentSamples - 1) / speed.data.currentSamples
+    local newWeight                         = 1 / speed.data.currentSamples
 
-    speed.smoothSpeed = forwardSpeed
+    speed.smoothSpeed                       = forwardSpeed
 
-    local newAccel = forwardSpeed - speed.lastSpeed
-    speed.lastSpeed = forwardSpeed
+    local newAccel                          = forwardSpeed - speed.data.lastSpeed
+    speed.data.lastSpeed                    = forwardSpeed
 
     -- Smooth Accel
-    speed.smoothAccel = speed.smoothAccel * lastWeight + newAccel + newWeight
+    speed.smoothAccel                       = speed.smoothAccel * lastWeight + newAccel + newWeight
     if forwardSpeed > 63 then
         speed.smoothAccel = max(0, speed.smoothAccel)
     end
@@ -315,7 +337,7 @@ function riderView:SpeedTest()
         speed.smoothAccel = 0
     end
 
-    speed.lastAccel = speed.smoothAccel
+    speed.data.lastAccel = speed.smoothAccel
     speed.momentum = isBoosting
 
     self:Update()
@@ -323,48 +345,48 @@ end
 
 function events:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellID)
     if not database:GetHeadsUpViewEnabled() then return end
-    if tonumber(spellID) == ascentSpellID then
-        riderView.data.speed.ascentStart = GetTime()
+    if tonumber(spellID) == headsUpView.data.speed.constants.ascentSpellID then
+        headsUpView.data.speed.ascentStart = GetTime()
     end
 end
 
 function events:UNIT_POWER_BAR_SHOW()
     if not database:GetHeadsUpViewEnabled() then return end
     if UnitPowerBarID(631) then
-        riderView.data.enabled = true
-        riderView.data.speed.updateHandler = riderView:GetUpdateHandler()
+        headsUpView.data.enabled = true
+        headsUpView.data.speed.updateHandler = headsUpView:GetUpdateHandler()
     end
 end
 
 function events:UNIT_POWER_BAR_HIDE()
     if not database:GetHeadsUpViewEnabled() then return end
     if UnitPowerBarID(631) == 0 then
-        riderView.data.enabled = false
+        headsUpView.data.enabled = false
 
-        if riderView.data.speed.updateHandler ~= nil then
-            riderView.data.speed.updateHandler:Cancel()
-            riderView.data.speed.updateHandler = nil
+        if headsUpView.data.speed.updateHandler ~= nil then
+            headsUpView.data.speed.updateHandler:Cancel()
+            headsUpView.data.speed.updateHandler = nil
         end
     end
 
-    riderView.data.view:Hide()
+    headsUpView.data.view:Hide()
 end
 
 function events:UPDATE_UI_WIDGET(_, widgetInfo)
     if not database:GetHeadsUpViewEnabled() then return end
-    if widgetInfo and widgetInfo.widgetID ~= vigorWidgetID then return end
+    local widgetID = headsUpView.data.vigor.widgetID
+    if widgetInfo and widgetInfo.widgetID ~= widgetID then return end
 
-    local widgetData = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(vigorWidgetID)
+    local widgetData = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(widgetID)
     if not widgetData then return end
 
-    if riderView.data.vigor.vigorCount ~= widgetData.numTotalFrames then
-        riderView:UpdateVigorTicks(widgetData.numTotalFrames)
+    if headsUpView.data.vigor.vigorCount ~= widgetData.numTotalFrames then
+        headsUpView:UpdateVigorTicks(widgetData.numTotalFrames)
     end
 
-    -- Okay, so totalFrames = the amount of Vigorses
     if widgetData.numFullFrames >= widgetData.numTotalFrames then
-        riderView.data.view.Vigor:SetSmoothedValue(100)
-        riderView.data.view.Vigor:SetStatusBarColor(0, 1, 0, 1)
+        headsUpView.data.view.Vigor:SetSmoothedValue(100)
+        headsUpView.data.view.Vigor:SetStatusBarColor(0, 1, 0, 1)
         return
     end
 
@@ -380,9 +402,9 @@ function events:UPDATE_UI_WIDGET(_, widgetInfo)
         end
     end
 
-    riderView.data.view.Vigor:SetSmoothedValue(perc)
-    local color = utils:GetSmudgeColorRGB({ r = 1, g = 0, b = 0 }, { r = 0, g = 1, b = 0 }, perc / 100)
-    riderView.data.view.Vigor:SetStatusBarColor(color.r, color.g, color.b, 0.75)
+    headsUpView.data.view.Vigor:SetSmoothedValue(perc)
+    local color = utils:GetSmudgeColorRGB({ r = 1, g = 0.5, b = 0.5 }, { r = 0.5, g = 1, b = 0.5 }, perc / 100)
+    headsUpView.data.view.Vigor:SetStatusBarColor(color.r, color.g, color.b, 0.75)
 end
 
-riderView:Enable()
+headsUpView:Enable()

@@ -76,8 +76,8 @@ end
 local thrillOfTheSkiesID = 377234
 function events:UNIT_AURA(_, unitTarget, updateInfo)
     if unitTarget == 'player' then
-        ---@class RiderView: AceModule
-        local riderView = addon:GetModule('RiderView')
+        ---@class HeadsUpView: AceModule
+        local headsUpView = addon:GetModule('HeadsUpView')
 
         if updateInfo.addedAuras ~= nil then
             for _, aura in pairs(updateInfo.addedAuras) do
@@ -96,7 +96,7 @@ function events:UNIT_AURA(_, unitTarget, updateInfo)
                     end
                 elseif aura.spellId == thrillOfTheSkiesID then
                     if not data:GetHeadsUpViewEnabled() then return end
-                    riderView:ToggleGlow(true, aura.spellId, aura.auraInstanceID)
+                    headsUpView:ToggleGlow(true, aura.spellId, aura.auraInstanceID)
                 end
             end
         end
@@ -104,8 +104,8 @@ function events:UNIT_AURA(_, unitTarget, updateInfo)
         if not data:GetHeadsUpViewEnabled() then return end
         if updateInfo.removedAuraInstanceIDs ~= nil then
             for _, auraID in pairs(updateInfo.removedAuraInstanceIDs) do
-                if auraID == riderView.data.vigor.thrillInstance then
-                    riderView:ToggleGlow(false, thrillOfTheSkiesID, auraID)
+                if auraID == headsUpView.data.vigor.thrillInstance then
+                    headsUpView:ToggleGlow(false, thrillOfTheSkiesID, auraID)
                 end
             end
         end
@@ -128,13 +128,5 @@ function events:PLAYER_LOGIN()
         resolver.ToggleDefaultHeadsUpDisplay(false)
     else
         resolver.ToggleDefaultHeadsUpDisplay(true)
-    end
-
-    if data:GetHeadsUpViewEnabled() and UnitPowerBarID(631) then
-        ---@class RiderView: AceModule
-        local riderView = addon:GetModule('RiderView')
-
-        riderView.data.enabled = true
-        riderView.data.speed.updateHandler = riderView:GetUpdateHandler()
     end
 end

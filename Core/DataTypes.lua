@@ -4,6 +4,8 @@ local addon = LibStub('AceAddon-3.0'):GetAddon(addonName)
 ---@class Types: AceModule
 local types = addon:NewModule('Types')
 
+--#region Races
+
 ---@class RaceIDs
 ---@field bronze integer
 ---@field silver integer
@@ -70,5 +72,7 @@ local Race = {
         y = 0
     }
 }
+
+--#endregion
 
 types:Enable()
