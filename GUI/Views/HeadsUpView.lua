@@ -471,6 +471,12 @@ function headsUpView:UpdateMovable(value)
     self.data.view:SetMovable(not value)
 end
 
+---@param x integer
+---@param y integer
+function headsUpView:UpdatePosition(x, y)
+    self.data.view:SetPoint('TOPLEFT', UIParent, 'BOTTOMLEFT', x, y)
+end
+
 function headsUpView:ToggleGlow(value, spellID, instanceID)
     if value then
         if spellID == self.data.vigor.thrillSpellID then

@@ -265,12 +265,18 @@ end
 ---@param x integer
 function database:SetHeadsUpViewPositionX(x)
     database.internal.global.Views.HeadsUpView.Position.X = x
+    ---@class HeadsUpView: AceModule
+    local view = addon:GetModule('HeadsUpView')
+    view:UpdatePosition(x, database.internal.global.Views.HeadsUpView.Position.Y)
     -- Update
 end
 
 ---@param y integer
 function database:SetHeadsUpViewPositionY(y)
     database.internal.global.Views.HeadsUpView.Position.Y = y
+    ---@class HeadsUpView: AceModule
+    local view = addon:GetModule('HeadsUpView')
+    view:UpdatePosition(database.internal.global.Views.HeadsUpView.Position.X, y)
 end
 
 --#endregion

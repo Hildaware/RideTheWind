@@ -18,27 +18,36 @@ local settings = {
         zoneview = {
             name = 'Zone View',
             type = 'group',
+            order = 1,
             args = {
+                enabled = {
+                    name = 'Enabled',
+                    desc = 'Enable the Zone View frame',
+                    type = 'toggle',
+                    order = 1,
+                    get = function() return database:GetZoneViewEnabled() end,
+                    set = function(_, val) database:SetZoneViewEnabled(val) end
+                },
                 show = {
                     name = 'Show',
                     type = 'execute',
+                    order = 2,
                     func = function()
                         ---@class ZoneView
                         local zoneView = addon:GetModule('ZoneView')
                         zoneView:Show()
                     end
                 },
-                enabled = {
-                    name = 'Enable',
-                    desc = 'Enable the Zone View frame',
-                    type = 'toggle',
-                    get = function() return database:GetZoneViewEnabled() end,
-                    set = function(_, val) database:SetZoneViewEnabled(val) end
+                style = {
+                    name = 'Styling',
+                    type = 'header',
+                    order = 3,
                 },
                 backgroundColor = {
                     name = 'Background Color',
                     desc = 'Set the background color of the frame',
                     type = 'color',
+                    order = 4,
                     hasAlpha = true,
                     get = function()
                         local color = database:GetZoneViewColor()
@@ -52,6 +61,7 @@ local settings = {
                     name = 'Font',
                     desc = 'Set the default font used',
                     type = 'select',
+                    order = 5,
                     style = 'dropdown',
                     dialogControl = 'LSM30_Font',
                     values = LSM:HashTable("font"),
@@ -67,11 +77,13 @@ local settings = {
         headsUp = {
             name = 'Heads-Up Display',
             type = 'group',
+            order = 2,
             args = {
                 enabled = {
-                    name = 'Enable',
+                    name = 'Enabled',
                     desc = 'Enable the Heads-Up Display',
                     type = 'toggle',
+                    order = 1,
                     get = function() return database:GetHeadsUpViewEnabled() end,
                     set = function(_, val) database:SetHeadsUpViewEnabled(val) end
                 },
@@ -79,40 +91,42 @@ local settings = {
                     name = 'Locked',
                     desc = 'Lock the Heads-Up Display',
                     type = 'toggle',
+                    order = 2,
                     get = function() return database:GetHeadsUpViewLocked() end,
                     set = function(_, val) database:SetHeadsUpViewLocked(val) end
-                },
-                position = {
-                    name = 'Position',
-                    desc = 'The position of the Heads-Up Display',
-                    type = 'group',
-                    args = {
-                        x = {
-                            name = 'X',
-                            type = 'range',
-                            min = 0,
-                            max = 6000,
-                            step = 1,
-                            get = function() return database:GetHeadsUpViewPosition().X end,
-                            set = function(_, val) database:SetHeadsUpViewPositionX(val) end
-                        },
-                        y = {
-                            name = 'Y',
-                            type = 'range',
-                            min = 0,
-                            max = 6000,
-                            step = 1,
-                            get = function() return database:GetHeadsUpViewPosition().Y end,
-                            set = function(_, val) database:SetHeadsUpViewPositionY(val) end
-                        }
-                    }
                 },
                 showDefault = {
                     name = 'Show Default Display',
                     desc = 'Show the default Dragonriding display',
                     type = 'toggle',
+                    order = 3,
                     get = function() return database:GetDefaultDisplayEnabled() end,
                     set = function(_, val) database:SetDefaultDisplayEnabled(val) end
+                },
+                position = {
+                    name = 'Position',
+                    type = 'header',
+                    order = 4
+                },
+                x = {
+                    name = 'X',
+                    type = 'range',
+                    order = 5,
+                    min = 0,
+                    max = 6000,
+                    step = 1,
+                    get = function() return database:GetHeadsUpViewPosition().X end,
+                    set = function(_, val) database:SetHeadsUpViewPositionX(val) end
+                },
+                y = {
+                    name = 'Y',
+                    type = 'range',
+                    order = 6,
+                    min = 0,
+                    max = 6000,
+                    step = 1,
+                    get = function() return database:GetHeadsUpViewPosition().Y end,
+                    set = function(_, val) database:SetHeadsUpViewPositionY(val) end
                 }
             }
         }
