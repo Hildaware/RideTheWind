@@ -557,7 +557,7 @@ end
 
 function events:UNIT_POWER_BAR_SHOW()
     if not database:GetHeadsUpViewEnabled() then return end
-    if UnitPowerBarID(631) then
+    if UnitPowerBarID('player') == 631 then
         headsUpView.data.enabled = true
         headsUpView.data.speed.updateHandler = headsUpView:GetUpdateHandler()
     end
@@ -565,7 +565,7 @@ end
 
 function events:UNIT_POWER_BAR_HIDE()
     if not database:GetHeadsUpViewEnabled() then return end
-    if UnitPowerBarID(631) == 0 then
+    if not (UnitPowerBarID('player') == 631) then
         headsUpView.data.enabled = false
 
         if headsUpView.data.speed.updateHandler ~= nil then
