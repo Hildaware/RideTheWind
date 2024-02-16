@@ -2,7 +2,7 @@
 ## Title: Ride The Wind
 ## Notes: Dragonriding Racing Companion
 ## Authors: Sel
-## Version: 0.3.0
+## Version: 0.3.1
 ## IconTexture: Interface\AddOns\RideTheWind\Media\logo
 ## SavedVariables: RideTheWindDB
 ## X-Curse-Project-ID: 969233
