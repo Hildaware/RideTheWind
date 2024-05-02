@@ -73,56 +73,29 @@ function addon.OnUpdate()
 
 end
 
-local thrillOfTheSkiesID = 377234
-function events:UNIT_AURA(_, unitTarget, updateInfo)
-    if unitTarget == 'player' then
-        ---@class HeadsUpView: AceModule
-        local headsUpView = addon:GetModule('HeadsUpView')
-
-        if updateInfo.addedAuras ~= nil then
-            for _, aura in pairs(updateInfo.addedAuras) do
-                if tContains(session.raceIDs, aura.spellId) then
-                    local instanceId = aura.auraInstanceID
-                    local ttData = C_TooltipInfo.GetUnitBuffByAuraInstanceID('player', instanceId, 'HELPFUL')
-                    if ttData and ttData.lines then
-                        for _, line in ipairs(ttData.lines) do
-                            if line.leftText then
-                                if line.leftText:len() > 100 then
-                                    local raceTimes = utils.ParseRaceTimeTooltip(line.leftText)
-                                    data:SaveRaceTimes(aura.spellId, raceTimes)
-                                end
-                            end
-                        end
-                    end
-                elseif aura.spellId == thrillOfTheSkiesID then
-                    if not data:GetHeadsUpViewEnabled() then return end
-                    headsUpView:ToggleGlow(true, aura.spellId, aura.auraInstanceID)
-                end
-            end
-        end
-
-        if not data:GetHeadsUpViewEnabled() then return end
-        if updateInfo.removedAuraInstanceIDs ~= nil then
-            for _, auraID in pairs(updateInfo.removedAuraInstanceIDs) do
-                if auraID == headsUpView.data.vigor.thrillInstance then
-                    headsUpView:ToggleGlow(false, thrillOfTheSkiesID, auraID)
-                end
-            end
-        end
-    end
-end
-
 function events:PLAYER_LOGIN()
-    local buffIDs = {}
-    local iter = 1
     for _, zones in pairs(maps.Races) do
         for _, race in pairs(zones) do
-            buffIDs[iter] = race.id
-            iter = iter + 1
+            -- Gather up the race times and store them
+            local normalBest = resolver.GetBestRaceTime(race.times.normal)
+            local advancedBest = resolver.GetBestRaceTime(race.times.advanced)
+            local reverseBest = resolver.GetBestRaceTime(race.times.reverse)
+            local challengeBest = resolver.GetBestRaceTime(race.times.challenge)
+            local challengeReverseBest = resolver.GetBestRaceTime(race.times.challenge)
+
+            local raceTimes = {
+                normal = normalBest,
+                advanced = advancedBest,
+                reverse = reverseBest,
+                challenge = challengeBest,
+                challengeReverse = challengeReverseBest
+            }
+
+            data:SaveRaceTimes(race.id, raceTimes)
         end
     end
 
-    session.raceIDs = buffIDs
+    -- session.raceIDs = buffIDs
 
     if not data:GetDefaultDisplayEnabled() then
         resolver.ToggleDefaultHeadsUpDisplay(false)

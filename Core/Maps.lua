@@ -6,29 +6,35 @@ local maps = addon:NewModule('Maps')
 
 maps.Races = {
     ---@type Race[]
-    [2022] = { -- Waking Shores
-        [1] = {
+    [2022] = {  -- Waking Shores
+        [1] = { -- Apex Canopy River Run
             id = 415640,
+            questId = 66732,
             times = {
                 normal = {
                     silver = 55,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2054
                 },
                 advanced = {
                     silver = 50,
-                    gold = 45
+                    gold = 45,
+                    currencyId = 2055
                 },
                 reverse = {
                     silver = 53,
-                    gold = 48
+                    gold = 48,
+                    currencyId = 2178
                 },
                 challenge = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2427
                 },
                 challengeReverse = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2428
                 }
             },
             normal = {
@@ -63,28 +69,34 @@ maps.Races = {
             name = "Apex Canopy River Run",
             zone = 2022,
         },
-        [2] = {
+        [2] = { -- Emberflow Flight
             id = 415639,
+            questId = 66727,
             times = {
                 normal = {
                     silver = 53,
-                    gold = 47
+                    gold = 47,
+                    currencyId = 2052
                 },
                 advanced = {
                     silver = 49,
-                    gold = 44
+                    gold = 44,
+                    currencyId = 2052
                 },
                 reverse = {
                     silver = 50,
-                    gold = 45
+                    gold = 45,
+                    currencyId = 2177
                 },
                 challenge = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2425
                 },
                 challengeReverse = {
                     silver = 54,
-                    gold = 51
+                    gold = 51,
+                    currencyId = 2426
                 }
             },
             normal = {
@@ -119,28 +131,34 @@ maps.Races = {
             name = "Emberflow Flight",
             zone = 2022
         },
-        [3] = {
+        [3] = { -- Flashfrost Flyover
             id = 415643,
+            questId = 66710,
             times = {
                 normal = {
                     silver = 66,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2046
                 },
                 advanced = {
                     silver = 66,
-                    gold = 61
+                    gold = 61,
+                    currencyId = 2047
                 },
                 reverse = {
                     silver = 65,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2181
                 },
                 challenge = {
                     silver = 67,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2433
                 },
                 challengeReverse = {
                     silver = 74,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2434
                 }
             },
             normal = {
@@ -175,28 +193,34 @@ maps.Races = {
             name = "Flashfrost Flyover",
             zone = 2022
         },
-        [4] = {
+        [4] = { -- Ruby Lifeshrine Loop
             id = 415541,
+            questId = 66679,
             times = {
                 normal = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2042
                 },
                 advanced = {
                     silver = 57,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2044
                 },
                 reverse = {
                     silver = 55,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2154
                 },
                 challenge = {
                     silver = 57,
-                    gold = 54
+                    gold = 54,
+                    currencyId = 2421
                 },
                 challengeReverse = {
                     silver = 60,
-                    gold = 57
+                    gold = 57,
+                    currencyId = 2422
                 }
             },
             normal = {
@@ -231,28 +255,34 @@ maps.Races = {
             name = "Ruby Lifeshrine Loop",
             zone = 2022
         },
-        [5] = {
+        [5] = { -- Uktulut Coaster
             id = 415641,
+            questId = 66777,
             times = {
                 normal = {
                     silver = 48,
-                    gold = 45
+                    gold = 45,
+                    currencyId = 2056
                 },
                 advanced = {
                     silver = 45,
-                    gold = 40
+                    gold = 40,
+                    currencyId = 2057
                 },
                 reverse = {
                     silver = 48,
-                    gold = 43
+                    gold = 43,
+                    currencyId = 2179
                 },
                 challenge = {
                     silver = 49,
-                    gold = 46
+                    gold = 46,
+                    currencyId = 2429
                 },
                 challengeReverse = {
                     silver = 51,
-                    gold = 48
+                    gold = 48,
+                    currencyId = 2430
                 }
             },
             normal = {
@@ -287,28 +317,34 @@ maps.Races = {
             name = "Uktulut Coaster",
             zone = 2022
         },
-        [6] = {
+        [6] = { -- Wild Preserve Circuit
             id = 41564,
+            questId = 66725,
             times = {
                 normal = {
                     silver = 43,
-                    gold = 40
+                    gold = 40,
+                    currencyId = 2050
                 },
                 advanced = {
                     silver = 43,
-                    gold = 38
+                    gold = 38,
+                    currencyId = 2051
                 },
                 reverse = {
                     silver = 46,
-                    gold = 41
+                    gold = 41,
+                    currencyId = 2182
                 },
                 challenge = {
                     silver = 46,
-                    gold = 43
+                    gold = 43,
+                    currencyId = 2435
                 },
                 challengeReverse = {
                     silver = 47,
-                    gold = 44
+                    gold = 44,
+                    currencyId = 2436
                 }
             },
             normal = {
@@ -343,28 +379,34 @@ maps.Races = {
             name = "Wild Preserve Circuit",
             zone = 2022
         },
-        [7] = {
+        [7] = { -- Wild Preserve Slalom
             id = 415638,
+            questId = 66721,
             times = {
                 normal = {
                     silver = 45,
-                    gold = 42
+                    gold = 42,
+                    currencyId = 2048
                 },
                 advanced = {
                     silver = 45,
-                    gold = 40
+                    gold = 40,
+                    currencyId = 2049
                 },
                 reverse = {
                     silver = 46,
-                    gold = 41
+                    gold = 41,
+                    currencyId = 2176
                 },
                 challenge = {
                     silver = 51,
-                    gold = 48
+                    gold = 48,
+                    currencyId = 2423
                 },
                 challengeReverse = {
                     silver = 52,
-                    gold = 49
+                    gold = 49,
+                    currencyId = 2424
                 }
             },
             normal = {
@@ -399,28 +441,34 @@ maps.Races = {
             name = "Wild Preserve Slalom",
             zone = 2022
         },
-        [8] = {
+        [8] = { -- Wingrest Roundabout
             id = 415624,
+            questId = 66786,
             times = {
                 normal = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2058
                 },
                 advanced = {
                     silver = 58,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2059
                 },
                 reverse = {
                     silver = 61,
-                    gold = 56
+                    gold = 56,
+                    currencyId = 2180
                 },
                 challenge = {
                     silver = 63,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2431
                 },
                 challengeReverse = {
                     silver = 63,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2432
                 }
             },
             normal = {
@@ -457,29 +505,35 @@ maps.Races = {
         }
     },
     ---@type Race[]
-    [2023] = { -- Om nom nom Plains
-        [1] = {
+    [2023] = {  -- Om nom nom Plains
+        [1] = { -- Fen Flythrough
             id = 415652,
+            questId = 66877,
             times = {
                 normal = {
                     silver = 51,
-                    gold = 48
+                    gold = 48,
+                    currencyId = 2062
                 },
                 advanced = {
                     silver = 46,
-                    gold = 41
+                    gold = 41,
+                    currencyId = 2063
                 },
                 reverse = {
                     silver = 52,
-                    gold = 47
+                    gold = 47,
+                    currencyId = 2184
                 },
                 challenge = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2440
                 },
                 challengeReverse = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2441
                 }
             },
             normal = {
@@ -514,28 +568,34 @@ maps.Races = {
             name = "Fen Flythrough",
             zone = 2023
         },
-        [2] = {
+        [2] = { -- Sundapple Copse Circuit
             id = 415650,
+            questId = 66835,
             times = {
                 normal = {
                     silver = 52,
-                    gold = 44
+                    gold = 44,
+                    currencyId = 2060
                 },
                 advanced = {
                     silver = 46,
-                    gold = 41
+                    gold = 41,
+                    currencyId = 2061
                 },
                 reverse = {
                     silver = 50,
-                    gold = 45
+                    gold = 45,
+                    currencyId = 2183
                 },
                 challenge = {
                     silver = 54,
-                    gold = 51
+                    gold = 51,
+                    currencyId = 2437
                 },
                 challengeReverse = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2439
                 }
             },
             normal = {
@@ -570,16 +630,19 @@ maps.Races = {
             name = "Sundapple Copse Circuit",
             zone = 2023
         },
-        [3] = {
+        [3] = { -- Maruukai Dash
             id = 415656,
+            questId = 66921,
             times = {
                 normal = {
                     silver = 28,
-                    gold = 25
+                    gold = 25,
+                    currencyId = 2069
                 },
                 challenge = {
                     silver = 27,
-                    gold = 24
+                    gold = 24,
+                    currencyId = 2446
                 }
             },
             normal = {
@@ -614,28 +677,34 @@ maps.Races = {
             name = "Maruukai Dash",
             zone = 2023
         },
-        [4] = {
+        [4] = { -- Ravine River Run
             id = 415653,
+            questId = 66880,
             times = {
                 normal = {
                     silver = 52,
-                    gold = 49
+                    gold = 49,
+                    currencyId = 2064
                 },
                 advanced = {
                     silver = 52,
-                    gold = 47
+                    gold = 47,
+                    currencyId = 2065
                 },
                 reverse = {
                     silver = 51,
-                    gold = 46
+                    gold = 46,
+                    currencyId = 2185
                 },
                 challenge = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2442
                 },
                 challengeReverse = {
                     silver = 54,
-                    gold = 51
+                    gold = 51,
+                    currencyId = 2443
                 }
             },
             normal = {
@@ -670,16 +739,19 @@ maps.Races = {
             name = "Ravine River Run",
             zone = 2023
         },
-        [5] = {
+        [5] = { -- Mirror of the Sky Dash
             id = 415657,
+            questId = 66933,
             times = {
                 normal = {
                     silver = 29,
-                    gold = 26
+                    gold = 26,
+                    currencyId = 2070
                 },
                 challenge = {
                     silver = 30,
-                    gold = 27
+                    gold = 27,
+                    currencyId = 2447
                 }
             },
             normal = {
@@ -714,28 +786,34 @@ maps.Races = {
             name = "Mirror of the Sky Dash",
             zone = 2023
         },
-        [6] = {
+        [6] = { -- River Rapids Route
             id = 415658,
+            questId = 70710,
             times = {
                 normal = {
                     silver = 51,
-                    gold = 48
+                    gold = 48,
+                    currencyId = 2119
                 },
                 advanced = {
                     silver = 48,
-                    gold = 43
+                    gold = 43,
+                    currencyId = 2120
                 },
                 reverse = {
                     silver = 49,
-                    gold = 44
+                    gold = 44,
+                    currencyId = 2187
                 },
                 challenge = {
                     silver = 55,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2448
                 },
                 challengeReverse = {
                     silver = 55,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2449
                 }
             },
             normal = {
@@ -770,28 +848,34 @@ maps.Races = {
             name = "River Rapids Route",
             zone = 2023
         },
-        [7] = {
+        [7] = { -- Emerald Gardens Ascent
             id = 415654,
+            questId = 66885,
             times = {
                 normal = {
                     silver = 66,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2066
                 },
                 advanced = {
                     silver = 60,
-                    gold = 55
+                    gold = 55,
+                    currencyId = 2067
                 },
                 reverse = {
                     silver = 62,
-                    gold = 57
+                    gold = 57,
+                    currencyId = 2186
                 },
                 challenge = {
                     silver = 69,
-                    gold = 66
+                    gold = 66,
+                    currencyId = 2444
                 },
                 challengeReverse = {
                     silver = 69,
-                    gold = 66
+                    gold = 66,
+                    currencyId = 2445
                 }
             },
             normal = {
@@ -828,29 +912,35 @@ maps.Races = {
         }
     },
     ---@type Race[]
-    [2024] = { -- Azure Span
-        [1] = {
+    [2024] = {  -- Azure Span
+        [1] = { -- Iskaara Tour
             id = 415662,
+            questId = 67296,
             times = {
                 normal = {
                     silver = 78,
-                    gold = 75
+                    gold = 75,
+                    currencyId = 2083
                 },
                 advanced = {
                     silver = 75,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2084
                 },
                 reverse = {
                     silver = 72,
-                    gold = 67
+                    gold = 67,
+                    currencyId = 2191
                 },
                 challenge = {
                     silver = 81,
-                    gold = 78
+                    gold = 78,
+                    currencyId = 2456
                 },
                 challengeReverse = {
                     silver = 82,
-                    gold = 79
+                    gold = 79,
+                    currencyId = 2457
                 }
             },
             normal = {
@@ -885,28 +975,34 @@ maps.Races = {
             name = "Iskaara Tour",
             zone = 2024
         },
-        [2] = {
+        [2] = { -- Azure Span Slalom
             id = 415660,
+            questId = 67002,
             times = {
                 normal = {
                     silver = 61,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2076
                 },
                 advanced = {
                     silver = 61,
-                    gold = 56
+                    gold = 56,
+                    currencyId = 2077
                 },
                 reverse = {
                     silver = 58,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2189
                 },
                 challenge = {
                     silver = 58,
-                    gold = 55
+                    gold = 55,
+                    currencyId = 2452
                 },
                 challengeReverse = {
                     silver = 58,
-                    gold = 55
+                    gold = 55,
+                    currencyId = 2453
                 }
             },
             normal = {
@@ -941,28 +1037,34 @@ maps.Races = {
             name = "The Azure Span Slalom",
             zone = 2024
         },
-        [3] = {
+        [3] = { -- Frostland Flyover
             id = 415663,
+            questId = 67565,
             times = {
                 normal = {
                     silver = 79,
-                    gold = 76
+                    gold = 76,
+                    currencyId = 2085
                 },
                 advanced = {
                     silver = 77,
-                    gold = 72
+                    gold = 72,
+                    currencyId = 2086
                 },
                 reverse = {
                     silver = 74,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2192
                 },
                 challenge = {
                     silver = 88,
-                    gold = 85
+                    gold = 85,
+                    currencyId = 2458
                 },
                 challengeReverse = {
                     silver = 86,
-                    gold = 83
+                    gold = 83,
+                    currencyId = 2459
                 }
             },
             normal = {
@@ -997,28 +1099,34 @@ maps.Races = {
             name = "Frostland Flyover",
             zone = 2024
         },
-        [4] = {
+        [4] = { -- Azure Span Sprint
             id = 415659,
+            questId = 66946,
             times = {
                 normal = {
                     silver = 66,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2074
                 },
                 advanced = {
                     silver = 63,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2075
                 },
                 reverse = {
                     silver = 65,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2188
                 },
                 challenge = {
                     silver = 70,
-                    gold = 67
+                    gold = 67,
+                    currencyId = 2450
                 },
                 challengeReverse = {
                     silver = 72,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2451
                 }
             },
             normal = {
@@ -1053,28 +1161,34 @@ maps.Races = {
             name = "The Azure Span Sprint",
             zone = 2024
         },
-        [5] = {
+        [5] = { -- Archive Ambit
             id = 415664,
+            questId = 67741,
             times = {
                 normal = {
                     silver = 94,
-                    gold = 91
+                    gold = 91,
+                    currencyId = 2089
                 },
                 advanced = {
                     silver = 86,
-                    gold = 81
+                    gold = 81,
+                    currencyId = 2090
                 },
                 reverse = {
                     silver = 81,
-                    gold = 76
+                    gold = 76,
+                    currencyId = 2193
                 },
                 challenge = {
                     silver = 93,
-                    gold = 90
+                    gold = 90,
+                    currencyId = 2460
                 },
                 challengeReverse = {
                     silver = 95,
-                    gold = 92
+                    gold = 92,
+                    currencyId = 2461
                 }
             },
             normal = {
@@ -1109,28 +1223,34 @@ maps.Races = {
             name = "Archive Ambit",
             zone = 2024
         },
-        [6] = {
+        [6] = { -- The Vakthros Ascent
             id = 415661,
+            questId = 67031,
             times = {
                 normal = {
                     silver = 61,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2078
                 },
                 advanced = {
                     silver = 61,
-                    gold = 56
+                    gold = 56,
+                    currencyId = 2079
                 },
                 reverse = {
                     silver = 61,
-                    gold = 56
+                    gold = 56,
+                    currencyId = 2190
                 },
                 challenge = {
                     silver = 66,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2454
                 },
                 challengeReverse = {
                     silver = 67,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2455
                 }
             },
             normal = {
@@ -1167,29 +1287,35 @@ maps.Races = {
         }
     },
     ---@type Race[]
-    [2025] = { -- Thaldraszus
-        [1] = {
+    [2025] = {  -- Thaldraszus
+        [1] = { -- The Flowing Forest Flight
             id = 415665,
+            questId = 67095,
             times = {
                 normal = {
                     silver = 52,
-                    gold = 49
+                    gold = 49,
+                    currencyId = 2080
                 },
                 advanced = {
                     silver = 45,
-                    gold = 40
+                    gold = 40,
+                    currencyId = 2081
                 },
                 reverse = {
                     silver = 46,
-                    gold = 41
+                    gold = 41,
+                    currencyId = 2194
                 },
                 challenge = {
                     silver = 50,
-                    gold = 47
+                    gold = 47,
+                    currencyId = 2462
                 },
                 challengeReverse = {
                     silver = 49,
-                    gold = 46
+                    gold = 46,
+                    currencyId = 2463
                 }
             },
             normal = {
@@ -1224,28 +1350,34 @@ maps.Races = {
             name = "The Flowing Forest Flight",
             zone = 2025
         },
-        [2] = {
+        [2] = { -- Cliffside Circuit
             id = 415668,
+            questId = 70051,
             times = {
                 normal = {
                     silver = 72,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2096
                 },
                 advanced = {
                     silver = 71,
-                    gold = 66
+                    gold = 66,
+                    currencyId = 2097
                 },
                 reverse = {
                     silver = 74,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2196
                 },
                 challenge = {
                     silver = 84,
-                    gold = 81
+                    gold = 81,
+                    currencyId = 2466
                 },
                 challengeReverse = {
                     silver = 83,
-                    gold = 80
+                    gold = 80,
+                    currencyId = 2467
                 }
             },
             normal = {
@@ -1280,28 +1412,34 @@ maps.Races = {
             name = "Cliffside Circuit",
             zone = 2025
         },
-        [3] = {
+        [3] = { -- Garden Gallivant
             id = 415670,
+            questId = 70157,
             times = {
                 normal = {
                     silver = 64,
-                    gold = 61
+                    gold = 61,
+                    currencyId = 2101
                 },
                 advanced = {
                     silver = 59,
-                    gold = 54
+                    gold = 54,
+                    currencyId = 2102
                 },
                 reverse = {
                     silver = 62,
-                    gold = 57
+                    gold = 57,
+                    currencyId = 2198
                 },
                 challenge = {
                     silver = 63,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2470
                 },
                 challengeReverse = {
                     silver = 67,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2471
                 }
             },
             normal = {
@@ -1336,28 +1474,34 @@ maps.Races = {
             name = "Garden Gallivant",
             zone = 2025
         },
-        [4] = {
+        [4] = { -- Tyrhold Trial
             id = 415666,
+            questId = 69957,
             times = {
                 normal = {
                     silver = 84,
-                    gold = 81
+                    gold = 81,
+                    currencyId = 2092
                 },
                 advanced = {
                     silver = 80,
-                    gold = 75
+                    gold = 75,
+                    currencyId = 2093
                 },
                 reverse = {
                     silver = 64,
-                    gold = 59
+                    gold = 59,
+                    currencyId = 2195
                 },
                 challenge = {
                     silver = 61,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2464
                 },
                 challengeReverse = {
                     silver = 66,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2465
                 }
             },
             normal = {
@@ -1392,28 +1536,34 @@ maps.Races = {
             name = "Tyrhold Trial",
             zone = 2025
         },
-        [5] = {
+        [5] = { -- Academy Ascent
             id = 415669,
+            questId = 70059,
             times = {
                 normal = {
                     silver = 57,
-                    gold = 54
+                    gold = 54,
+                    currencyId = 2098
                 },
                 advanced = {
                     silver = 57,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2099
                 },
                 reverse = {
                     silver = 58,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2197
                 },
                 challenge = {
                     silver = 68,
-                    gold = 65
+                    gold = 65,
+                    currencyId = 2468
                 },
                 challengeReverse = {
                     silver = 68,
-                    gold = 65
+                    gold = 65,
+                    currencyId = 2469
                 }
             },
             normal = {
@@ -1448,28 +1598,34 @@ maps.Races = {
             name = "Academy Ascent",
             zone = 2025
         },
-        [6] = {
+        [6] = { -- Caverns Criss Cross
             id = 415671,
+            questId = 70161,
             times = {
                 normal = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2103
                 },
                 advanced = {
                     silver = 50,
-                    gold = 45
+                    gold = 45,
+                    currencyId = 2104
                 },
                 reverse = {
                     silver = 52,
-                    gold = 47
+                    gold = 47,
+                    currencyId = 2199
                 },
                 challenge = {
                     silver = 59,
-                    gold = 56
+                    gold = 56,
+                    currencyId = 2472
                 },
                 challengeReverse = {
                     silver = 57,
-                    gold = 54
+                    gold = 54,
+                    currencyId = 2473
                 }
             },
             normal = {
@@ -1506,29 +1662,35 @@ maps.Races = {
         }
     },
     ---@type Race[]
-    [2133] = { -- Zaralek Cavern
-        [1] = {
+    [2133] = {  -- Zaralek Cavern
+        [1] = { -- Crystal Circuit
             id = 415795,
+            questId = 74839,
             times = {
                 normal = {
                     silver = 68,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2246
                 },
                 advanced = {
                     silver = 60,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2252
                 },
                 reverse = {
                     silver = 58,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2258,
                 },
                 challenge = {
                     silver = 60,
-                    gold = 57
+                    gold = 57,
+                    currencyId = 2486
                 },
                 challengeReverse = {
                     silver = 61,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2487
                 }
             },
             normal = {
@@ -1563,28 +1725,34 @@ maps.Races = {
             name = "Crystal Circuit",
             zone = 2133
         },
-        [2] = {
+        [2] = { -- Brimstone Scramble
             id = 415797,
+            questId = 74939,
             times = {
                 normal = {
                     silver = 72,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2248
                 },
                 advanced = {
                     silver = 69,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2254
                 },
                 reverse = {
                     silver = 69,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2260
                 },
                 challenge = {
                     silver = 72,
-                    gold = 69
+                    gold = 69,
+                    currencyId = 2490
                 },
                 challengeReverse = {
                     silver = 74,
-                    gold = 71
+                    gold = 71,
+                    currencyId = 2491
                 }
             },
             normal = {
@@ -1619,28 +1787,34 @@ maps.Races = {
             name = "Brimstone Scramble",
             zone = 2133
         },
-        [3] = {
+        [3] = { -- Loamm Roamm
             id = 415799,
+            questId = 74972,
             times = {
                 normal = {
                     silver = 60,
-                    gold = 55
+                    gold = 55,
+                    currencyId = 2250
                 },
                 advanced = {
                     silver = 55,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2256
                 },
                 reverse = {
                     silver = 53,
-                    gold = 48
+                    gold = 48,
+                    currencyId = 2262
                 },
                 challenge = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2494
                 },
                 challengeReverse = {
                     silver = 55,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2495
                 }
             },
             normal = {
@@ -1675,28 +1849,34 @@ maps.Races = {
             name = "Loamm Roamm",
             zone = 2133
         },
-        [4] = {
+        [4] = { -- Caldera Cruise
             id = 415796,
+            questId = 74889,
             times = {
                 normal = {
                     silver = 80,
-                    gold = 75
+                    gold = 75,
+                    currencyId = 2247
                 },
                 advanced = {
                     silver = 73,
-                    gold = 68
+                    gold = 68,
+                    currencyId = 2253
                 },
                 reverse = {
                     silver = 73,
-                    gold = 68
+                    gold = 68,
+                    currencyId = 2259
                 },
                 challenge = {
                     silver = 75,
-                    gold = 72
+                    gold = 72,
+                    currencyId = 2488
                 },
                 challengeReverse = {
                     silver = 75,
-                    gold = 72
+                    gold = 72,
+                    currencyId = 2489
                 }
             },
             normal = {
@@ -1731,28 +1911,34 @@ maps.Races = {
             name = "Caldera Cruise",
             zone = 2133
         },
-        [5] = {
+        [5] = { -- Shimmering Slalom
             id = 415798,
+            questId = 74951,
             times = {
                 normal = {
                     silver = 80,
-                    gold = 75
+                    gold = 75,
+                    currencyId = 2249
                 },
                 advanced = {
                     silver = 75,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2255
                 },
                 reverse = {
                     silver = 75,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2261
                 },
                 challenge = {
                     silver = 82,
-                    gold = 79
+                    gold = 79,
+                    currencyId = 2492
                 },
                 challengeReverse = {
                     silver = 78,
-                    gold = 75
+                    gold = 75,
+                    currencyId = 2493
                 }
             },
             normal = {
@@ -1787,28 +1973,34 @@ maps.Races = {
             name = "Shimmering Slalom",
             zone = 2133
         },
-        [6] = {
+        [6] = { -- Sulfur Sprint
             id = 415800,
+            questId = 75035,
             times = {
                 normal = {
                     silver = 67,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2251
                 },
                 advanced = {
                     silver = 63,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2257
                 },
                 reverse = {
                     silver = 62,
-                    gold = 57
+                    gold = 57,
+                    currencyId = 2263
                 },
                 challenge = {
                     silver = 70,
-                    gold = 67
+                    gold = 67,
+                    currencyId = 2496
                 },
                 challengeReverse = {
                     silver = 68,
-                    gold = 65
+                    gold = 65,
+                    currencyId = 2497
                 }
             },
             normal = {
@@ -1845,29 +2037,35 @@ maps.Races = {
         }
     },
     ---@type Race[]
-    [2151] = { -- The Forbidden Reach
-        [1] = {
+    [2151] = {  -- The Forbidden Reach
+        [1] = { -- Stormsunder Crater Circuit
             id = 415789,
+            questId = 73017,
             times = {
                 normal = {
                     silver = 45,
-                    gold = 43
+                    gold = 43,
+                    currencyId = 2201
                 },
                 advanced = {
                     silver = 47,
-                    gold = 42
+                    gold = 42,
+                    currencyId = 2207
                 },
                 reverse = {
                     silver = 47,
-                    gold = 42
+                    gold = 42,
+                    currencyId = 2213
                 },
                 challenge = {
                     silver = 48,
-                    gold = 45
+                    gold = 45,
+                    currencyId = 2474
                 },
                 challengeReverse = {
                     silver = 47,
-                    gold = 44
+                    gold = 44,
+                    currencyId = 2475
                 }
             },
             normal = {
@@ -1902,28 +2100,34 @@ maps.Races = {
             name = "Stormsunder Crater Circuit",
             zone = 2151
         },
-        [2] = {
+        [2] = { -- Aerie Chasm Cruise
             id = 415791,
+            questId = 73025,
             times = {
                 normal = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2203
                 },
                 advanced = {
                     silver = 55,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2209
                 },
                 reverse = {
                     silver = 55,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2215
                 },
                 challenge = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2478
                 },
                 challengeReverse = {
                     silver = 55,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2479
                 }
             },
             normal = {
@@ -1958,28 +2162,34 @@ maps.Races = {
             name = "Aerie Chasm Cruise",
             zone = 2151
         },
-        [3] = {
+        [3] = { -- Caldera Coaster
             id = 415793,
+            questId = 73033,
             times = {
                 normal = {
                     silver = 61,
-                    gold = 58
+                    gold = 58,
+                    currencyId = 2205
                 },
                 advanced = {
                     silver = 57,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2211
                 },
                 reverse = {
                     silver = 54,
-                    gold = 49
+                    gold = 49,
+                    currencyId = 2217
                 },
                 challenge = {
                     silver = 58,
-                    gold = 55
+                    gold = 55,
+                    currencyId = 2482
                 },
                 challengeReverse = {
                     silver = 56,
-                    gold = 53
+                    gold = 53,
+                    currencyId = 2483
                 }
             },
             normal = {
@@ -2014,28 +2224,34 @@ maps.Races = {
             name = "Caldera Coaster",
             zone = 2151
         },
-        [4] = {
+        [4] = { -- Morqut Ascent
             id = 415790,
+            questId = 73020,
             times = {
                 normal = {
                     silver = 55,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2202
                 },
                 advanced = {
                     silver = 54,
-                    gold = 49
+                    gold = 49,
+                    currencyId = 2208
                 },
                 reverse = {
                     silver = 57,
-                    gold = 52
+                    gold = 52,
+                    currencyId = 2214
                 },
                 challenge = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2476
                 },
                 challengeReverse = {
                     silver = 53,
-                    gold = 50
+                    gold = 50,
+                    currencyId = 2477
                 }
             },
             normal = {
@@ -2070,28 +2286,34 @@ maps.Races = {
             name = "Morqut Ascent",
             zone = 2151
         },
-        [5] = {
+        [5] = { -- Southern Reach Route
             id = 415792,
+            questId = 73029,
             times = {
                 normal = {
                     silver = 73,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2204
                 },
                 advanced = {
                     silver = 73,
-                    gold = 68
+                    gold = 68,
+                    currencyId = 2210
                 },
                 reverse = {
                     silver = 68,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2216
                 },
                 challenge = {
                     silver = 73,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2480
                 },
                 challengeReverse = {
                     silver = 71,
-                    gold = 68
+                    gold = 68,
+                    currencyId = 2481
                 }
             },
             normal = {
@@ -2126,28 +2348,34 @@ maps.Races = {
             name = "Southern Reach Route",
             zone = 2151
         },
-        [6] = {
+        [6] = { -- Forbidden Reach Rush
             id = 415794,
+            questId = 73061,
             times = {
                 normal = {
                     silver = 62,
-                    gold = 59
+                    gold = 59,
+                    currencyId = 2206
                 },
                 advanced = {
                     silver = 61,
-                    gold = 56
+                    gold = 56,
+                    currencyId = 2212
                 },
                 reverse = {
                     silver = 61,
-                    gold = 57
+                    gold = 57,
+                    currencyId = 2218
                 },
                 challenge = {
                     silver = 63,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2484
                 },
                 challengeReverse = {
                     silver = 63,
-                    gold = 60
+                    gold = 60,
+                    currencyId = 2485
                 }
             },
             normal = {
@@ -2184,29 +2412,35 @@ maps.Races = {
         }
     },
     ---@type Race[]
-    [2200] = { -- Emerald Dream
-        [1] = {
+    [2200] = {  -- Emerald Dream
+        [1] = { -- Canopy Concours
             id = 426030,
+            questId = 78102,
             times = {
                 normal = {
                     silver = 110,
-                    gold = 105
+                    gold = 105,
+                    currencyId = 2680
                 },
                 advanced = {
                     silver = 96,
-                    gold = 93
+                    gold = 93,
+                    currencyId = 2686
                 },
                 reverse = {
                     silver = 99,
-                    gold = 96
+                    gold = 96,
+                    currencyId = 2692
                 },
                 challenge = {
                     silver = 108,
-                    gold = 105
+                    gold = 105,
+                    currencyId = 2702
                 },
                 challengeReverse = {
                     silver = 108,
-                    gold = 105
+                    gold = 105,
+                    currencyId = 2703
                 }
             },
             normal = {
@@ -2241,28 +2475,34 @@ maps.Races = {
             name = 'Canopy Concours',
             zone = 2200
         },
-        [2] = {
+        [2] = { -- Emerald Amble
             id = 426031,
+            questId = 78115,
             times = {
                 normal = {
                     silver = 89,
-                    gold = 84
+                    gold = 84,
+                    currencyId = 2681
                 },
                 advanced = {
                     silver = 73,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2687
                 },
                 reverse = {
                     silver = 73,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2693
                 },
                 challenge = {
                     silver = 76,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2704
                 },
                 challengeReverse = {
                     silver = 76,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2705
                 }
             },
             normal = {
@@ -2297,28 +2537,34 @@ maps.Races = {
             name = 'Emerald Amble',
             zone = 2200
         },
-        [3] = {
+        [3] = { -- Shoreline Switchback
             id = 426029,
+            questId = 78016,
             times = {
                 normal = {
                     silver = 78,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2679,
                 },
                 advanced = {
                     silver = 66,
-                    gold = 63
+                    gold = 63,
+                    currencyId = 2685
                 },
                 reverse = {
                     silver = 65,
-                    gold = 62
+                    gold = 62,
+                    currencyId = 2691
                 },
                 challenge = {
                     silver = 73,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2700
                 },
                 challengeReverse = {
                     silver = 73,
-                    gold = 70
+                    gold = 70,
+                    currencyId = 2701
                 }
             },
             normal = {
@@ -2353,28 +2599,34 @@ maps.Races = {
             name = 'Shoreline Switchback',
             zone = 2200
         },
-        [4] = {
+        [4] = { -- Smoldering Sprint
             id = 426027,
+            questId = 77983,
             times = {
                 normal = {
                     silver = 85,
-                    gold = 80
+                    gold = 80,
+                    currencyId = 2677
                 },
                 advanced = {
                     silver = 76,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2683
                 },
                 reverse = {
                     silver = 82,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2689
                 },
                 challenge = {
                     silver = 82,
-                    gold = 79
+                    gold = 79,
+                    currencyId = 2696
                 },
                 challengeReverse = {
                     silver = 83,
-                    gold = 80
+                    gold = 80,
+                    currencyId = 2697
                 }
             },
             normal = {
@@ -2409,28 +2661,34 @@ maps.Races = {
             name = 'Smoldering Sprint',
             zone = 2200
         },
-        [5] = {
+        [5] = { -- Viridescent Venture
             id = 426028,
+            questId = 77996,
             times = {
                 normal = {
                     silver = 83,
-                    gold = 78
+                    gold = 78,
+                    currencyId = 2678
                 },
                 advanced = {
                     silver = 67,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2684
                 },
                 reverse = {
                     silver = 67,
-                    gold = 64
+                    gold = 64,
+                    currencyId = 2690
                 },
                 challenge = {
                     silver = 76,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2698
                 },
                 challengeReverse = {
                     silver = 76,
-                    gold = 73
+                    gold = 73,
+                    currencyId = 2699
                 }
             },
             normal = {
@@ -2465,28 +2723,34 @@ maps.Races = {
             name = 'Viridescent Venture',
             zone = 2200
         },
-        [6] = {
+        [6] = { -- Ysera Invitational
             id = 426026,
+            questId = 77841,
             times = {
                 normal = {
                     silver = 103,
-                    gold = 98
+                    gold = 98,
+                    currencyId = 2676
                 },
                 advanced = {
                     silver = 90,
-                    gold = 87
+                    gold = 87,
+                    currencyId = 2682
                 },
                 reverse = {
                     silver = 90,
-                    gold = 87
+                    gold = 87,
+                    currencyId = 2688
                 },
                 challenge = {
                     silver = 98,
-                    gold = 95
+                    gold = 95,
+                    currencyId = 2694
                 },
                 challengeReverse = {
                     silver = 100,
-                    gold = 97
+                    gold = 97,
+                    currencyId = 2695
                 }
             },
             normal = {
@@ -2520,6 +2784,729 @@ maps.Races = {
             },
             name = 'Ysera Invitational',
             zone = 2200
+        },
+    },
+    ---@type Race[]
+    [9996] = {  -- Northrend Cup (Custom ID)
+        [1] = { -- Crystalsong Crisis
+            id = 432048,
+            questId = 78441,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 110,
+                    gold = 105,
+                    currencyId = 2725
+                },
+                advanced = {
+                    silver = 96,
+                    gold = 93,
+                    currencyId = 2743
+                },
+                reverse = {
+                    silver = 99,
+                    gold = 96,
+                    currencyId = 2761
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19609,
+                silver = 19610,
+                gold = 19611
+            },
+            advanced = {
+                bronze = 19612,
+                silver = 19613,
+                gold = 19614
+            },
+            reverse = {
+                bronze = 19615,
+                silver = 19616,
+                gold = 19617
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 91.3,
+                y = 70.7
+            },
+            name = 'Crystalsong Crisis',
+            zone = 127
+        },
+        [2] = { -- Makers' Marathon
+            id = 432047,
+            questId = 78389,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 105,
+                    gold = 100,
+                    currencyId = 2724
+                },
+                advanced = {
+                    silver = 98,
+                    gold = 93,
+                    currencyId = 2742
+                },
+                reverse = {
+                    silver = 102,
+                    gold = 98,
+                    currencyId = 2760
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19600,
+                silver = 19601,
+                gold = 19602
+            },
+            advanced = {
+                bronze = 19603,
+                silver = 19604,
+                gold = 19605
+            },
+            reverse = {
+                bronze = 19606,
+                silver = 19607,
+                gold = 19608
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 46.99,
+                y = 21.89
+            },
+            name = "Makers' Marathon",
+            zone = 120
+        },
+        [3] = { -- Zul'Drak Zephyr
+            id = 432046,
+            questId = 78346,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 70,
+                    gold = 65,
+                    currencyId = 2723
+                },
+                advanced = {
+                    silver = 67,
+                    gold = 62,
+                    currencyId = 2741
+                },
+                reverse = {
+                    silver = 71,
+                    gold = 67,
+                    currencyId = 2759
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19591,
+                silver = 19592,
+                gold = 19593
+            },
+            advanced = {
+                bronze = 19594,
+                silver = 19595,
+                gold = 19596
+            },
+            reverse = {
+                bronze = 19597,
+                silver = 19598,
+                gold = 19599
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 40.13,
+                y = 39.5
+            },
+            name = "Zul'Drak Zephyr",
+            zone = 120
+        },
+        [4] = { -- Gundrak Fast Track
+            id = 432054,
+            questId = 79268,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 65,
+                    gold = 60,
+                    currencyId = 2730
+                },
+                advanced = {
+                    silver = 62,
+                    gold = 57,
+                    currencyId = 2748
+                },
+                reverse = {
+                    silver = 61,
+                    gold = 57,
+                    currencyId = 2766
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19656,
+                silver = 19657,
+                gold = 19658
+            },
+            advanced = {
+                bronze = 19659,
+                silver = 19660,
+                gold = 19661
+            },
+            reverse = {
+                bronze = 19662,
+                silver = 19663,
+                gold = 19664
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 83.65,
+                y = 17.38
+            },
+            name = "Gundrak Fast Track",
+            zone = 120
+        },
+        [5] = { -- Blackriver Burble
+            id = 432045,
+            questId = 78334,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 80,
+                    gold = 75,
+                    currencyId = 2722
+                },
+                advanced = {
+                    silver = 72,
+                    gold = 67,
+                    currencyId = 2740
+                },
+                reverse = {
+                    silver = 75,
+                    gold = 71,
+                    currencyId = 2758
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19582,
+                silver = 19583,
+                gold = 19584
+            },
+            advanced = {
+                bronze = 19585,
+                silver = 19586,
+                gold = 19587
+            },
+            reverse = {
+                bronze = 19588,
+                silver = 19589,
+                gold = 19590
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 44.73,
+                y = 43.42
+            },
+            name = "Blackriver Burble",
+            zone = 116
+        },
+        [6] = { -- Daggercap Dart
+            id = 432044,
+            questId = 78325,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 82,
+                    gold = 77,
+                    currencyId = 2721
+                },
+                advanced = {
+                    silver = 81,
+                    gold = 76,
+                    currencyId = 2739
+                },
+                reverse = {
+                    silver = 81,
+                    gold = 76,
+                    currencyId = 2757
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19277,
+                silver = 19278,
+                gold = 19279
+            },
+            advanced = {
+                bronze = 19280,
+                silver = 19281,
+                gold = 19282
+            },
+            reverse = {
+                bronze = 19283,
+                silver = 19284,
+                gold = 19285
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 57.68,
+                y = 49.11
+            },
+            name = "Daggercap Dart",
+            zone = 117
+        },
+        [7] = { -- Scalawag Slither
+            id = 432043,
+            questId = 78301,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 78,
+                    gold = 73,
+                    currencyId = 2720
+                },
+                advanced = {
+                    silver = 73,
+                    gold = 68,
+                    currencyId = 2738
+                },
+                reverse = {
+                    silver = 75,
+                    gold = 70,
+                    currencyId = 2756
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19199,
+                silver = 19200,
+                gold = 19201
+            },
+            advanced = {
+                bronze = 19202,
+                silver = 19203,
+                gold = 19204
+            },
+            reverse = {
+                bronze = 19205,
+                silver = 19206,
+                gold = 19207
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 41.95,
+                y = 67.71
+            },
+            name = "Scalawag Slither",
+            zone = 117
+        },
+        [8] = { -- Dragonblight Dragon Flight
+            id = 432049,
+            questId = 78454,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 120,
+                    gold = 115,
+                    currencyId = 2726
+                },
+                advanced = {
+                    silver = 115,
+                    gold = 110,
+                    currencyId = 2744
+                },
+                reverse = {
+                    silver = 120,
+                    gold = 115,
+                    currencyId = 2762
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19618,
+                silver = 19619,
+                gold = 19620
+            },
+            advanced = {
+                bronze = 19621,
+                silver = 19622,
+                gold = 19623
+            },
+            reverse = {
+                bronze = 19624,
+                silver = 19625,
+                gold = 19626
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 41.95,
+                y = 67.71
+            },
+            name = "Dragonblight Dragon Flight",
+            zone = 115
+        },
+        [9] = { -- Citadel Sortie
+            id = 432050,
+            questId = 78499,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 115,
+                    gold = 110,
+                    currencyId = 2727
+                },
+                advanced = {
+                    silver = 108,
+                    gold = 103,
+                    currencyId = 2745
+                },
+                reverse = {
+                    silver = 110,
+                    gold = 104,
+                    currencyId = 2763
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19627,
+                silver = 19628,
+                gold = 19629
+            },
+            advanced = {
+                bronze = 19630,
+                silver = 19631,
+                gold = 19632
+            },
+            reverse = {
+                bronze = 19633,
+                silver = 19634,
+                gold = 19635
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 51.73,
+                y = 91.02
+            },
+            name = "Citadel Sortie",
+            zone = 118
+        },
+        [10] = { -- Sholazar Spree
+            id = 432051,
+            questId = 78558,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 93,
+                    gold = 88,
+                    currencyId = 2728
+                },
+                advanced = {
+                    silver = 90,
+                    gold = 85,
+                    currencyId = 2746
+                },
+                reverse = {
+                    silver = 89,
+                    gold = 85,
+                    currencyId = 2764
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19636,
+                silver = 19637,
+                gold = 19638
+            },
+            advanced = {
+                bronze = 19639,
+                silver = 19640,
+                gold = 19641
+            },
+            reverse = {
+                bronze = 19642,
+                silver = 19643,
+                gold = 19644
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 79.45,
+                y = 54.39
+            },
+            name = "Sholazar Spree",
+            zone = 119
+        },
+        [11] = { -- Geothermal Jaunt
+            id = 432052,
+            questId = 78609,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 50,
+                    gold = 45,
+                    currencyId = 2729
+                },
+                advanced = {
+                    silver = 42,
+                    gold = 37,
+                    currencyId = 2747
+                },
+                reverse = {
+                    silver = 41,
+                    gold = 37,
+                    currencyId = 2765
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19647,
+                silver = 19648,
+                gold = 19649
+            },
+            advanced = {
+                bronze = 19650,
+                silver = 19651,
+                gold = 19652
+            },
+            reverse = {
+                bronze = 19653,
+                silver = 19654,
+                gold = 19655
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 54.1,
+                y = 15.5
+            },
+            name = "Geothermal Jaunt",
+            zone = 114
+        },
+        [12] = { -- Coldarra Climb
+            id = 432055,
+            questId = 79272,
+            times = { -- TODO: Times are wrong
+                normal = {
+                    silver = 62,
+                    gold = 57,
+                    currencyId = 2731
+                },
+                advanced = {
+                    silver = 62,
+                    gold = 57,
+                    currencyId = 2749
+                },
+                reverse = {
+                    silver = 59,
+                    gold = 55,
+                    currencyId = 2767
+                },
+                challenge = {
+                    silver = 0,
+                    gold = 0
+                },
+                challengeReverse = {
+                    silver = 0,
+                    gold = 0
+                }
+            },
+            normal = {
+                bronze = 19665,
+                silver = 19666,
+                gold = 19667
+            },
+            advanced = {
+                bronze = 19668,
+                silver = 19669,
+                gold = 19670
+            },
+            reverse = {
+                bronze = 19671,
+                silver = 19672,
+                gold = 19673
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 32.31,
+                y = 23.84
+            },
+            name = "Coldarra Climb",
+            zone = 114
         },
     }
 }

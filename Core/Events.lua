@@ -8,7 +8,6 @@ local events = addon:NewModule('Events', 'AceEvent-3.0')
 
 function events:OnInitialize()
     events:RegisterEvent('PLAYER_LOGIN')
-    events:RegisterEvent('UNIT_AURA')
     events:RegisterEvent('VARIABLES_LOADED')
     events:RegisterEvent('ZONE_CHANGED_NEW_AREA')
     events:RegisterEvent('ACHIEVEMENT_EARNED')
@@ -17,6 +16,7 @@ function events:OnInitialize()
     events:RegisterEvent('UNIT_POWER_BAR_SHOW')
     events:RegisterEvent('UNIT_SPELLCAST_SUCCEEDED')
     events:RegisterEvent('UPDATE_UI_WIDGET')
+    events:RegisterEvent('QUEST_REMOVED')
 end
 
 events:Enable()

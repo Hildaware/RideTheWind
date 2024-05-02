@@ -157,9 +157,6 @@ function zoneView:Update()
     local zoneInfo = utils.GetDragonRacingZone()
     if zoneInfo == nil then return end
 
-    -- No need to refresh if the *main* zone didn't change
-    if zoneView.data.currentZone == zoneInfo.id then return end
-
     local raceData = maps.Races[zoneInfo.id]
     if raceData == nil then return end
 
@@ -167,7 +164,13 @@ function zoneView:Update()
 
     if self.data == nil then return end
 
-    self.data.view:SetTitle(resolver.GetMapName(self.data.races[1].zone))
+    if zoneInfo.isCup == true then
+        if resolver.IsRaceHoliday() == zoneInfo.id then
+            self.data.view:SetTitle(zoneInfo.name)
+        end
+    else
+        self.data.view:SetTitle(resolver.GetMapName(self.data.races[1].zone))
+    end
 
     self.data.view.ScrollContainer:ReleaseChildren()
 
@@ -282,6 +285,36 @@ function events:VARIABLES_LOADED()
 end
 
 function events:TRACKED_ACHIEVEMENT_UPDATE()
+    zoneView:Update()
+end
+
+---@param questId integer
+function events:QUEST_REMOVED(_, questId)
+    for _, zones in pairs(maps.Races) do
+        for _, race in pairs(zones) do
+            if race.questId ~= nil and race.questId == questId then
+                -- Gather up the race times and store them
+                local t = race.times
+                local normalBest = resolver.GetBestRaceTime(t.normal)
+                local advancedBest = resolver.GetBestRaceTime(t.advanced)
+                local reverseBest = resolver.GetBestRaceTime(t.reverse)
+                local challengeBest = resolver.GetBestRaceTime(t.challenge)
+                local challengeReverseBest = resolver.GetBestRaceTime(t.challenge)
+
+                local raceTimes = {
+                    normal = normalBest,
+                    advanced = advancedBest,
+                    reverse = reverseBest,
+                    challenge = challengeBest,
+                    challengeReverse = challengeReverseBest
+                }
+
+                database:SaveRaceTimes(race.id, raceTimes)
+                return
+            end
+        end
+    end
+
     zoneView:Update()
 end
 

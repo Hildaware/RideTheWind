@@ -103,8 +103,8 @@ end
 --#endregion
 
 --#region HeadsUpView
----@return boolean
 
+---@return boolean
 function database:GetHeadsUpViewEnabled()
     return self.internal.global.Views.HeadsUpView.Enabled
 end
@@ -138,7 +138,29 @@ end
 function database:SaveRaceTimes(raceId, raceTimes)
     local savedTimes = database.internal.global.Races[raceId]
     if savedTimes == nil then
-        database.internal.global.Races[raceId] = raceTimes
+        database.internal.global.Races[raceId] = {
+            normal = nil,
+            advanced = nil,
+            reverse = nil,
+            challenge = nil,
+            challengeReverse = nil
+        }
+
+        if raceTimes.normal ~= 0 then
+            database.internal.global.Races[raceId].normal = raceTimes.normal
+        end
+        if raceTimes.advanced ~= 0 then
+            database.internal.global.Races[raceId].advanced = raceTimes.advanced
+        end
+        if raceTimes.reverse ~= 0 then
+            database.internal.global.Races[raceId].reverse = raceTimes.reverse
+        end
+        if raceTimes.challenge ~= 0 then
+            database.internal.global.Races[raceId].challenge = raceTimes.challenge
+        end
+        if raceTimes.challengeReverse ~= 0 then
+            database.internal.global.Races[raceId].challengeReverse = raceTimes.challengeReverse
+        end
 
         ---@class ZoneView: AceModule
         local zoneView = addon:GetModule('ZoneView')
@@ -147,29 +169,54 @@ function database:SaveRaceTimes(raceId, raceTimes)
     end
 
     local shouldUpdateView = false
-    if raceTimes.normal < savedTimes.normal then
-        database.internal.global.Races[raceId].normal = raceTimes.normal
-        shouldUpdateView = true
+    if raceTimes.normal ~= nil and raceTimes.normal ~= 0 then
+        if savedTimes.normal == nil then
+            database.internal.global.Races[raceId].normal = raceTimes.normal
+            shouldUpdateView = true
+        elseif raceTimes.normal < savedTimes.normal then
+            database.internal.global.Races[raceId].normal = raceTimes.normal
+            shouldUpdateView = true
+        end
     end
 
-    if raceTimes.advanced < savedTimes.advanced then
-        database.internal.global.Races[raceId].advanced = raceTimes.advanced
-        shouldUpdateView = true
+    if raceTimes.advanced ~= nil and raceTimes.advanced ~= 0 then
+        if savedTimes.advanced == nil then
+            database.internal.global.Races[raceId].advanced = raceTimes.advanced
+            shouldUpdateView = true
+        elseif raceTimes.advanced < savedTimes.advanced then
+            database.internal.global.Races[raceId].advanced = raceTimes.advanced
+            shouldUpdateView = true
+        end
     end
 
-    if raceTimes.reverse < savedTimes.reverse then
-        database.internal.global.Races[raceId].reverse = raceTimes.reverse
-        shouldUpdateView = true
+    if raceTimes.reverse ~= nil and raceTimes.reverse ~= 0 then
+        if savedTimes.reverse == nil then
+            database.internal.global.Races[raceId].reverse = raceTimes.reverse
+            shouldUpdateView = true
+        elseif raceTimes.reverse < savedTimes.reverse then
+            database.internal.global.Races[raceId].reverse = raceTimes.reverse
+            shouldUpdateView = true
+        end
     end
 
-    if raceTimes.challenge < savedTimes.challenge then
-        database.internal.global.Races[raceId].challenge = raceTimes.challenge
-        shouldUpdateView = true
+    if raceTimes.challenge ~= nil and raceTimes.challenge ~= 0 then
+        if savedTimes.challenge == nil then
+            database.internal.global.Races[raceId].challenge = raceTimes.challenge
+            shouldUpdateView = true
+        elseif raceTimes.challenge < savedTimes.challenge then
+            database.internal.global.Races[raceId].challenge = raceTimes.challenge
+            shouldUpdateView = true
+        end
     end
 
-    if raceTimes.challengeReverse < savedTimes.challengeReverse then
-        database.internal.global.Races[raceId].challengeReverse = raceTimes.challengeReverse
-        shouldUpdateView = true
+    if raceTimes.challengeReverse ~= nil and raceTimes.challengeReverse ~= 0 then
+        if savedTimes.challengeReverse == nil then
+            database.internal.global.Races[raceId].challengeReverse = raceTimes.challengeReverse
+            shouldUpdateView = true
+        elseif raceTimes.challengeReverse < savedTimes.challengeReverse then
+            database.internal.global.Races[raceId].challengeReverse = raceTimes.challengeReverse
+            shouldUpdateView = true
+        end
     end
 
     if shouldUpdateView then

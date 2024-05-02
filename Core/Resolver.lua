@@ -67,4 +67,42 @@ function resolver.ToggleDefaultHeadsUpDisplay(value)
     end
 end
 
+---@return integer
+function resolver.IsRaceHoliday()
+    -- 3rd arg is an index, so we need to loop
+    local date = C_DateAndTime.GetCurrentCalendarTime()
+    for i = 0, 10, 1 do
+        local eventInfo = C_Calendar.GetHolidayInfo(0, date.monthDay, i)
+        if eventInfo ~= nil then
+            if eventInfo.name == 'Northrend Cup' then -- TODO: Localization
+                return 9996
+            end
+
+            if eventInfo.name == 'Outland Cup' then
+                return 9995
+            end
+
+            if eventInfo.name == 'Kalimdor Cup' then
+                return 9997
+            end
+
+            if eventInfo.name == 'Eastern Kingdoms Cup' then
+                return 9998
+            end
+        end
+    end
+    return 0
+end
+
+---@param raceTimes RaceTimes?
+---@return integer
+function resolver.GetBestRaceTime(raceTimes)
+    if (raceTimes == nil or raceTimes.currencyId == nil) then return 0 end
+
+    local value = C_CurrencyInfo.GetCurrencyInfo(raceTimes.currencyId).quantity / 1000;
+    if value == 0 then return 0 end
+
+    return value;
+end
+
 resolver:Enable()
