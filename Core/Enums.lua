@@ -22,12 +22,29 @@ enums.RacingZoneIds = {
     120, -- Storm Peaks
     121, -- Zul'Drak
     127, -- Crystalsong
+    100, -- Hellfire
+    102, -- Zanger
+    105, -- Blade's Edge
+    107, -- Nagrand
+    108, -- Terrokar
+    109, -- Netherstorm
+    111, -- Shatt
+    104, -- Shadowmoon
 }
 
 enums.Cups = {
     [9995] = { -- Outland Cup
         name = 'Outland Cup',
-        zones = {}
+        zones = {
+            100,
+            102,
+            105,
+            107,
+            108,
+            109,
+            111,
+            104
+        }
     },
     [9996] = { -- Northrend Cup
         name = 'Northrend Cup',

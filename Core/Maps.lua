@@ -2791,7 +2791,7 @@ maps.Races = {
         [1] = { -- Crystalsong Crisis
             id = 432048,
             questId = 78441,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 110,
                     gold = 105,
@@ -2806,14 +2806,6 @@ maps.Races = {
                     silver = 99,
                     gold = 96,
                     currencyId = 2761
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -2851,29 +2843,21 @@ maps.Races = {
         [2] = { -- Makers' Marathon
             id = 432047,
             questId = 78389,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 105,
                     gold = 100,
                     currencyId = 2724
                 },
                 advanced = {
-                    silver = 98,
+                    silver = 96,
                     gold = 93,
                     currencyId = 2742
                 },
                 reverse = {
-                    silver = 102,
+                    silver = 101,
                     gold = 98,
                     currencyId = 2760
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -2911,29 +2895,21 @@ maps.Races = {
         [3] = { -- Zul'Drak Zephyr
             id = 432046,
             questId = 78346,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 70,
                     gold = 65,
                     currencyId = 2723
                 },
                 advanced = {
-                    silver = 67,
+                    silver = 65,
                     gold = 62,
                     currencyId = 2741
                 },
                 reverse = {
-                    silver = 71,
+                    silver = 70,
                     gold = 67,
                     currencyId = 2759
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -2971,29 +2947,21 @@ maps.Races = {
         [4] = { -- Gundrak Fast Track
             id = 432054,
             questId = 79268,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 65,
                     gold = 60,
                     currencyId = 2730
                 },
                 advanced = {
-                    silver = 62,
+                    silver = 60,
                     gold = 57,
                     currencyId = 2748
                 },
                 reverse = {
-                    silver = 61,
+                    silver = 60,
                     gold = 57,
                     currencyId = 2766
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3031,29 +2999,21 @@ maps.Races = {
         [5] = { -- Blackriver Burble
             id = 432045,
             questId = 78334,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 80,
                     gold = 75,
                     currencyId = 2722
                 },
                 advanced = {
-                    silver = 72,
+                    silver = 70,
                     gold = 67,
                     currencyId = 2740
                 },
                 reverse = {
-                    silver = 75,
+                    silver = 74,
                     gold = 71,
                     currencyId = 2758
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3091,29 +3051,21 @@ maps.Races = {
         [6] = { -- Daggercap Dart
             id = 432044,
             questId = 78325,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 82,
                     gold = 77,
                     currencyId = 2721
                 },
                 advanced = {
-                    silver = 81,
+                    silver = 79,
                     gold = 76,
                     currencyId = 2739
                 },
                 reverse = {
-                    silver = 81,
+                    silver = 79,
                     gold = 76,
                     currencyId = 2757
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3151,29 +3103,21 @@ maps.Races = {
         [7] = { -- Scalawag Slither
             id = 432043,
             questId = 78301,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 78,
                     gold = 73,
                     currencyId = 2720
                 },
                 advanced = {
-                    silver = 73,
+                    silver = 71,
                     gold = 68,
                     currencyId = 2738
                 },
                 reverse = {
-                    silver = 75,
+                    silver = 73,
                     gold = 70,
                     currencyId = 2756
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3211,29 +3155,21 @@ maps.Races = {
         [8] = { -- Dragonblight Dragon Flight
             id = 432049,
             questId = 78454,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 120,
                     gold = 115,
                     currencyId = 2726
                 },
                 advanced = {
-                    silver = 115,
+                    silver = 113,
                     gold = 110,
                     currencyId = 2744
                 },
                 reverse = {
-                    silver = 120,
+                    silver = 118,
                     gold = 115,
                     currencyId = 2762
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3271,29 +3207,21 @@ maps.Races = {
         [9] = { -- Citadel Sortie
             id = 432050,
             questId = 78499,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 115,
                     gold = 110,
                     currencyId = 2727
                 },
                 advanced = {
-                    silver = 108,
+                    silver = 106,
                     gold = 103,
                     currencyId = 2745
                 },
                 reverse = {
-                    silver = 110,
+                    silver = 107,
                     gold = 104,
                     currencyId = 2763
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3331,29 +3259,21 @@ maps.Races = {
         [10] = { -- Sholazar Spree
             id = 432051,
             questId = 78558,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 93,
                     gold = 88,
                     currencyId = 2728
                 },
                 advanced = {
-                    silver = 90,
+                    silver = 88,
                     gold = 85,
                     currencyId = 2746
                 },
                 reverse = {
-                    silver = 89,
+                    silver = 88,
                     gold = 85,
                     currencyId = 2764
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3391,29 +3311,21 @@ maps.Races = {
         [11] = { -- Geothermal Jaunt
             id = 432052,
             questId = 78609,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 50,
                     gold = 45,
                     currencyId = 2729
                 },
                 advanced = {
-                    silver = 42,
+                    silver = 40,
                     gold = 37,
                     currencyId = 2747
                 },
                 reverse = {
-                    silver = 41,
+                    silver = 40,
                     gold = 37,
                     currencyId = 2765
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3451,29 +3363,21 @@ maps.Races = {
         [12] = { -- Coldarra Climb
             id = 432055,
             questId = 79272,
-            times = { -- TODO: Times are wrong
+            times = {
                 normal = {
                     silver = 62,
                     gold = 57,
                     currencyId = 2731
                 },
                 advanced = {
-                    silver = 62,
+                    silver = 60,
                     gold = 57,
                     currencyId = 2749
                 },
                 reverse = {
-                    silver = 59,
+                    silver = 58,
                     gold = 55,
                     currencyId = 2767
-                },
-                challenge = {
-                    silver = 0,
-                    gold = 0
-                },
-                challengeReverse = {
-                    silver = 0,
-                    gold = 0
                 }
             },
             normal = {
@@ -3507,6 +3411,684 @@ maps.Races = {
             },
             name = "Coldarra Climb",
             zone = 114
+        },
+    },
+    [9995] = {  -- Outland Cup (Custom ID)
+        [1] = { -- Hellfire Hustle
+            id = 431798,
+            questId = 77102,
+            times = {
+                normal = {
+                    silver = 80,
+                    gold = 75,
+                    currencyId = 2600
+                },
+                advanced = {
+                    silver = 76,
+                    gold = 73,
+                    currencyId = 2615
+                },
+                reverse = {
+                    silver = 75,
+                    gold = 72,
+                    currencyId = 2630
+                }
+            },
+            normal = {
+                bronze = 18580,
+                silver = 18581,
+                gold = 18582
+            },
+            advanced = {
+                bronze = 18583,
+                silver = 18584,
+                gold = 18585
+            },
+            reverse = {
+                bronze = 18586,
+                silver = 18587,
+                gold = 18588
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 76,
+                y = 43
+            },
+            name = 'Hellfire Hustle',
+            zone = 100
+        },
+        [2] = { -- Coilfang Caper
+            id = 431799,
+            questId = 77169,
+            times = {
+                normal = {
+                    silver = 80,
+                    gold = 75,
+                    currencyId = 2601
+                },
+                advanced = {
+                    silver = 73,
+                    gold = 70,
+                    currencyId = 2616
+                },
+                reverse = {
+                    silver = 73,
+                    gold = 70,
+                    currencyId = 2631
+                }
+            },
+            normal = {
+                bronze = 18603,
+                silver = 18604,
+                gold = 18605
+            },
+            advanced = {
+                bronze = 18606,
+                silver = 18607,
+                gold = 18608
+            },
+            reverse = {
+                bronze = 18609,
+                silver = 18610,
+                gold = 18611
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 37,
+                y = 37
+            },
+            name = 'Coilfang Caper',
+            zone = 102
+        },
+        [3] = { -- Blade's Edge Brawl
+            id = 431800,
+            questId = 77205,
+            times = {
+                normal = {
+                    silver = 80,
+                    gold = 75,
+                    currencyId = 2602
+                },
+                advanced = {
+                    silver = 75,
+                    gold = 72,
+                    currencyId = 2617
+                },
+                reverse = {
+                    silver = 78,
+                    gold = 75,
+                    currencyId = 2632
+                }
+            },
+            normal = {
+                bronze = 18617,
+                silver = 18618,
+                gold = 18619
+            },
+            advanced = {
+                bronze = 18620,
+                silver = 18621,
+                gold = 18622
+            },
+            reverse = {
+                bronze = 18623,
+                silver = 18624,
+                gold = 18625
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 61,
+                y = 28
+            },
+            name = "Blade's Edge Brawl",
+            zone = 105
+        },
+        [4] = { -- Telaar Tear
+            id = 431801,
+            questId = 77238,
+            times = {
+                normal = {
+                    silver = 69,
+                    gold = 64,
+                    currencyId = 2603
+                },
+                advanced = {
+                    silver = 60,
+                    gold = 57,
+                    currencyId = 2618
+                },
+                reverse = {
+                    silver = 61,
+                    gold = 58,
+                    currencyId = 2633
+                }
+            },
+            normal = {
+                bronze = 18626,
+                silver = 18627,
+                gold = 18628
+            },
+            advanced = {
+                bronze = 18629,
+                silver = 18630,
+                gold = 18631
+            },
+            reverse = {
+                bronze = 18632,
+                silver = 18633,
+                gold = 18634
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 59,
+                y = 76
+            },
+            name = "Telaar Tear",
+            zone = 107
+        },
+        [5] = { -- Razorthorn Rise Rush
+            id = 431802,
+            questId = 77260,
+            times = {
+                normal = {
+                    silver = 72,
+                    gold = 67,
+                    currencyId = 2604
+                },
+                advanced = {
+                    silver = 57,
+                    gold = 54,
+                    currencyId = 2619
+                },
+                reverse = {
+                    silver = 57,
+                    gold = 54,
+                    currencyId = 2634
+                }
+            },
+            normal = {
+                bronze = 18649,
+                silver = 18650,
+                gold = 18651
+            },
+            advanced = {
+                bronze = 18652,
+                silver = 18653,
+                gold = 18654
+            },
+            reverse = {
+                bronze = 18655,
+                silver = 18656,
+                gold = 18657
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 60,
+                y = 5
+            },
+            name = "Razorthorn Rise Rush",
+            zone = 108
+        },
+        [6] = { -- Auchindoun Coaster
+            id = 431803,
+            questId = 77264,
+            times = {
+                normal = {
+                    silver = 78,
+                    gold = 73,
+                    currencyId = 2605
+                },
+                advanced = {
+                    silver = 73,
+                    gold = 70,
+                    currencyId = 2620
+                },
+                reverse = {
+                    silver = 73,
+                    gold = 70,
+                    currencyId = 2635
+                }
+            },
+            normal = {
+                bronze = 18658,
+                silver = 18659,
+                gold = 18660
+            },
+            advanced = {
+                bronze = 18661,
+                silver = 18662,
+                gold = 18663
+            },
+            reverse = {
+                bronze = 18664,
+                silver = 18665,
+                gold = 18666
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 42,
+                y = 68
+            },
+            name = "Auchindoun Coaster",
+            zone = 108
+        },
+        [7] = { -- Tempest Keep Sweep
+            id = 431804,
+            questId = 77278,
+            times = {
+                normal = {
+                    silver = 105,
+                    gold = 100,
+                    currencyId = 2606
+                },
+                advanced = {
+                    silver = 90,
+                    gold = 87,
+                    currencyId = 2621
+                },
+                reverse = {
+                    silver = 91,
+                    gold = 88,
+                    currencyId = 2636
+                }
+            },
+            normal = {
+                bronze = 18667,
+                silver = 18668,
+                gold = 18669
+            },
+            advanced = {
+                bronze = 18670,
+                silver = 18671,
+                gold = 18672
+            },
+            reverse = {
+                bronze = 18673,
+                silver = 18674,
+                gold = 18675
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 69,
+                y = 48
+            },
+            name = "Tempest Keep Sweep",
+            zone = 109
+        },
+        [8] = { -- Shattrath City Sashay
+            id = 431805,
+            questId = 77322,
+            times = {
+                normal = {
+                    silver = 80,
+                    gold = 75,
+                    currencyId = 2607
+                },
+                advanced = {
+                    silver = 68,
+                    gold = 65,
+                    currencyId = 2622
+                },
+                reverse = {
+                    silver = 69,
+                    gold = 66,
+                    currencyId = 2637
+                }
+            },
+            normal = {
+                bronze = 18679,
+                silver = 18680,
+                gold = 18681
+            },
+            advanced = {
+                bronze = 18682,
+                silver = 18683,
+                gold = 18684
+            },
+            reverse = {
+                bronze = 18685,
+                silver = 18686,
+                gold = 18687
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 72,
+                y = 71
+            },
+            name = "Shattrath City Sashay",
+            zone = 109
+        },
+        [9] = { -- Shadowmoon Slam
+            id = 431806,
+            questId = 77346,
+            times = {
+                normal = {
+                    silver = 75,
+                    gold = 70,
+                    currencyId = 2608
+                },
+                advanced = {
+                    silver = 66,
+                    gold = 63,
+                    currencyId = 2623
+                },
+                reverse = {
+                    silver = 66,
+                    gold = 63,
+                    currencyId = 2638
+                }
+            },
+            normal = {
+                bronze = 18692,
+                silver = 18693,
+                gold = 18694
+            },
+            advanced = {
+                bronze = 18695,
+                silver = 18696,
+                gold = 18697
+            },
+            reverse = {
+                bronze = 18698,
+                silver = 18699,
+                gold = 18700
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 62,
+                y = 49
+            },
+            name = "Shadowmoon Slam",
+            zone = 104
+        },
+        [10] = { -- Eco-Dome Excursion
+            id = 431806,
+            questId = 77398,
+            times = {
+                normal = {
+                    silver = 120,
+                    gold = 115,
+                    currencyId = 2609
+                },
+                advanced = {
+                    silver = 112,
+                    gold = 109,
+                    currencyId = 2624
+                },
+                reverse = {
+                    silver = 113,
+                    gold = 110,
+                    currencyId = 2639
+                }
+            },
+            normal = {
+                bronze = 18707,
+                silver = 18708,
+                gold = 18709
+            },
+            advanced = {
+                bronze = 18710,
+                silver = 18711,
+                gold = 18712
+            },
+            reverse = {
+                bronze = 18713,
+                silver = 18714,
+                gold = 18715
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 51,
+                y = 42
+            },
+            name = "Eco-Dome Excursion",
+            zone = 109
+        },
+        [11] = { -- Warmaul Wingding
+            id = 431808,
+            questId = 77589,
+            times = {
+                normal = {
+                    silver = 85,
+                    gold = 80,
+                    currencyId = 2610
+                },
+                advanced = {
+                    silver = 75,
+                    gold = 72,
+                    currencyId = 2625
+                },
+                reverse = {
+                    silver = 76,
+                    gold = 73,
+                    currencyId = 2640
+                }
+            },
+            normal = {
+                bronze = 18739,
+                silver = 18740,
+                gold = 18741
+            },
+            advanced = {
+                bronze = 18742,
+                silver = 18743,
+                gold = 18744
+            },
+            reverse = {
+                bronze = 18745,
+                silver = 18746,
+                gold = 18747
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 30,
+                y = 25
+            },
+            name = "Warmaul Wingding",
+            zone = 107
+        },
+        [12] = { -- Skettis Scramble
+            id = 431809,
+            questId = 77645,
+            times = {
+                normal = {
+                    silver = 75,
+                    gold = 70,
+                    currencyId = 2611
+                },
+                advanced = {
+                    silver = 66,
+                    gold = 63,
+                    currencyId = 2626
+                },
+                reverse = {
+                    silver = 66,
+                    gold = 63,
+                    currencyId = 2641
+                }
+            },
+            normal = {
+                bronze = 18794,
+                silver = 18795,
+                gold = 18796
+            },
+            advanced = {
+                bronze = 18797,
+                silver = 18798,
+                gold = 18799
+            },
+            reverse = {
+                bronze = 18800,
+                silver = 18801,
+                gold = 18802
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 67,
+                y = 66
+            },
+            name = "Skettis Scramble",
+            zone = 108
+        },
+        [13] = { -- Fel Pit Fracas
+            id = 431810,
+            questId = 77684,
+            times = {
+                normal = {
+                    silver = 82,
+                    gold = 77,
+                    currencyId = 2612
+                },
+                advanced = {
+                    silver = 76,
+                    gold = 73,
+                    currencyId = 2627
+                },
+                reverse = {
+                    silver = 79,
+                    gold = 76,
+                    currencyId = 2642
+                }
+            },
+            normal = {
+                bronze = 18842,
+                silver = 18843,
+                gold = 18844
+            },
+            advanced = {
+                bronze = 18845,
+                silver = 18846,
+                gold = 18847
+            },
+            reverse = {
+                bronze = 18848,
+                silver = 18849,
+                gold = 18850
+            },
+            challenge = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            challengeReverse = {
+                bronze = 0,
+                silver = 0,
+                gold = 0
+            },
+            coords = {
+                x = 52,
+                y = 40
+            },
+            name = "Fel Pit Fracas",
+            zone = 104
         },
     }
 }

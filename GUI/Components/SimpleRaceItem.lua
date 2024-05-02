@@ -57,8 +57,22 @@ end
 ---@param scoreTargets RaceTimes?
 ---@param frame AceGUIInteractiveLabel
 function simpleRaceItem:UpdateScore(raceInfo, score, scoreTargets, frame)
-    local normalPlace = utils.GetRacePlace(raceInfo)
-    frame:SetText(utils.GetPositionIcon(normalPlace))
+    if scoreTargets == nil then
+        frame:SetText("")
+    else
+        frame:SetText("-")
+    end
+
+    if score and score > 0 then
+        if score > (scoreTargets and scoreTargets.silver) then
+            frame:SetText(utils.GetPositionIcon(3))
+        elseif score > (scoreTargets and scoreTargets.gold) then
+            frame:SetText(utils.GetPositionIcon(2))
+        else
+            frame:SetText(utils.GetPositionIcon(1))
+        end
+    end
+
     frame:SetCallback('OnEnter', function(self)
         if score == nil and scoreTargets == nil then return end
 

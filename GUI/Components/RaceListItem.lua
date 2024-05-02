@@ -84,7 +84,23 @@ function item:CreateScore(racePlace, raceDetails, scoreTargets, overrideWidth)
     widget:SetFullWidth(true)
     widget:SetJustifyH('CENTER')
     widget:SetFontObject('GameFontNormalLarge')
-    widget:SetText(utils.GetPositionIcon(racePlace))
+
+    if scoreTargets == nil then
+        widget:SetText("")
+    else
+        widget:SetText("-")
+    end
+
+    if raceDetails and raceDetails > 0 then
+        if raceDetails > (scoreTargets and scoreTargets.silver) then
+            widget:SetText(utils.GetPositionIcon(3))
+        elseif raceDetails > (scoreTargets and scoreTargets.gold) then
+            widget:SetText(utils.GetPositionIcon(2))
+        else
+            widget:SetText(utils.GetPositionIcon(1))
+        end
+    end
+
     widget:SetCallback('OnEnter', function(self)
         if scoreTargets == nil then return end
 
