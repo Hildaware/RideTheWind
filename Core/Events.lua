@@ -17,6 +17,8 @@ function events:OnInitialize()
     events:RegisterEvent('UNIT_SPELLCAST_SUCCEEDED')
     events:RegisterEvent('UPDATE_UI_WIDGET')
     events:RegisterEvent('QUEST_REMOVED')
+    events:RegisterEvent('QUEST_ACCEPTED')
+    events:RegisterEvent('START_TIMER')
 end
 
 events:Enable()

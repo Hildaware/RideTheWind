@@ -288,34 +288,4 @@ function events:TRACKED_ACHIEVEMENT_UPDATE()
     zoneView:Update()
 end
 
----@param questId integer
-function events:QUEST_REMOVED(_, questId)
-    for _, zones in pairs(maps.Races) do
-        for _, race in pairs(zones) do
-            if race.questId ~= nil and race.questId == questId then
-                -- Gather up the race times and store them
-                local t = race.times
-                local normalBest = resolver.GetBestRaceTime(t.normal)
-                local advancedBest = resolver.GetBestRaceTime(t.advanced)
-                local reverseBest = resolver.GetBestRaceTime(t.reverse)
-                local challengeBest = resolver.GetBestRaceTime(t.challenge)
-                local challengeReverseBest = resolver.GetBestRaceTime(t.challenge)
-
-                local raceTimes = {
-                    normal = normalBest,
-                    advanced = advancedBest,
-                    reverse = reverseBest,
-                    challenge = challengeBest,
-                    challengeReverse = challengeReverseBest
-                }
-
-                database:SaveRaceTimes(race.id, raceTimes)
-                return
-            end
-        end
-    end
-
-    zoneView:Update()
-end
-
 zoneView:Enable()

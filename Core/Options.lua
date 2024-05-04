@@ -145,6 +145,57 @@ local settings = {
                     set = function(_, val) database:SetHeadsUpViewScale(val) end
                 }
             }
+        },
+        raceview = {
+            name = 'Race Info',
+            type = 'group',
+            order = 1,
+            args = {
+                enabled = {
+                    name = 'Enabled',
+                    desc = 'Enable the Race Info View',
+                    type = 'toggle',
+                    order = 1,
+                    get = function() return database:GetRaceViewEnabled() end,
+                    set = function(_, val) database:SetRaceViewEnabled(val) end
+                },
+                show = {
+                    name = 'Show',
+                    desc = 'Temporarily Show Race Info View (Useful for positioning',
+                    type = 'execute',
+                    order = 2,
+                    func = function()
+                        ---@class RaceView
+                        local raceView = addon:GetModule('RaceView')
+                        raceView:Toggle()
+                    end
+                },
+                position = {
+                    name = 'Position',
+                    type = 'header',
+                    order = 4
+                },
+                x = {
+                    name = 'X',
+                    type = 'range',
+                    order = 5,
+                    min = 0,
+                    max = 6000,
+                    step = 1,
+                    get = function() return database:GetRaceViewPosition().X end,
+                    set = function(_, val) database:SetRaceViewPositionX(val) end
+                },
+                y = {
+                    name = 'Y',
+                    type = 'range',
+                    order = 6,
+                    min = 0,
+                    max = 6000,
+                    step = 1,
+                    get = function() return database:GetRaceViewPosition().Y end,
+                    set = function(_, val) database:SetRaceViewPositionY(val) end
+                },
+            }
         }
     }
 

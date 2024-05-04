@@ -57,6 +57,13 @@ local defaults = {
                     Y = 500
                 },
                 Scale = 1.0
+            },
+            RaceView = {
+                Enabled = true,
+                Position = {
+                    X = 500,
+                    Y = 500
+                }
             }
         }
     }
@@ -125,6 +132,20 @@ end
 ---@return number
 function database:GetHeadsUpViewScale()
     return self.internal.global.Views.HeadsUpView.Scale
+end
+
+--#endregion
+
+--#region RaceView
+
+---@return { X: integer, Y: integer }
+function database:GetRaceViewPosition()
+    return self.internal.global.Views.RaceView.Position
+end
+
+---@return boolean
+function database:GetRaceViewEnabled()
+    return self.internal.global.Views.RaceView.Enabled
 end
 
 --#endregion
@@ -321,7 +342,6 @@ function database:SetHeadsUpViewPositionX(x)
     ---@class HeadsUpView: AceModule
     local view = addon:GetModule('HeadsUpView')
     view:UpdatePosition(x, database.internal.global.Views.HeadsUpView.Position.Y)
-    -- Update
 end
 
 ---@param y integer
@@ -341,6 +361,39 @@ function database:SetHeadsUpViewScale(scale)
 end
 
 --#endregion
+
+--#region RaceView
+
+---@param value boolean
+function database:SetRaceViewEnabled(value)
+    database.internal.global.Views.RaceView.Enabled = value
+end
+
+---@param x integer
+---@param y integer
+function database:SetRaceViewPosition(x, y)
+    database.internal.global.Views.RaceView.Position.X = x
+    database.internal.global.Views.RaceView.Position.Y = y
+end
+
+---@param x integer
+function database:SetRaceViewPositionX(x)
+    database.internal.global.Views.RaceView.Position.X = x
+    ---@class RaceView: AceModule
+    local view = addon:GetModule('RaceView')
+    view:UpdatePosition(x, database.internal.global.Views.RaceView.Position.Y)
+end
+
+---@param y integer
+function database:SetRaceViewPositionY(y)
+    database.internal.global.Views.RaceView.Position.Y = y
+    ---@class RaceView: AceModule
+    local view = addon:GetModule('RaceView')
+    view:UpdatePosition(database.internal.global.Views.RaceView.Position.X, y)
+end
+
+--#endregion
+
 
 --#endregion
 

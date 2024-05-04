@@ -28,6 +28,7 @@ local coordinates = {
 ---@field silver integer?
 ---@field gold integer?
 ---@field currencyId integer?
+---@field questId integer?
 local raceTimes = {
     silver = nil,
     gold = nil
@@ -49,7 +50,6 @@ local raceTargets = {
 
 ---@class Race
 ---@field id integer
----@field questId integer?
 ---@field normal RaceIDs
 ---@field advanced RaceIDs
 ---@field reverse RaceIDs

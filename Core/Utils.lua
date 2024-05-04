@@ -31,6 +31,25 @@ function utils.GetDragonRacingZone()
     return { id = zoneId, name = resolver.GetZoneName(), isCup = false }
 end
 
+---@param races RaceTargets
+---@param questId integer
+---@return { times:RaceTimes, type: string }?
+function utils.GetRaceByQuestId(races, questId)
+    local racesTypes = {
+        'normal',
+        'advanced',
+        'reverse',
+        'challenge',
+        'challengeReverse'
+    }
+    for _, raceType in pairs(racesTypes) do
+        if races[raceType] and races[raceType].questId == questId then
+            return { times = races[raceType], type = raceType }
+        end
+    end
+    return nil
+end
+
 ---@param position integer
 ---@return string
 function utils.GetPositionIcon(position)
