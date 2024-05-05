@@ -3512,19 +3512,19 @@ maps.Races = {
                     silver = 50,
                     gold = 45,
                     currencyId = 2729,
-                    questId = 78609
+                    questId = 78608
                 },
                 advanced = {
                     silver = 40,
                     gold = 37,
                     currencyId = 2747,
-                    questId = 78610
+                    questId = 78609
                 },
                 reverse = {
                     silver = 40,
                     gold = 37,
                     currencyId = 2765,
-                    questId = 78611
+                    questId = 78610
                 }
             },
             normal = {
@@ -3569,8 +3569,8 @@ maps.Races = {
                     questId = 79272
                 },
                 advanced = {
-                    silver = 60,
-                    gold = 57,
+                    silver = 58,
+                    gold = 55,
                     currencyId = 2749,
                     questId = 79273
                 },

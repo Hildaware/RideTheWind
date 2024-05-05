@@ -63,7 +63,8 @@ local defaults = {
                 Position = {
                     X = 500,
                     Y = 500
-                }
+                },
+                Scale = 1.0
             }
         }
     }
@@ -146,6 +147,11 @@ end
 ---@return boolean
 function database:GetRaceViewEnabled()
     return self.internal.global.Views.RaceView.Enabled
+end
+
+---@return number
+function database:GetRaceViewScale()
+    return self.internal.global.Views.RaceView.Scale
 end
 
 --#endregion
@@ -390,6 +396,14 @@ function database:SetRaceViewPositionY(y)
     ---@class RaceView: AceModule
     local view = addon:GetModule('RaceView')
     view:UpdatePosition(database.internal.global.Views.RaceView.Position.X, y)
+end
+
+---@param scale number
+function database:SetRaceViewScale(scale)
+    database.internal.global.Views.RaceView.Scale = scale
+    ---@class RaceView: AceModule
+    local view = addon:GetModule('RaceView')
+    view:UpdateScale(scale)
 end
 
 --#endregion

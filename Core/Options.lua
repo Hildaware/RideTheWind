@@ -195,6 +195,17 @@ local settings = {
                     get = function() return database:GetRaceViewPosition().Y end,
                     set = function(_, val) database:SetRaceViewPositionY(val) end
                 },
+                scale = {
+                    name = 'Scale',
+                    desc = 'Set the scaling of the race display',
+                    type = 'range',
+                    order = 8,
+                    min = 0.5,
+                    max = 4.0,
+                    step = 0.1,
+                    get = function() return database:GetRaceViewScale() end,
+                    set = function(_, val) database:SetRaceViewScale(val) end
+                }
             }
         }
     }

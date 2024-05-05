@@ -14,6 +14,9 @@ local session = addon:GetModule('Session')
 ---@class Resolver: AceModule
 local resolver = addon:GetModule('Resolver')
 
+---@class Maps: AceModule
+local maps = addon:GetModule('Maps')
+
 ---@return { id: integer, name: string, isCup: boolean }?
 function utils.GetDragonRacingZone()
     local zoneId = resolver.GetPlayerMap()
@@ -76,6 +79,24 @@ function utils.GetTableValue(table, value)
         end
     end
     return nil
+end
+
+---@param currentRace RaceTimes?
+---@param raceTime integer
+---@return string
+function utils.GetColorCodedRaceTime(currentRace, raceTime)
+    local colorCode = maps.ColorCodes[1]
+    if currentRace and raceTime > 0 then
+        if raceTime > currentRace.silver then   -- Bronze
+            colorCode = maps.ColorCodes[3]
+        elseif raceTime > currentRace.gold then -- Silver
+            colorCode = maps.ColorCodes[2]
+        else                                    -- Gold
+            colorCode = maps.ColorCodes[1]
+        end
+    end
+
+    return colorCode
 end
 
 local CS = CreateFrame("ColorSelect")

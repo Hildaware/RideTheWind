@@ -541,6 +541,17 @@ function headsUpView:SpeedTest()
 end
 
 function events:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellID)
+
+    ---@class RaceView: AceModule
+    local raceView = addon:GetModule('RaceView')
+    if spellID == 370007 then
+        -- Reset Timer
+        raceView:CancelTimer(raceView.data.timer)
+        raceView.data.raceTime = 0
+        raceView.data.startTime = 0
+        raceView.data.view.timer:SetText("00:000")
+    end
+
     if not database:GetHeadsUpViewEnabled() then return end
     if tonumber(spellID) == headsUpView.data.speed.constants.ascentSpellID then
         headsUpView.data.speed.ascentStart = GetTime()

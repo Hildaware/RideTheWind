@@ -27,7 +27,7 @@ local utils = addon:GetModule('Utils')
 ---@field currentRace? Race
 ---@field currentQuest? RaceTimes
 ---@field currentRaceType? string
----@field bestTime? integer
+---@field bestTime integer
 ---@field inRace boolean
 ---@field startTime integer
 ---@field raceTime integer
@@ -53,11 +53,12 @@ end
 function raceView:Create()
     local font = database:GetZoneViewFont()
     local position = database:GetRaceViewPosition()
+    local scale = database:GetRaceViewScale()
 
     ---@type AceGUIFrame
     local view = gui:Create('Window')
-    view:SetHeight(150)
-    view:SetWidth(400)
+    view:SetHeight(120+71+71)
+    view:SetWidth(450)
     view:SetLayout('Flow')
     view:EnableResize(false)
     view.closebutton:Hide()
@@ -67,6 +68,7 @@ function raceView:Create()
     view.frame:DisableDrawLayer('BORDER')
     view.frame:EnableMouse(false)
     view.frame:SetMouseClickEnabled(false)
+    view.frame:SetScale(0.80 * scale)
 
     view:SetPoint('TOPLEFT', UIParent, 'BOTTOMLEFT', position.X, position.Y)
 
@@ -77,12 +79,25 @@ function raceView:Create()
     frame:SetLayout('List')
     view:AddChild(frame)
 
-    local bgColor = database:GetZoneViewColor()
+    local tex = "interface/scenario/scoreboarddragonflight"
 
-    local viewTex = frame.frame:CreateTexture(nil, 'ARTWORK')
-    viewTex:SetAllPoints(frame.frame)
-    viewTex:SetColorTexture(bgColor.r, bgColor.g, bgColor.b, bgColor.a)
-    view.BackgroundColor = viewTex
+    local topTex = frame.frame:CreateTexture(nil, 'BACKGROUND')
+    topTex:SetPoint('TOPLEFT', view.frame, 'TOPLEFT', 0, 14)
+    topTex:SetTexture(tex)
+    topTex:SetTexCoord(0.001953125, 0.9140625, 0.642578125, 0.78125)
+    topTex:SetSize(457, 71)
+
+    local midTex = frame.frame:CreateTexture(nil, 'BACKGROUND')
+    midTex:SetPoint('TOPLEFT', topTex, 'BOTTOMLEFT', 0, 30)
+    midTex:SetTexture(tex)
+    midTex:SetTexCoord(0.001953125, 0.9140625, 0.001953125, 0.49609375)
+    midTex:SetSize(457, 122)
+
+    local bottomTex = frame.frame:CreateTexture(nil, 'BACKGROUND')
+    bottomTex:SetPoint('TOPLEFT', midTex, 'BOTTOMLEFT', 0, 36)
+    bottomTex:SetTexture(tex)
+    bottomTex:SetTexCoord(0.001953125, 0.9140625, 0.5, 0.638671875)
+    bottomTex:SetSize(467, 71)
 
     ---@type AceGUILabel
     local name = gui:Create('Label')
@@ -90,6 +105,7 @@ function raceView:Create()
     name:SetJustifyH('CENTER')
     name:SetText('Race Name')
     name:SetFont(font.path, 24, 'OUTLINE')
+    name:SetColor(1, 1, 0)
     view.name = name
     frame:AddChild(name)
 
@@ -97,7 +113,7 @@ function raceView:Create()
     local best = gui:Create('Label')
     best:SetFullWidth(true)
     best:SetJustifyH('CENTER')
-    best:SetText("Best")
+    best:SetText("Personal Best")
     best:SetFont(font.path, 22, 'OUTLINE')
     view.best = best
 
@@ -140,9 +156,16 @@ function raceView:Create()
     local timerText = gui:Create('Label')
     timerText:SetFullWidth(true)
     timerText:SetJustifyH('CENTER')
-    timerText:SetText('')
+    timerText:SetText('00.000')
     timerText:SetFont(font.path, 36, 'OUTLINE')
+    timerText.frame:SetFrameStrata('HIGH')
     view.timer = timerText
+
+    local timerTex = timerText.frame:CreateTexture(nil, 'BACKGROUND')
+    timerTex:SetPoint('CENTER', timerText.frame, 'CENTER', 0, -2)
+    timerTex:SetTexture("interface/covenantrenown/dragonflightmajorfactionscentaur")
+    timerTex:SetTexCoord(0.0009765625, 0.4599609375, 0.7783203125, 0.9150390625)
+    timerTex:SetSize(470/3, 140/3)
 
     frame:AddChild(timerText)
 
@@ -153,19 +176,8 @@ end
 function raceView:OnUpdate()
     self.data.raceTime = GetTime() - self.data.startTime
 
-    local colorCode = maps.ColorCodes[1]
-    if self.data.currentQuest and self.data.raceTime > 0 then
-        if self.data.raceTime > self.data.currentQuest.silver then   -- Bronze
-            colorCode = maps.ColorCodes[3]
-        elseif self.data.raceTime > self.data.currentQuest.gold then -- Silver
-            colorCode = maps.ColorCodes[2]
-        else                                                         -- Gold
-            colorCode = maps.ColorCodes[1]
-        end
-    end
-
-    local timeFormat = string.format("%02d:%02d", math.floor(self.data.raceTime / 60),
-        self.data.raceTime % 60)
+    local colorCode = utils.GetColorCodedRaceTime(self.data.currentQuest, self.data.raceTime)
+    local timeFormat = string.format("%.3f", self.data.raceTime)
     self.data.view.timer:SetText(colorCode .. timeFormat .. '|R')
 end
 
@@ -191,13 +203,18 @@ function raceView:UpdatePosition(x, y)
     self.data.view:SetPoint('TOPLEFT', UIParent, 'BOTTOMLEFT', x, y)
 end
 
+---@param value number
+function raceView:UpdateScale(value)
+    self.data.view.frame:SetScale(0.80 * value)
+end
+
 ---@return boolean
 function raceView:ShouldShowView()
     if database:GetRaceViewEnabled() ~= true then return false end
     return true
 end
 
-function events:START_TIMER(_, type, _, totalTime)
+function events:START_TIMER(_, _, _, totalTime)
     if not raceView.data.currentRace then return end
     if totalTime ~= 5 then return end
 
@@ -211,17 +228,22 @@ function events:START_TIMER(_, type, _, totalTime)
         raceView.data.view.gold:SetText(utils.GetPositionIcon(1) .. " " ..
             raceView.data.currentQuest.gold .. "s")
 
-
-        if raceView.data.bestTime and raceView.data.bestTime > 0 then
+        if raceView.data.bestTime > 0 then
             local colorCode = maps.ColorCodes[3]
+            local position = 3
             if raceView.data.bestTime > raceView.data.currentQuest.silver then   -- Bronze
                 colorCode = maps.ColorCodes[3]
             elseif raceView.data.bestTime > raceView.data.currentQuest.gold then -- Silver
                 colorCode = maps.ColorCodes[2]
+                position = 2
             else                                                                 -- Gold
                 colorCode = maps.ColorCodes[1]
+                position = 1
             end
-            raceView.data.view.best:SetText('Best: ' .. colorCode .. raceView.data.bestTime .. '|R')
+
+            local posIcon = utils.GetPositionIcon(position)
+
+            raceView.data.view.best:SetText('Personal Best: ' .. posIcon .. colorCode .. raceView.data.bestTime .. 's|R')
         else
             raceView.data.view.best:SetText('-')
         end
@@ -229,9 +251,10 @@ function events:START_TIMER(_, type, _, totalTime)
 
     if raceView:ShouldShowView() then
         raceView.data.view:Show()
+        raceView.data.view.timer:SetText("00.000")
     end
 
-    C_Timer.After(totalTime, function()
+    C_Timer.After(5, function()
         raceView:OnStart()
     end)
 end
@@ -250,9 +273,8 @@ function events:QUEST_ACCEPTED(_, questId)
                 local raceDetails = database:GetRaceDetailsById(race.id)
                 if raceDetails == nil then return end
                 local raceTime = raceDetails[raceData.type]
-                raceView.data.bestTime = raceTime
+                raceView.data.bestTime = raceTime and raceTime or 0
                 raceView.data.currentRaceType = raceData.type
-
                 return
             end
         end
@@ -261,8 +283,40 @@ end
 
 ---@param questId integer
 function events:QUEST_REMOVED(_, questId)
+    if raceView.data.currentQuest ~= nil and raceView.data.currentQuest.questId ~= questId then
+        -- We picked up a quest while racing... don't bomb out of the view!
+        return
+    end
+
     if (raceView.data.currentQuest and raceView.data.currentQuest.questId == questId)
-        and raceView.data.currentRace then
+        and raceView.data.currentRace and raceView.data.currentRaceType then
+        
+        raceView:CancelTimer(raceView.data.timer)
+        raceView.data.inRace = false
+
+        local raceTime = raceView.data.currentRace.times[raceView.data.currentRaceType]
+        local finishedRaceTime = resolver.GetBestRaceTime(raceTime)
+
+        if raceView.data.raceTime <= finishedRaceTime then
+            raceView.data.raceTime = finishedRaceTime
+        end
+        
+        local colorCode = utils.GetColorCodedRaceTime(raceView.data.currentQuest, raceView.data.raceTime)
+
+        local position = 3
+        if raceView.data.raceTime > raceView.data.currentQuest.silver then   -- Bronze
+            position = 3
+        elseif raceView.data.raceTime > raceView.data.currentQuest.gold then -- Silver
+            position = 2
+        else                                                                 -- Gold
+            position = 1
+        end
+        local posIcon = utils.GetPositionIcon(position)
+    
+        local timeFormat = string.format("%.3f", raceView.data.raceTime)
+        local timeStr = posIcon .. colorCode .. timeFormat .. '|R'
+        raceView.data.view.timer:SetText(timeStr)
+
         local t = raceView.data.currentRace.times
         local normalBest = resolver.GetBestRaceTime(t.normal)
         local advancedBest = resolver.GetBestRaceTime(t.advanced)
@@ -279,22 +333,23 @@ function events:QUEST_REMOVED(_, questId)
         }
 
         database:SaveRaceTimes(raceView.data.currentRace.id, raceTimes)
+
+        raceView.data.currentRace = nil
+        raceView.data.currentQuest = nil
+    
+        -- 5 seconds later... hide!
+        C_Timer.After(5, function()
+            raceView.data.raceTime = 0
+            raceView.data.startTime = 0
+            raceView.data.view.timer:SetText("")
+            raceView.data.view:Hide()
+        end)
+    
+        ---@class ZoneView: AceModule
+        local zoneView = addon:GetModule('ZoneView')
+        zoneView:Update()
+
     end
-
-    raceView.data.currentRace = nil
-    raceView.data.currentQuest = nil
-    raceView.data.inRace = false
-    raceView:CancelTimer(raceView.data.timer)
-
-    -- 5 seconds later... hide!
-    C_Timer.After(5, function()
-        raceView.data.raceTime = 0
-        raceView.data.view:Hide()
-    end)
-
-    ---@class ZoneView: AceModule
-    local zoneView = addon:GetModule('ZoneView')
-    zoneView:Update()
 end
 
 raceView:Enable()
