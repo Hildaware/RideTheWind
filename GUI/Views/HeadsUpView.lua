@@ -424,6 +424,9 @@ function headsUpView:Create()
     self.data.view.WhirlingSurge = ws
 
     self.data.view:Hide()
+
+    -- Try to show power bar if it's already active
+    events:UNIT_POWER_BAR_SHOW()
 end
 
 ---@return cbObject
