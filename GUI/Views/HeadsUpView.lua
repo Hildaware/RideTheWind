@@ -199,14 +199,14 @@ local function CreateVigorBar(parent)
 end
 
 local function CalculateSecondWindCooldown()
-    local current, max, startTime, _, _ = GetSpellCharges(headsUpView.data.cooldowns.secondWind.id)
-    headsUpView.data.cooldowns.secondWind.currentCharges = current
+    local spellCharges = C_Spell.GetSpellCharges(headsUpView.data.cooldowns.secondWind.id)
+    headsUpView.data.cooldowns.secondWind.currentCharges = spellCharges.currentCharges
 
     -- calc
-    local cdLeft = GetTime() - startTime
+    local cdLeft = GetTime() - spellCharges.cooldownStartTime
     local currentChargeCD = (headsUpView.data.cooldowns.secondWind.cooldown / 3) - cdLeft
 
-    local missingCharges = max - (current + 1)
+    local missingCharges = spellCharges.maxCharges - (spellCharges.currentCharges + 1)
     local missingChargeCD = (headsUpView.data.cooldowns.secondWind.cooldown / 3) * missingCharges
 
     local currentCD = missingChargeCD + currentChargeCD
@@ -260,13 +260,13 @@ function headsUpView:Create()
     sw:SetScale(0.9)
     sw:SetFrameLevel(0)
     sw:SetScript('OnShow', function()
-        local charges, max, startTime, _, _ = GetSpellCharges(self.data.cooldowns.secondWind.id)
-        self.data.cooldowns.secondWind.currentCharges = charges
-        if max > charges then
-            local cdLeft = GetTime() - startTime
+        local spellCharges = C_Spell.GetSpellCharges(headsUpView.data.cooldowns.secondWind.id)
+        self.data.cooldowns.secondWind.currentCharges = spellCharges.currentCharges
+        if spellCharges.maxCharges > spellCharges.currentCharges then
+            local cdLeft = GetTime() - spellCharges.cooldownStartTime
             local currentChargeCD = (self.data.cooldowns.secondWind.cooldown / 3) - cdLeft
 
-            local missingCharges = max - (charges + 1)
+            local missingCharges = max - (spellCharges.currentCharges + 1)
             local missingChargeCD = (self.data.cooldowns.secondWind.cooldown / 3) * missingCharges
 
             local currentCD = missingChargeCD + currentChargeCD
@@ -338,8 +338,8 @@ function headsUpView:Create()
     ws:SetScale(0.9)
     ws:SetFrameLevel(0)
     ws:SetScript('OnShow', function()
-        local startTime, _, _ = GetSpellCooldown(self.data.cooldowns.whirlingSurge.id)
-        local cdLeft = GetTime() - startTime
+        local spellCooldown = C_Spell.GetSpellCooldown(self.data.cooldowns.whirlingSurge.id)
+        local cdLeft = GetTime() - spellCooldown.startTime
         if cdLeft <= 0 or cdLeft > self.data.cooldowns.whirlingSurge.cooldown then
             return
         end
@@ -544,7 +544,6 @@ function headsUpView:SpeedTest()
 end
 
 function events:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellID)
-
     ---@class RaceView: AceModule
     local raceView = addon:GetModule('RaceView')
     if spellID == 370007 then
